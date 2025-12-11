@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "name": "Product 1",
+      "price": 100,
+      "instock": 50,
+      "id": "232a"
+    },
+    {
+      "name": "Product 2",
+      "price": 200,
+      "instock": 500,
+      "id": "591c"
+    },
+    {
+      "name": "Product 3",
+      "price": 300,
+      "instock": 150,
+      "id": "0a3c"
+    },
+    {
+      "id": "1bef",
+      "name": "Product 4",
+      "price": 400,
+      "instock": 5000
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "trungbb8",
+      "orderHistory": [
+        {
+          "date": "2025-01-01T10:30",
+          "name": "order 1"
+        },
+        {
+          "date": "2025-01-01T10:30",
+          "name": "order 2"
+        }
+      ]
+    }
+  ]
+}
