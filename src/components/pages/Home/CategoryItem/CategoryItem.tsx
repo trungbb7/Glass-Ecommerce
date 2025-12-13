@@ -17,8 +17,8 @@ export default function CategoryItem({
       </div>
       {/* Info */}
       <div>
-        <p className="text-lg font-bold text-secondary">{category}</p>
-        <p className="font-medium text-secondary">({inStock} items)</p>
+        <p className="text-lg font-bold">{category}</p>
+        <p className="font-medium">({inStock} items)</p>
       </div>
     </div>
   );
