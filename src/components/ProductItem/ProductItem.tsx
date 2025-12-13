@@ -1,5 +1,5 @@
 import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ProductItemProps {
@@ -59,7 +59,9 @@ export default function ProductItem({
       </div>
       {/* Body */}
       <div className="px-2">
+        {/* Name */}
         <p className="mb-2 text-lg font-medium hover:underline">{name}</p>
+        {/* Price */}
         <div>
           <span className="text-secondary mr-2 font-medium">
             ${discountPrice}
@@ -67,6 +69,34 @@ export default function ProductItem({
           <span className="text-gray-300 line-through font-medium">
             ${stockPrice}
           </span>
+        </div>
+        {/* Start */}
+        <div>
+          <FontAwesomeIcon
+            icon={faStar}
+            className="text-yellow-400"
+            size="xs"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className="text-yellow-400"
+            size="xs"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className="text-yellow-400"
+            size="xs"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className="text-yellow-400"
+            size="xs"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className="text-yellow-400"
+            size="xs"
+          />
         </div>
       </div>
     </div>

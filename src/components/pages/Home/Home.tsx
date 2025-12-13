@@ -17,42 +17,14 @@ export default function Home() {
       {/* Body */}
       <div className="mt-10 px-30">
         <Banner />
-        {/* Category card */}
-        <CategoryHeading title="Danh mục" description="Duyệt theo danh mục" />
-        <div className="flex gap-8 w-fit mx-auto my-10">
-          <CategoryItem
-            image={menGlassesImg}
-            category="Kính mát nam"
-            inStock={200}
-          />
-          <CategoryItem
-            image={womenGlassesImg}
-            category="Kính mát nữ"
-            inStock={240}
-          />
 
-          <CategoryItem
-            image={kidsGlassesImg}
-            category="Kính mát trẻ em"
-            inStock={130}
-          />
-          <CategoryItem
-            image={plasticGlassesImg}
-            category="Kính mát nhựa"
-            inStock={110}
-          />
-
-          <CategoryItem
-            image={metalGlassesImg}
-            category="Kính mát Kim loại"
-            inStock={50}
-          />
-        </div>
+        {/* Flash Sales */}
 
         <CategoryHeading
           title="Hôm nay"
           description="Flash Sales"
           className="mb-4"
+          endDate={new Date(2026, 2, 10, 0, 0, 0)}
         />
         <div className="flex flex-wrap gap-4">
           <ProductItem
@@ -83,19 +55,37 @@ export default function Home() {
             discountPrice={420000}
             stockPrice={500000}
           />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
+        </div>
+
+        {/* Category */}
+        <CategoryHeading title="Danh mục" description="Duyệt theo danh mục" />
+        <div className="flex gap-8 w-fit mx-auto my-10">
+          <CategoryItem
+            image={menGlassesImg}
+            category="Kính mát nam"
+            inStock={200}
           />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
+          <CategoryItem
+            image={womenGlassesImg}
+            category="Kính mát nữ"
+            inStock={240}
+          />
+
+          <CategoryItem
+            image={kidsGlassesImg}
+            category="Kính mát trẻ em"
+            inStock={130}
+          />
+          <CategoryItem
+            image={plasticGlassesImg}
+            category="Kính mát nhựa"
+            inStock={110}
+          />
+
+          <CategoryItem
+            image={metalGlassesImg}
+            category="Kính mát Kim loại"
+            inStock={50}
           />
         </div>
       </div>
