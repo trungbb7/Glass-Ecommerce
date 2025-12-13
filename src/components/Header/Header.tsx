@@ -25,16 +25,16 @@ export default function Header() {
           {/* Menu */}
           <div>
             <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              Home
+              Trang chủ
             </span>
             <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              Products
+              Sản phẩm
             </span>
             <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              Contact
+              Liên hệ
             </span>
             <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              About
+              Giới thiệu
             </span>
           </div>
         </div>
