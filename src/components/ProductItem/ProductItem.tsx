@@ -37,7 +37,7 @@ export default function ProductItem({
         </div>
 
         <div className="group/img absolute bottom-0 left-0 right-0 flex gap-2 items-center justify-center h-0 bg-black text-white hover:text-secondary group-hover/top:h-10 transition-all">
-          <div className="relative overflow-hidden size-5">
+          <div className="relative overflow-hidden size-4.5">
             <FontAwesomeIcon
               icon={faCartShopping}
               className="absolute inset-0 translate-y-[100px] group-hover/img:translate-y-0 transition-all"

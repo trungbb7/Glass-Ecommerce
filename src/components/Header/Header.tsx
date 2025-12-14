@@ -67,7 +67,7 @@ export default function Header() {
         {/* Cart */}
         <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
           <FontAwesomeIcon icon={faCartShopping} />
-          <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs">
+          <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
             2
           </span>
         </div>
