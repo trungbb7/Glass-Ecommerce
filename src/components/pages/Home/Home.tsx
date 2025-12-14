@@ -11,6 +11,7 @@ import CategoryHeading from "./CategoryHeading/CategoryHeading";
 import ProductItem from "@/components/ProductItem/ProductItem";
 import RecommededBanner from "./RecommendedBanner/RecommendedBanner";
 import { SeperateLine } from "@/components/SeperateLine";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -175,8 +176,7 @@ export default function Home() {
         <SeperateLine className="my-15" />
       </div>
 
-      {/* Place holder */}
-      <div className="h-60"></div>
+      <Footer />
     </div>
   );
 }
