@@ -5,7 +5,10 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
+import { useAppSelector } from "@/hooks";
 export default function Header() {
+  const shaking = useAppSelector((state) => state.header.shaking);
+
   return (
     <div className="sticky top-0 flex justify-between px-25 py-4 border-b border-gray-200 bg-white shadow-xs z-10">
       {/* Left side */}
@@ -66,7 +69,7 @@ export default function Header() {
         </div>
         {/* Cart */}
         <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
-          <FontAwesomeIcon icon={faCartShopping} />
+          <FontAwesomeIcon icon={faCartShopping} shake={shaking} id="cart" />
           <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
             2
           </span>

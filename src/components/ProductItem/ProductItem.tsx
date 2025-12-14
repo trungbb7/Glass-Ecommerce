@@ -1,6 +1,9 @@
+import { useAppDispatch } from "@/hooks";
 import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRef } from "react";
+import { startShaking, stopShaking } from "../Header/headerSlice";
 
 interface ProductItemProps {
   img: string;
@@ -17,11 +20,52 @@ export default function ProductItem({
   stockPrice,
   discountPrice,
 }: ProductItemProps) {
+  const dispatch = useAppDispatch();
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  function handleAddToCart(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    // Add-to-cart effect
+    if (imgRef.current) {
+      const startRect = event.currentTarget.getBoundingClientRect();
+
+      const cart = document.getElementById("cart") as HTMLElement;
+      const endRect = cart?.getBoundingClientRect();
+
+      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+
+      flyingImg.style.left = startRect.left + "px";
+      flyingImg.style.top = startRect.top + "px";
+
+      flyingImg.classList.add("flying-image");
+
+      document.body.appendChild(flyingImg);
+      setTimeout(() => {
+        const deltaX = endRect.left - startRect.left;
+        const deltaY = endRect.top - startRect.top;
+
+        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+        flyingImg.style.opacity = "0.5";
+      }, 10);
+
+      setTimeout(() => {
+        flyingImg.remove();
+        dispatch(startShaking());
+
+        setTimeout(() => {
+          dispatch(stopShaking());
+        }, 200);
+      }, 500);
+    }
+  }
+
   return (
     <div className="pb-4 rounded-lg border border-gray-200 cursor-pointer">
       {/* Top */}
       <div className="group/top relative mb-2 overflow-hidden">
         <img
+          ref={imgRef}
           src={img}
           alt={name}
           className="size-70 object-cover rounded-lg group-hover/top:scale-[1.2] transition-all"
@@ -36,7 +80,10 @@ export default function ProductItem({
           />
         </div>
 
-        <div className="group/img absolute bottom-0 left-0 right-0 flex gap-2 items-center justify-center h-0 bg-black text-white hover:text-secondary group-hover/top:h-10 transition-all">
+        <button
+          onClick={handleAddToCart}
+          className="group/img absolute bottom-0 left-0 right-0 flex gap-2 items-center justify-center h-0 bg-black text-white hover:text-secondary group-hover/top:h-10 transition-all"
+        >
           <div className="relative overflow-hidden size-4.5">
             <FontAwesomeIcon
               icon={faCartShopping}
@@ -48,7 +95,7 @@ export default function ProductItem({
             />
           </div>
           Thêm vào giỏ hàng
-        </div>
+        </button>
 
         <div className="absolute top-12 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer">
           <FontAwesomeIcon
