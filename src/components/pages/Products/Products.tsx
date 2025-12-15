@@ -6,11 +6,14 @@ import { Header } from "@/components/Header";
 import { faHouse } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarSelector from "./SidebarSelector/SidebarSelector";
+import ProductItem from "@/components/ProductItem/ProductItem";
+import productImg1 from "@/assets/product_img1.jpg";
+import { Pagination } from "@/components/Pagination";
 
 const breadcrumbData: BreadcrumbData[] = [
-  { name: "Home", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
+  { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
   {
-    name: "Products",
+    name: "Sản phẩm",
     path: "/products",
   },
 ];
@@ -29,16 +32,104 @@ export default function Products() {
         {/* Body */}
         <div className="flex ">
           {/* Sidebar */}
-          <div className="grow-2 flex flex-col gap-4 pr-4">
+          <div className="w-1/4 shrink-0 flex flex-col gap-4 pr-4">
             <SidebarSelector />
             <SidebarSelector />
             <SidebarSelector />
           </div>
           {/* Content */}
-          <div className="grow-16 bg-gray-100"></div>
+          <div className="w-3/4 flex flex-col px-8 pb-4">
+            <div className="flex flex-wrap gap-4 mb-8">
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+              <ProductItem
+                img={productImg1}
+                discountPercent={40}
+                name="Kính Mát MN1268"
+                discountPrice={420000}
+                stockPrice={500000}
+              />
+            </div>
+
+            <Pagination className="self-center" />
+          </div>
         </div>
-        {/* Place holder */}
-        <div className="h-160"></div>
       </div>
       <Footer />
     </div>
