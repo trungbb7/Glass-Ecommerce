@@ -18,11 +18,8 @@ export default function Breadcrumb({ data, className }: BreadcrumbProps) {
   return (
     <ul className={`flex items-center ${className}`}>
       {data.map((item, index, arr) => (
-        <Link to={item.path}>
-          <li
-            className="flex items-center text-text1 text-sm font-medium hover:text-secondary"
-            key={item.path}
-          >
+        <Link to={item.path} key={item.path}>
+          <li className="flex items-center text-text1 text-sm font-medium hover:text-secondary">
             {item.icon && <span className="mr-1">{item.icon}</span>}
 
             <span className="mr-1">{item.name}</span>

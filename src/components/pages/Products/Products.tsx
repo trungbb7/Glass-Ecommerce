@@ -22,18 +22,20 @@ export default function Products() {
 
       <div className="px-30">
         {/* Top */}
-        <div className="pt-4 pb-30">
+        <div className="pt-4 pb-10">
           <Breadcrumb data={breadcrumbData} />
         </div>
 
         {/* Body */}
         <div className="flex ">
           {/* Sidebar */}
-          <div className="grow-2 pr-4">
+          <div className="grow-2 flex flex-col gap-4 pr-4">
+            <SidebarSelector />
+            <SidebarSelector />
             <SidebarSelector />
           </div>
           {/* Content */}
-          <div className="grow-8 bg-gray-100"></div>
+          <div className="grow-16 bg-gray-100"></div>
         </div>
         {/* Place holder */}
         <div className="h-160"></div>
