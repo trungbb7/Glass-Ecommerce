@@ -5,6 +5,7 @@ interface ButtonProps {
   type: "primary" | "secondary";
   color?: "secondary" | "green";
   className?: string;
+  onClick?: () => void;
 }
 
 const colorClasses = {
@@ -27,6 +28,7 @@ export default function Button({
   type,
   color = "secondary",
   className,
+  onClick,
 }: ButtonProps) {
   const c = colorClasses[color];
 
@@ -42,5 +44,9 @@ export default function Button({
       "hover:text-white",
     ],
   );
-  return <button className={classNameNew}>{text}</button>;
+  return (
+    <button onClick={onClick} className={classNameNew}>
+      {text}
+    </button>
+  );
 }
