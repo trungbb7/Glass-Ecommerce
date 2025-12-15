@@ -6,39 +6,52 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { useAppSelector } from "@/hooks";
+import { Link } from "react-router-dom";
 export default function Header() {
   const shaking = useAppSelector((state) => state.header.shaking);
 
   return (
-    <div className="sticky top-0 flex justify-between px-25 py-4 border-b border-gray-200 bg-white shadow-xs z-10">
+    <header className="sticky top-0 flex justify-between px-25 py-4 border-b border-gray-200 bg-white shadow-xs z-10">
       {/* Left side */}
       <div className="flex items-center">
         {/* Left 1 */}
         <div className="flex items-center">
           {/* Logo */}
-          <div className="flex items-center mr-10">
-            <FontAwesomeIcon
-              icon={faGlasses}
-              className="text-secondary mr-2"
-              size="2xl"
-            />
-            <span className="text-2xl">GlassesHub</span>
-          </div>
+          <Link to="/">
+            <div className="flex items-center mr-10">
+              <FontAwesomeIcon
+                icon={faGlasses}
+                className="text-secondary mr-2"
+                size="2xl"
+              />
+              <span className="text-2xl">GlassesHub</span>
+            </div>
+          </Link>
 
           {/* Menu */}
           <div>
-            <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              Trang chủ
-            </span>
-            <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              Sản phẩm
-            </span>
-            <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              Liên hệ
-            </span>
-            <span className="text-base mr-6 hover:text-secondary cursor-pointer">
-              Giới thiệu
-            </span>
+            <Link to="/">
+              <span className="text-base mr-6 hover:text-secondary cursor-pointer">
+                Trang chủ
+              </span>
+            </Link>
+            <Link to="/products">
+              <span className="text-base mr-6 hover:text-secondary cursor-pointer">
+                Sản phẩm
+              </span>
+            </Link>
+
+            <Link to="/contact">
+              <span className="text-base mr-6 hover:text-secondary cursor-pointer">
+                Liên hệ
+              </span>
+            </Link>
+
+            <Link to="/about">
+              <span className="text-base mr-6 hover:text-secondary cursor-pointer">
+                Giới thiệu
+              </span>
+            </Link>
           </div>
         </div>
 
@@ -75,6 +88,6 @@ export default function Header() {
           </span>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

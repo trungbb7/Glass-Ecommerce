@@ -11,7 +11,7 @@ import CategorySection from "./CategorySection/CategorySection";
 
 export default function Home() {
   return (
-    <div>
+    <div className="text-text1">
       <Header />
       {/* Body */}
       <div className="mt-10 px-30">
