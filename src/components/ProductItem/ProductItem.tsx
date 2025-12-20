@@ -1,9 +1,10 @@
 import { useAppDispatch } from "@/hooks";
 import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
 import { startShaking, stopShaking } from "../Header/headerSlice";
+import { Rating } from "../Rating";
 
 interface ProductItemProps {
   img: string;
@@ -117,34 +118,9 @@ export default function ProductItem({
             ${stockPrice}
           </span>
         </div>
-        {/* Start */}
-        <div>
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-        </div>
+
+        {/* Rating */}
+        <Rating size="xs" rating={4} />
       </div>
     </div>
   );
