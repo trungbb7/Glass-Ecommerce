@@ -4,7 +4,7 @@ import menGlassesImg from "@/assets/men_glasses.webp";
 import metalGlassesImg from "@/assets/metal_glasses.webp";
 import womenGlassesImg from "@/assets/women_glasses.webp";
 import plasticGlassesImg from "@/assets/plastic_glasses.jpeg";
-import kidsGlassesImg from "@/assets/kids_glasses.jfif";
+import kidsGlassesImg from "@/assets/kids_glasses.webp";
 import { useEffect, useRef } from "react";
 
 export default function CategorySection() {
