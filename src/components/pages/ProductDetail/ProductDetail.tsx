@@ -2,7 +2,13 @@ import Breadcrumb, {
   type BreadcrumbData,
 } from "@/components/Breadcrumb/Breadcrumb";
 import { Header } from "@/components/Header";
-import { faHouse, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRotateLeft,
+  faCartShopping,
+  faHouse,
+  faMinus,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import img1 from "@/assets/product_image_representation/1.jpg";
 import img2 from "@/assets/product_image_representation/2.jpg";
@@ -11,6 +17,8 @@ import img4 from "@/assets/product_image_representation/4.jpg";
 import { Footer } from "@/components/Footer";
 import { Rating } from "@/components/Rating";
 import { Button } from "@/components/Button";
+import { faHeart, faTruck } from "@fortawesome/free-regular-svg-icons";
+import RatingBarItem from "./RatingBarItem/RatingBarItem";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -49,19 +57,19 @@ export default function ProductDetail() {
     <div className="text-text1">
       <Header />
 
-      <div className="px-30">
+      <div className="px-30 py-10">
         {/* Top */}
         <div className="pt-4 pb-10">
           <Breadcrumb data={breadcrumbData} />
         </div>
 
         {/* Body */}
-        <div className="flex gap-4">
+        <div className="flex gap-8 mb-10">
           {/* Product Images */}
           <div className="flex flex-col gap-4 grow-5 w-1/2">
             {/* Image representation */}
             <div>
-              <img src={img1} alt="img" className="w-150 h-120 object-cover" />
+              <img src={img1} alt="img" className="w-150 h-107 object-cover" />
             </div>
             {/* Image list */}
             <ul className="flex gap-2">
@@ -87,7 +95,7 @@ export default function ProductDetail() {
             <div className="flex items-center gap-4">
               {/* Rating */}
               <Rating size="sm" rating={5} />
-              <p className="text-sm text-text2 font-medium">(150 Đánh giá)</p>
+              <p className="text-sm text-text2">(150 Đánh giá)</p>
               <div className="w-0.5 bg-text2 h-4"></div>
               <p className="text-green-400 text-sm font-medium">Còn hàng</p>
             </div>
@@ -120,6 +128,12 @@ export default function ProductDetail() {
                 <li className="bg-green-400 rounded-full size-5 shadow shadow-gray-200"></li>
               </ul>
             </div>
+
+            <div className="flex gap-4">
+              <span>Còn lại:</span>
+              <span className="font-medium">20</span>
+            </div>
+
             <div className="flex items-center gap-4">
               {/* Quantity selection */}
               <div className="flex items-center">
@@ -135,15 +149,135 @@ export default function ProductDetail() {
               </div>
 
               {/*  */}
-              <Button type="primary" className="py-2.5 px-10">
+              <Button type="primary" className="py-2.5 px-8">
                 Mua ngay
               </Button>
-              <Button type="secondary" className="py-2.5 px-10">
-                Thêm vào giỏ hàng
+              <Button type="secondary" className="py-2.5 px-8">
+                <FontAwesomeIcon icon={faCartShopping} /> Thêm vào giỏ hàng
+              </Button>
+              <Button type="secondary">
+                <FontAwesomeIcon icon={faHeart} />
               </Button>
             </div>
+
+            {/* Promotion */}
+            <div className="flex flex-wrap flex-row gap-3 mt-4">
+              <div className="grow w-1/2 flex gap-4 items-center p-3 border-2 border-gray-500">
+                <FontAwesomeIcon
+                  icon={faTruck}
+                  size="lg"
+                  className="font-medium"
+                />
+                <div>
+                  <p className="font-medium text-lg">Miễn phí vẫn chuyển</p>
+                  <p className="font-medium text-sm">
+                    Miễn phí vận chuyển khắp cả nước
+                  </p>
+                </div>
+              </div>
+
+              <div className="grow w-1/2 flex gap-4 items-center p-3 border-2 border-gray-500">
+                <FontAwesomeIcon
+                  icon={faArrowRotateLeft}
+                  size="lg"
+                  className="font-medium"
+                />
+                <div>
+                  <p className="font-medium text-lg">Hoàn trả miễn phí</p>
+                  <p className="font-medium text-sm">
+                    30 ngày hoàn trả miễn phí
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          {/* Operation */}
+        </div>
+
+        {/* Product Info */}
+        <div>
+          {/* Top */}
+          <div className="flex mb-10">
+            {/* Description */}
+            <div
+              data-active="true"
+              className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
+            >
+              Đặc tả
+            </div>
+
+            <div
+              data-active="false"
+              className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
+            >
+              Đánh giá
+            </div>
+
+            <div className="grow border-b-4 border-b-neutral-400"></div>
+          </div>
+
+          {/* Specification */}
+          <div className="mt-8">
+            <ul className="flex flex-col gap-4">
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Độ rộng tròng</span>
+                <span>56mm</span>
+              </li>
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Độ dài gọng</span>
+                <span>145mm</span>
+              </li>
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Độ dài cầu kính</span>
+                <span>17mm</span>
+              </li>
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Thương hiệu</span>
+                <span>Cartier</span>
+              </li>
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Xuất xứ</span>
+                <span>Hàn Quốc</span>
+              </li>
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Phù hợp với</span>
+                <span>Nam</span>
+              </li>
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Bảo hành</span>
+                <span>1 năm</span>
+              </li>
+              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+                <span>Chất liệu</span>
+                <span>Nhựa</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Reviews */}
+          <div className="">
+            <div>
+              {/* Head */}
+              <p className="text-2xl font-semibold mb-6">
+                Đánh giá của khách hàng
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="flex flex-col gap-2 items-center bg-[#f8f7fc] px-15 py-10 rounded-lg size-fit">
+                  <span className="text-6xl font-semibold text-secondary">
+                    4.8
+                  </span>
+                  <Rating rating={5} size="sm" />
+                  <span>Điểm sản phẩm</span>
+                </div>
+                <div className="flex flex-col gap-2 bg-[#f8f7fc] rounded-lg p-6">
+                  <RatingBarItem />
+                  <RatingBarItem />
+                  <RatingBarItem />
+                  <RatingBarItem />
+                  <RatingBarItem />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
