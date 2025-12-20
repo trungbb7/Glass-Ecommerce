@@ -1,11 +1,11 @@
 import { Button } from "@/components/Button";
 import secondaryHomeBanner from "@/assets/second_home_banner.png";
 
-interface RecommededBannerProps {
+interface RecommendedBannerProps {
   className?: string;
 }
 
-export default function RecommededBanner({ className }: RecommededBannerProps) {
+export default function RecommendedBanner({ className }: RecommendedBannerProps) {
   return (
     <div className={`flex h-100 p-10 bg-black ${className}`}>
       {/* Left side */}
