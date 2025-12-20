@@ -2,7 +2,7 @@ import Breadcrumb, {
   type BreadcrumbData,
 } from "@/components/Breadcrumb/Breadcrumb";
 import { Header } from "@/components/Header";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import img1 from "@/assets/product_image_representation/1.jpg";
 import img2 from "@/assets/product_image_representation/2.jpg";
@@ -10,6 +10,7 @@ import img3 from "@/assets/product_image_representation/3.jpg";
 import img4 from "@/assets/product_image_representation/4.jpg";
 import { Footer } from "@/components/Footer";
 import { Rating } from "@/components/Rating";
+import { Button } from "@/components/Button";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -24,6 +25,24 @@ const breadcrumbData: BreadcrumbData[] = [
 ];
 
 // const imgList = [img1, img2, img3, img4];
+
+const product = {
+  name: "KÍNH RÂM EYE PLUS TR855",
+  rating: 5,
+  numReviews: 150,
+  inStock: true,
+  stockPrice: 900000,
+  finalPrice: 690000,
+  briefDescription:
+    "Kính râm TR855 C1 sở hữu thiết kế vuông bo góc hiện đại, mang đến vẻ ngoài cá tính nhưng không kém phần thanh lịch. Gọng kính làm từ chất liệu nhựa TR cứng cáp, chắc chắn, bền nhẹ và có thể nắn chỉnh linh hoạt. Điểm nhấn kim loại ở phần bản lề giúp tăng độ độc đáo cho tổng thể thiết kế.",
+  variants: [
+    {
+      color: "#000000",
+      quantity: 10,
+    },
+    { color: "#d67900", quantity: 14 },
+  ],
+};
 
 export default function ProductDetail() {
   return (
@@ -94,8 +113,34 @@ export default function ProductDetail() {
             <div className="h-px bg-text2 mt-4"></div>
 
             {/* Colors */}
-            <div>
-              <span>Màu sắc</span>
+            <div className="flex items-center gap-6">
+              <span className="text-lg">Màu sắc:</span>
+              <ul className="flex items-center gap-2">
+                <li className="bg-black rounded-full size-5 shadow shadow-gray-200"></li>
+                <li className="bg-green-400 rounded-full size-5 shadow shadow-gray-200"></li>
+              </ul>
+            </div>
+            <div className="flex items-center gap-4">
+              {/* Quantity selection */}
+              <div className="flex items-center">
+                <button className="border-2 border-gray-300 p-2 rounded-l-md cursor-pointer hover:bg-gray-200">
+                  <FontAwesomeIcon icon={faMinus} />
+                </button>
+                <div className="font-medium border-y-2 border-gray-300 py-2 px-8">
+                  1
+                </div>
+                <button className=" p-2.5 bg-secondary text-white rounded-r-md cursor-pointer hover:bg-secondary-500">
+                  <FontAwesomeIcon icon={faPlus} />
+                </button>
+              </div>
+
+              {/*  */}
+              <Button type="primary" className="py-2.5 px-10">
+                Mua ngay
+              </Button>
+              <Button type="secondary" className="py-2.5 px-10">
+                Thêm vào giỏ hàng
+              </Button>
             </div>
           </div>
           {/* Operation */}

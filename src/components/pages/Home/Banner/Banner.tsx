@@ -9,8 +9,8 @@ export default function Banner() {
         <div className="text-3xl font-bold mb-2">Sun</div>
         <div className="text-3xl font-bold mb-4">Glasses</div>
         <div className="flex gap-2">
-          <Button text="Shop now" type="primary" />
-          <Button text="View more" type="secondary" />
+          <Button type="primary">Mua ngay</Button>
+          <Button type="secondary">Xem thêm</Button>
         </div>
       </div>
       {/* Right side */}

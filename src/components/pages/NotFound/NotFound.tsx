@@ -18,9 +18,10 @@ export default function NotFound() {
           onClick={() => {
             navigate("/");
           }}
-          text="Trở về trang chủ"
           type="primary"
-        />
+        >
+          Trỏ về trang chủ
+        </Button>
       </div>
       <Footer />
     </div>

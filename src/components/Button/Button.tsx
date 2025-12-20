@@ -1,11 +1,12 @@
 import clsx from "clsx";
 
 interface ButtonProps {
-  text: string;
+  // text: string;
   type: "primary" | "secondary";
   color?: "secondary" | "green";
   className?: string;
   onClick?: () => void;
+  children: React.ReactNode;
 }
 
 const colorClasses = {
@@ -24,11 +25,11 @@ const colorClasses = {
 };
 
 export default function Button({
-  text,
   type,
   color = "secondary",
   className,
   onClick,
+  children,
 }: ButtonProps) {
   const c = colorClasses[color];
 
@@ -46,7 +47,7 @@ export default function Button({
   );
   return (
     <button onClick={onClick} className={classNameNew}>
-      {text}
+      {children}
     </button>
   );
 }
