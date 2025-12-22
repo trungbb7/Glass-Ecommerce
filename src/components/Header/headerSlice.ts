@@ -1,26 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface HeaderState {
-  shaking: boolean;
+  cartShaking: boolean;
+  wishlistBounce: boolean;
 }
 
 const initialState: HeaderState = {
-  shaking: false,
+  cartShaking: false,
+  wishlistBounce: false,
 };
 
 export const headSlice = createSlice({
   name: "header",
   initialState: initialState,
   reducers: {
-    startShaking: (state) => {
-      state.shaking = true;
+    startShakingCart: (state) => {
+      state.cartShaking = true;
     },
-    stopShaking: (state) => {
-      state.shaking = false;
+    stopShakingCart: (state) => {
+      state.cartShaking = false;
+    },
+
+    startBounceWishlist: (state) => {
+      state.wishlistBounce = true;
+    },
+    stopBounceWishlist: (state) => {
+      state.wishlistBounce = false;
     },
   },
 });
 
-export const { startShaking, stopShaking } = headSlice.actions;
+export const {
+  startShakingCart,
+  stopShakingCart,
+  startBounceWishlist,
+  stopBounceWishlist,
+} = headSlice.actions;
 
 export default headSlice.reducer;

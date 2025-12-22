@@ -5,7 +5,7 @@ interface ButtonProps {
   type: "primary" | "secondary";
   color?: "secondary" | "green";
   className?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children: React.ReactNode;
 }
 

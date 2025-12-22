@@ -8,7 +8,8 @@ import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { useAppSelector } from "@/hooks";
 import { Link } from "react-router-dom";
 export default function Header() {
-  const shaking = useAppSelector((state) => state.header.shaking);
+  const shaking = useAppSelector((state) => state.header.cartShaking);
+  const bounce = useAppSelector((state) => state.header.wishlistBounce);
 
   return (
     <header className="sticky top-0 flex justify-between px-25 py-4 border-b border-gray-200 bg-white shadow-xs z-10">
@@ -73,8 +74,11 @@ export default function Header() {
       {/* Right side */}
       <div className="flex items-center">
         {/* Whish list */}
-        <div className="mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
-          <FontAwesomeIcon icon={faHeart} />
+        <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
+          <FontAwesomeIcon icon={faHeart} bounce={bounce} id="wishlist" />
+          <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
+            5
+          </span>
         </div>
         {/* User */}
         <div className="mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">

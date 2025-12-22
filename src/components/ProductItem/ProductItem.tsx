@@ -3,7 +3,12 @@ import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
-import { startShaking, stopShaking } from "../Header/headerSlice";
+import {
+  startBounceWishlist,
+  startShakingCart,
+  stopBounceWishlist,
+  stopShakingCart,
+} from "../Header/headerSlice";
 import { Rating } from "../Rating";
 
 interface ProductItemProps {
@@ -52,11 +57,48 @@ export default function ProductItem({
 
       setTimeout(() => {
         flyingImg.remove();
-        dispatch(startShaking());
+        dispatch(startShakingCart());
 
         setTimeout(() => {
-          dispatch(stopShaking());
+          dispatch(stopShakingCart());
         }, 200);
+      }, 500);
+    }
+  }
+
+  function handleAddToWishList(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    // Add-to-cart effect
+    if (imgRef.current) {
+      const startRect = event.currentTarget.getBoundingClientRect();
+
+      const wishlist = document.getElementById("wishlist") as HTMLElement;
+      const endRect = wishlist?.getBoundingClientRect();
+
+      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+
+      flyingImg.style.left = startRect.left + "px";
+      flyingImg.style.top = startRect.top + "px";
+
+      flyingImg.classList.add("flying-image");
+
+      document.body.appendChild(flyingImg);
+      setTimeout(() => {
+        const deltaX = endRect.left - startRect.left;
+        const deltaY = endRect.top - startRect.top;
+
+        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+        flyingImg.style.opacity = "0.5";
+      }, 10);
+
+      setTimeout(() => {
+        flyingImg.remove();
+        dispatch(startBounceWishlist());
+
+        setTimeout(() => {
+          dispatch(stopBounceWishlist());
+        }, 500);
       }, 500);
     }
   }
@@ -74,7 +116,12 @@ export default function ProductItem({
         <div className="absolute top-2 left-2 text-xs font-medium text-white px-2 py-1 rounded-sm bg-secondary">
           -{discountPercent}%
         </div>
-        <div className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer">
+        <div
+          onClick={(e) => {
+            handleAddToWishList(e);
+          }}
+          className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
+        >
           <FontAwesomeIcon
             icon={faHeart}
             className="text-gray-300 hover:text-black"

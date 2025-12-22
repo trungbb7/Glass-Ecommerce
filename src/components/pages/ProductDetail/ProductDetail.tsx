@@ -20,7 +20,14 @@ import { Button } from "@/components/Button";
 import { faHeart, faTruck } from "@fortawesome/free-regular-svg-icons";
 import Review from "./Review/Review";
 import ColorItem from "./ColorItem/ColorItem";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useAppDispatch } from "@/hooks";
+import {
+  startBounceWishlist,
+  startShakingCart,
+  stopBounceWishlist,
+  stopShakingCart,
+} from "@/components/Header/headerSlice";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -33,8 +40,6 @@ const breadcrumbData: BreadcrumbData[] = [
     path: "/products/tr855",
   },
 ];
-
-// const imgList = [img1, img2, img3, img4];
 
 const product = {
   name: "KÍNH RÂM EYE PLUS TR855",
@@ -66,6 +71,8 @@ const product = {
 };
 
 export default function ProductDetail() {
+  const imgRef = useRef<HTMLImageElement>(null);
+
   const [currentVariance, setCurrentVariance] = useState(
     product.variants[0].color,
   );
@@ -74,14 +81,19 @@ export default function ProductDetail() {
 
   const [quantity, setQuantity] = useState(1);
 
+  const [currentStock, setCurrentInstock] = useState(
+    product.variants[0].quantity,
+  );
+
+  const dispatch = useAppDispatch();
+
   function getCurrentStock() {
     return product.variants.find((item) => item.color === currentVariance)
       ?.quantity as number;
   }
 
   function increaseQuantity() {
-    const stock = getCurrentStock();
-    const value = Math.min(quantity + 1, stock);
+    const value = Math.min(quantity + 1, currentStock);
     setQuantity(value);
   }
 
@@ -93,6 +105,87 @@ export default function ProductDetail() {
   function setVariance(color: string) {
     setCurrentVariance(color);
     setQuantity(1);
+    setCurrentInstock(
+      product.variants.find((item) => item.color === color)?.quantity as number,
+    );
+  }
+
+  function setImage(image: string) {
+    setCurrentImage(image);
+  }
+
+  function handleAddToCart(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    // Add-to-cart effect
+    if (imgRef.current) {
+      const startRect = event.currentTarget.getBoundingClientRect();
+
+      const cart = document.getElementById("cart") as HTMLElement;
+      const endRect = cart?.getBoundingClientRect();
+
+      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+
+      flyingImg.style.left = startRect.left + "px";
+      flyingImg.style.top = startRect.top + "px";
+
+      flyingImg.classList.add("flying-image");
+
+      document.body.appendChild(flyingImg);
+      setTimeout(() => {
+        const deltaX = endRect.left - startRect.left;
+        const deltaY = endRect.top - startRect.top;
+
+        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+        flyingImg.style.opacity = "0.5";
+      }, 10);
+
+      setTimeout(() => {
+        flyingImg.remove();
+        dispatch(startShakingCart());
+
+        setTimeout(() => {
+          dispatch(stopShakingCart());
+        }, 200);
+      }, 500);
+    }
+  }
+
+  function handleAddToWishList(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    // Add-to-cart effect
+    if (imgRef.current) {
+      const startRect = event.currentTarget.getBoundingClientRect();
+
+      const wishlist = document.getElementById("wishlist") as HTMLElement;
+      const endRect = wishlist?.getBoundingClientRect();
+
+      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+
+      flyingImg.style.left = startRect.left + "px";
+      flyingImg.style.top = startRect.top + "px";
+
+      flyingImg.classList.add("flying-image");
+
+      document.body.appendChild(flyingImg);
+      setTimeout(() => {
+        const deltaX = endRect.left - startRect.left;
+        const deltaY = endRect.top - startRect.top;
+
+        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+        flyingImg.style.opacity = "0.5";
+      }, 10);
+
+      setTimeout(() => {
+        flyingImg.remove();
+        dispatch(startBounceWishlist());
+
+        setTimeout(() => {
+          dispatch(stopBounceWishlist());
+        }, 500);
+      }, 500);
+    }
   }
 
   return (
@@ -112,15 +205,22 @@ export default function ProductDetail() {
             {/* Image representation */}
             <div>
               <img
+                ref={imgRef}
                 src={currentImage}
                 alt="img"
-                className="w-150 h-107 object-cover"
+                className="w-150 h-107 object-cover border border-gray-100 cursor-pointer hover:shadow-sm"
               />
             </div>
             {/* Image list */}
-            <ul className="flex gap-2">
+            <ul className="flex gap-1.5">
               {product.images.map((image) => (
-                <li key={image}>
+                <li
+                  onClick={() => {
+                    setImage(image);
+                  }}
+                  key={image}
+                  className="border border-gray-100 cursor-pointer hover:shadow-sm"
+                >
                   <img src={image} alt="img" className="size-36 object-cover" />
                 </li>
               ))}
@@ -138,8 +238,11 @@ export default function ProductDetail() {
                 ({product.numReviews} Đánh giá)
               </p>
               <div className="w-0.5 bg-text2 h-4"></div>
-              <p className="text-green-400 text-sm font-medium">
-                {product.inStock ? "Còn hàng" : "Hết hàng"}
+              <p
+                style={{ color: currentStock > 0 ? "#05df72" : "#f27474" }}
+                className="text-green-400 text-sm font-medium"
+              >
+                {currentStock > 0 ? "Còn hàng" : "Hết hàng"}
               </p>
             </div>
             {/* Price */}
@@ -190,7 +293,7 @@ export default function ProductDetail() {
                 >
                   <FontAwesomeIcon icon={faMinus} />
                 </button>
-                <div className="font-medium border-y-2 border-gray-300 py-2 px-8">
+                <div className="text-center font-medium border-y-2 border-gray-300 py-2 w-20">
                   {quantity}
                 </div>
                 <button
@@ -205,10 +308,21 @@ export default function ProductDetail() {
               <Button type="primary" className="py-2.5 px-8">
                 Mua ngay
               </Button>
-              <Button type="secondary" className="py-2.5 px-6">
+              <Button
+                onClick={(e) => {
+                  handleAddToCart(e);
+                }}
+                type="secondary"
+                className="py-2.5 px-6"
+              >
                 <FontAwesomeIcon icon={faCartShopping} /> Thêm vào giỏ hàng
               </Button>
-              <Button type="secondary">
+              <Button
+                onClick={(e) => {
+                  handleAddToWishList(e);
+                }}
+                type="secondary"
+              >
                 <FontAwesomeIcon icon={faHeart} />
               </Button>
             </div>
