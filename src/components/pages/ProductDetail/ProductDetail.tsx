@@ -18,7 +18,7 @@ import { Footer } from "@/components/Footer";
 import { Rating } from "@/components/Rating";
 import { Button } from "@/components/Button";
 import { faHeart, faTruck } from "@fortawesome/free-regular-svg-icons";
-import RatingBarItem from "./RatingBarItem/RatingBarItem";
+import Review from "./Review/Review";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -57,7 +57,7 @@ export default function ProductDetail() {
     <div className="text-text1">
       <Header />
 
-      <div className="px-30 py-10">
+      <div className="px-30 py-20">
         {/* Top */}
         <div className="pt-4 pb-10">
           <Breadcrumb data={breadcrumbData} />
@@ -253,34 +253,10 @@ export default function ProductDetail() {
             </ul>
           </div>
 
-          {/* Reviews */}
-          <div className="">
-            <div>
-              {/* Head */}
-              <p className="text-2xl font-semibold mb-6">
-                Đánh giá của khách hàng
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="flex flex-col gap-2 items-center bg-[#f8f7fc] px-15 py-10 rounded-lg size-fit">
-                  <span className="text-6xl font-semibold text-secondary">
-                    4.8
-                  </span>
-                  <Rating rating={5} size="sm" />
-                  <span>Điểm sản phẩm</span>
-                </div>
-                <div className="flex flex-col gap-2 bg-[#f8f7fc] rounded-lg p-6">
-                  <RatingBarItem />
-                  <RatingBarItem />
-                  <RatingBarItem />
-                  <RatingBarItem />
-                  <RatingBarItem />
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Review */}
+          <Review />
         </div>
       </div>
-
       <Footer />
     </div>
   );

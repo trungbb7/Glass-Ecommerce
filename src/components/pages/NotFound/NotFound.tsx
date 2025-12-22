@@ -20,7 +20,7 @@ export default function NotFound() {
           }}
           type="primary"
         >
-          Trỏ về trang chủ
+          Trở về trang chủ
         </Button>
       </div>
       <Footer />

@@ -14,7 +14,9 @@ export default function RecommededBanner({ className }: RecommededBannerProps) {
         <p className="text-white font-bold text-4xl">
           Nâng tầm trải nghiệm và phong cách hiện đại
         </p>
-        <Button text="Mua ngay" type="primary" color="green" />
+        <Button type="primary" color="green">
+          Mua ngay
+        </Button>
       </div>
       {/* Right side */}
       <div className="relative grow-5 w-1/2 flex items-center justify-end">
