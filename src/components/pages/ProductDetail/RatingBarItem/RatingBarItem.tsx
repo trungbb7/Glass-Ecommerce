@@ -8,10 +8,10 @@ interface RatingBarItemProp {
 export default function RatingBarItem({ rating, percent }: RatingBarItemProp) {
   return (
     <div className="flex items-center gap-4">
-      <div className="w-60 ">
+      <div className="w-60 bg-neutral-400 rounded-lg">
         <div
           style={{ width: `${percent}%` }}
-          className="h-1.5 bg-green-700 rounded-lg"
+          className="h-1.5 bg-green-500 rounded-lg"
         ></div>
       </div>
       <Rating rating={rating} size="xs" />

@@ -28,6 +28,8 @@ import {
   stopBounceWishlist,
   stopShakingCart,
 } from "@/components/Header/headerSlice";
+import ProductSpecification from "./ProductSpecification/ProductSpecification";
+import ProductCarousel from "./ProductCarousel/ProductCarousel";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -71,18 +73,19 @@ const product = {
 };
 
 export default function ProductDetail() {
-  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
 
   const [currentVariance, setCurrentVariance] = useState(
     product.variants[0].color,
   );
 
-  const [currentImage, setCurrentImage] = useState(product.images[0]);
-
   const [quantity, setQuantity] = useState(1);
 
   const [currentStock, setCurrentInstock] = useState(
     product.variants[0].quantity,
+  );
+  const [currentTab, setCurrentTab] = useState<"specification" | "review">(
+    "specification",
   );
 
   const dispatch = useAppDispatch();
@@ -108,10 +111,6 @@ export default function ProductDetail() {
     setCurrentInstock(
       product.variants.find((item) => item.color === color)?.quantity as number,
     );
-  }
-
-  function setImage(image: string) {
-    setCurrentImage(image);
   }
 
   function handleAddToCart(
@@ -199,34 +198,9 @@ export default function ProductDetail() {
         </div>
 
         {/* Body */}
-        <div className="flex gap-8 mb-10">
+        <div className="flex gap-8 mb-30">
           {/* Product Images */}
-          <div className="flex flex-col gap-4 grow-5 w-1/2">
-            {/* Image representation */}
-            <div>
-              <img
-                ref={imgRef}
-                src={currentImage}
-                alt="img"
-                className="w-150 h-107 object-cover border border-gray-100 cursor-pointer hover:shadow-sm"
-              />
-            </div>
-            {/* Image list */}
-            <ul className="flex gap-1.5">
-              {product.images.map((image) => (
-                <li
-                  onClick={() => {
-                    setImage(image);
-                  }}
-                  key={image}
-                  className="border border-gray-100 cursor-pointer hover:shadow-sm"
-                >
-                  <img src={image} alt="img" className="size-36 object-cover" />
-                </li>
-              ))}
-            </ul>
-            <div></div>
-          </div>
+          <ProductCarousel images={product.images} ref={imgRef} />
 
           <div className="grow-5 w-1/2 flex flex-col gap-4 ">
             {/* Product name */}
@@ -366,14 +340,18 @@ export default function ProductDetail() {
           <div className="flex mb-10">
             {/* Description */}
             <div
-              data-active="true"
+              onClick={() => setCurrentTab("specification")}
+              data-active={currentTab === "specification"}
               className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
             >
               Đặc tả
             </div>
 
             <div
-              data-active="false"
+              onClick={() => {
+                setCurrentTab("review");
+              }}
+              data-active={currentTab === "review"}
               className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
             >
               Đánh giá
@@ -383,45 +361,21 @@ export default function ProductDetail() {
           </div>
 
           {/* Specification */}
-          <div className="mt-8">
-            <ul className="flex flex-col gap-4">
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Độ rộng tròng</span>
-                <span>56mm</span>
-              </li>
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Độ dài gọng</span>
-                <span>145mm</span>
-              </li>
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Độ dài cầu kính</span>
-                <span>17mm</span>
-              </li>
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Thương hiệu</span>
-                <span>Cartier</span>
-              </li>
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Xuất xứ</span>
-                <span>Hàn Quốc</span>
-              </li>
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Phù hợp với</span>
-                <span>Nam</span>
-              </li>
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Bảo hành</span>
-                <span>1 năm</span>
-              </li>
-              <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
-                <span>Chất liệu</span>
-                <span>Nhựa</span>
-              </li>
-            </ul>
-          </div>
+          {currentTab === "specification" && (
+            <ProductSpecification
+              lensWidth={product.specification.lensWidth}
+              templeLength={product.specification.templeLength}
+              brand={product.specification.brand}
+              bridgeWidth={product.specification.bridgeWidth}
+              material={product.specification.material}
+              origin={product.specification.origin}
+              suitableFor={product.specification.suitableFor}
+              warranty={product.specification.warranty}
+            />
+          )}
 
           {/* Review */}
-          <Review />
+          {currentTab === "review" && <Review />}
         </div>
       </div>
       <Footer />

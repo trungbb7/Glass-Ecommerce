@@ -67,7 +67,7 @@ export default function ProductItem({
   }
 
   function handleAddToWishList(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
   ) {
     // Add-to-cart effect
     if (imgRef.current) {
@@ -167,7 +167,7 @@ export default function ProductItem({
         </div>
 
         {/* Rating */}
-        <Rating size="xs" rating={4} />
+        <Rating size="sm" rating={4} />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import ReviewForm from "../ReviewForm/ReviewForm";
 import ReviewInfo from "../ReviewInfo/ReviewInfo";
 import ReviewItem from "../ReviewItem/ReviewItem";
 
@@ -18,6 +19,8 @@ export default function Review() {
             <ReviewItem />
           </ul>
         </div>
+
+        <ReviewForm />
       </div>
     </div>
   );

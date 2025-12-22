@@ -3,6 +3,24 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 
+const sizeMap = {
+  "2xs": "text-2xl",
+  xs: "text-xs",
+  sm: "text-sm",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "1x": "text-3xl",
+  "2x": "text-4xl",
+  "3x": "text-5xl",
+  "4x": "text-6xl",
+  "5x": "text-7xl",
+  "6x": "text-8xl",
+  "7x": "text-9xl",
+  "8x": "text-9xl",
+  "9x": "text-9xl",
+  "10x": "text-9xl",
+};
 interface RatingProps {
   rating: 1 | 2 | 3 | 4 | 5;
   size: SizeProp;
@@ -31,19 +49,19 @@ export default function Rating({
   return (
     <ul className={newClassName}>
       <li>
-        <FontAwesomeIcon icon={faStar} size={size} />
+        <FontAwesomeIcon icon={faStar} className={`${sizeMap[size]}`} />
       </li>
       <li>
-        <FontAwesomeIcon icon={faStar} size={size} />
+        <FontAwesomeIcon icon={faStar} className={sizeMap[size]} />
       </li>
       <li>
-        <FontAwesomeIcon icon={faStar} size={size} />
+        <FontAwesomeIcon icon={faStar} className={sizeMap[size]} />
       </li>
       <li>
-        <FontAwesomeIcon icon={faStar} size={size} />
+        <FontAwesomeIcon icon={faStar} className={sizeMap[size]} />
       </li>
       <li>
-        <FontAwesomeIcon icon={faStar} size={size} />
+        <FontAwesomeIcon icon={faStar} className={sizeMap[size]} />
       </li>
     </ul>
   );
