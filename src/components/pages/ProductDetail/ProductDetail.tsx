@@ -19,6 +19,8 @@ import { Rating } from "@/components/Rating";
 import { Button } from "@/components/Button";
 import { faHeart, faTruck } from "@fortawesome/free-regular-svg-icons";
 import Review from "./Review/Review";
+import ColorItem from "./ColorItem/ColorItem";
+import { useState } from "react";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -50,14 +52,54 @@ const product = {
     },
     { color: "#d67900", quantity: 14 },
   ],
+  specification: {
+    lensWidth: 56,
+    templeLength: 145,
+    bridgeWidth: 17,
+    brand: "Cartier",
+    origin: "Hàn Quốc",
+    suitableFor: "Male",
+    warranty: "1 năm",
+    material: "Nhựa",
+  },
+  images: [img1, img2, img3, img4],
 };
 
 export default function ProductDetail() {
+  const [currentVariance, setCurrentVariance] = useState(
+    product.variants[0].color,
+  );
+
+  const [currentImage, setCurrentImage] = useState(product.images[0]);
+
+  const [quantity, setQuantity] = useState(1);
+
+  function getCurrentStock() {
+    return product.variants.find((item) => item.color === currentVariance)
+      ?.quantity as number;
+  }
+
+  function increaseQuantity() {
+    const stock = getCurrentStock();
+    const value = Math.min(quantity + 1, stock);
+    setQuantity(value);
+  }
+
+  function decreaseQuantity() {
+    const value = Math.max(quantity - 1, 1);
+    setQuantity(value);
+  }
+
+  function setVariance(color: string) {
+    setCurrentVariance(color);
+    setQuantity(1);
+  }
+
   return (
     <div className="text-text1">
       <Header />
 
-      <div className="px-30 py-20">
+      <div className="px-30 pb-20">
         {/* Top */}
         <div className="pt-4 pb-10">
           <Breadcrumb data={breadcrumbData} />
@@ -69,53 +111,52 @@ export default function ProductDetail() {
           <div className="flex flex-col gap-4 grow-5 w-1/2">
             {/* Image representation */}
             <div>
-              <img src={img1} alt="img" className="w-150 h-107 object-cover" />
+              <img
+                src={currentImage}
+                alt="img"
+                className="w-150 h-107 object-cover"
+              />
             </div>
             {/* Image list */}
             <ul className="flex gap-2">
-              <li>
-                <img src={img1} alt="img" className="size-36 object-cover" />
-              </li>
-              <li>
-                <img src={img2} alt="img" className="size-36 object-cover" />
-              </li>
-              <li>
-                <img src={img3} alt="img" className="size-36 object-cover" />
-              </li>
-              <li>
-                <img src={img4} alt="img" className="size-36 object-cover" />
-              </li>
+              {product.images.map((image) => (
+                <li key={image}>
+                  <img src={image} alt="img" className="size-36 object-cover" />
+                </li>
+              ))}
             </ul>
             <div></div>
           </div>
 
           <div className="grow-5 w-1/2 flex flex-col gap-4 ">
             {/* Product name */}
-            <p className="text-2xl font-semibold">KÍNH RÂM EYE PLUS TR855</p>
+            <p className="text-2xl font-semibold">{product.name}</p>
             <div className="flex items-center gap-4">
               {/* Rating */}
               <Rating size="sm" rating={5} />
-              <p className="text-sm text-text2">(150 Đánh giá)</p>
+              <p className="text-sm text-text2">
+                ({product.numReviews} Đánh giá)
+              </p>
               <div className="w-0.5 bg-text2 h-4"></div>
-              <p className="text-green-400 text-sm font-medium">Còn hàng</p>
+              <p className="text-green-400 text-sm font-medium">
+                {product.inStock ? "Còn hàng" : "Hết hàng"}
+              </p>
             </div>
             {/* Price */}
             <div className="flex items-center gap-4">
               {/* current */}
-              <p className="text-text1 text-lg font-medium">690.000 VNĐ</p>
+              <p className="text-text1 text-lg font-medium">
+                {product.finalPrice} VNĐ
+              </p>
               {/* stock */}
               <p className="text-text2 text-lg font-medium line-through">
-                900.000 VNĐ
+                {product.stockPrice} VNĐ
               </p>
             </div>
 
             {/* Brief Descripion */}
             <p className="font-medium text-sm text-text2">
-              Kính râm TR855 C1 sở hữu thiết kế vuông bo góc hiện đại, mang đến
-              vẻ ngoài cá tính nhưng không kém phần thanh lịch. Gọng kính làm từ
-              chất liệu nhựa TR cứng cáp, chắc chắn, bền nhẹ và có thể nắn chỉnh
-              linh hoạt. Điểm nhấn kim loại ở phần bản lề giúp tăng độ độc đáo
-              cho tổng thể thiết kế.
+              {product.briefDescription}
             </p>
 
             <div className="h-px bg-text2 mt-4"></div>
@@ -124,26 +165,38 @@ export default function ProductDetail() {
             <div className="flex items-center gap-6">
               <span className="text-lg">Màu sắc:</span>
               <ul className="flex items-center gap-2">
-                <li className="bg-black rounded-full size-5 shadow shadow-gray-200"></li>
-                <li className="bg-green-400 rounded-full size-5 shadow shadow-gray-200"></li>
+                {product.variants.map((item) => (
+                  <ColorItem
+                    setVariance={setVariance}
+                    active={item.color === currentVariance}
+                    color={item.color}
+                    key={item.color}
+                  />
+                ))}
               </ul>
             </div>
 
             <div className="flex gap-4">
               <span>Còn lại:</span>
-              <span className="font-medium">20</span>
+              <span className="font-medium">{getCurrentStock()}</span>
             </div>
 
             <div className="flex items-center gap-4">
               {/* Quantity selection */}
               <div className="flex items-center">
-                <button className="border-2 border-gray-300 p-2 rounded-l-md cursor-pointer hover:bg-gray-200">
+                <button
+                  onClick={decreaseQuantity}
+                  className="border-2 border-gray-300 p-2 rounded-l-md cursor-pointer hover:bg-gray-200"
+                >
                   <FontAwesomeIcon icon={faMinus} />
                 </button>
                 <div className="font-medium border-y-2 border-gray-300 py-2 px-8">
-                  1
+                  {quantity}
                 </div>
-                <button className=" p-2.5 bg-secondary text-white rounded-r-md cursor-pointer hover:bg-secondary-500">
+                <button
+                  onClick={increaseQuantity}
+                  className=" p-2.5 bg-secondary text-white rounded-r-md cursor-pointer hover:bg-secondary-500"
+                >
                   <FontAwesomeIcon icon={faPlus} />
                 </button>
               </div>
@@ -152,7 +205,7 @@ export default function ProductDetail() {
               <Button type="primary" className="py-2.5 px-8">
                 Mua ngay
               </Button>
-              <Button type="secondary" className="py-2.5 px-8">
+              <Button type="secondary" className="py-2.5 px-6">
                 <FontAwesomeIcon icon={faCartShopping} /> Thêm vào giỏ hàng
               </Button>
               <Button type="secondary">
