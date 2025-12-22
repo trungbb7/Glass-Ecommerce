@@ -30,6 +30,7 @@ import {
 } from "@/components/Header/headerSlice";
 import ProductSpecification from "./ProductSpecification/ProductSpecification";
 import ProductCarousel from "./ProductCarousel/ProductCarousel";
+import { RelatedProducts } from "./RelatedProducts/RelatedProducts";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -57,7 +58,7 @@ const product = {
       color: "#000000",
       quantity: 10,
     },
-    { color: "#d67900", quantity: 14 },
+    { color: "#d67900", quantity: 0 },
   ],
   specification: {
     lensWidth: 56,
@@ -107,10 +108,12 @@ export default function ProductDetail() {
 
   function setVariance(color: string) {
     setCurrentVariance(color);
-    setQuantity(1);
-    setCurrentInstock(
-      product.variants.find((item) => item.color === color)?.quantity as number,
-    );
+
+    const instock = product.variants.find((item) => item.color === color)
+      ?.quantity as number;
+
+    setQuantity(Math.min(instock ? 1 : 0));
+    setCurrentInstock(instock);
   }
 
   function handleAddToCart(
@@ -377,6 +380,9 @@ export default function ProductDetail() {
           {/* Review */}
           {currentTab === "review" && <Review />}
         </div>
+
+        {/* Related products */}
+        <RelatedProducts />
       </div>
       <Footer />
     </div>

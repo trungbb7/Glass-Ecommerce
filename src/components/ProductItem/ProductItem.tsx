@@ -17,6 +17,7 @@ interface ProductItemProps {
   name: string;
   stockPrice: number;
   discountPrice: number;
+  className?: string;
 }
 
 export default function ProductItem({
@@ -25,6 +26,7 @@ export default function ProductItem({
   name,
   stockPrice,
   discountPrice,
+  className,
 }: ProductItemProps) {
   const dispatch = useAppDispatch();
   const imgRef = useRef<HTMLImageElement>(null);
@@ -104,7 +106,9 @@ export default function ProductItem({
   }
 
   return (
-    <div className="pb-4 rounded-lg border border-gray-200 cursor-pointer">
+    <div
+      className={`pb-4 rounded-lg border border-gray-200 cursor-pointer ${className}`}
+    >
       {/* Top */}
       <div className="group/top relative mb-2 overflow-hidden">
         <img
