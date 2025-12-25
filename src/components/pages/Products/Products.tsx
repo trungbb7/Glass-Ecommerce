@@ -30,22 +30,38 @@ const sortTypeMap = {
   priceDesc: "Giá giảm dần",
 };
 
+const limit = 3;
+
 export default function Products() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({
+    _page: "1",
+    _limit: `${limit}`,
+  });
 
   const [selectingSort, setSelectingSort] = useState<boolean>(false);
   const [sortType, setSortType] = useState<SortType>("none");
   const [products, setProducts] = useState<Product[]>([]);
   const [filters, setFilters] = useState<Filter[]>([]);
+  const [numPages, setNumPages] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   function updateFilter(key: string, value: string) {
     const newParams = new URLSearchParams(searchParams);
     newParams.set(key, value);
+    newParams.set("_page", "1");
     setSearchParams(newParams);
+    setCurrentPage(1);
   }
 
   function toggleSelectingSort() {
     setSelectingSort(!selectingSort);
+  }
+
+  function changeNumPage(page: number) {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("_page", `${page}`);
+    setSearchParams(newParams);
+    setCurrentPage(page);
   }
 
   useEffect(() => {
@@ -54,11 +70,21 @@ export default function Products() {
       const response = await fetch(
         `http://localhost:3000/products?${queryString}`,
       );
+
+      const totalCount = response.headers.get("x-total-count");
+      if (totalCount) {
+        setNumPages(Math.ceil(parseInt(totalCount) / limit));
+      }
+
       const productsObject = await response.json();
       console.log(productsObject);
       setProducts(productsObject);
     }
 
+    fetchAllProducts();
+  }, [searchParams, setSearchParams]);
+
+  useEffect(() => {
     async function fetchFilters() {
       const response = await fetch("http://localhost:3000/filters");
       const filterObject = await response.json();
@@ -66,9 +92,8 @@ export default function Products() {
       setFilters(filterObject);
     }
 
-    fetchAllProducts();
     fetchFilters();
-  }, [searchParams]);
+  }, []);
 
   return (
     <div className="text-text1">
@@ -134,6 +159,11 @@ export default function Products() {
             </div>
 
             <div className="flex flex-wrap gap-4 mb-8">
+              {products.length === 0 && (
+                <p className="w-full mb-40 mt-20 text-center">
+                  Không có sản phẩm nào
+                </p>
+              )}
               {products.map((product) => (
                 <ProductItem
                   img={product.images[0]}
@@ -148,7 +178,12 @@ export default function Products() {
               ))}
             </div>
 
-            <Pagination className="self-center" />
+            <Pagination
+              numPages={numPages}
+              currentPage={currentPage}
+              changeNumPage={changeNumPage}
+              className="self-center"
+            />
           </div>
         </div>
       </div>
