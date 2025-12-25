@@ -30,6 +30,11 @@ const sortTypeMap = {
   priceDesc: "Giá giảm dần",
 };
 
+export interface ParamItem {
+  key: string;
+  value: string;
+}
+
 const limit = 3;
 
 export default function Products() {
@@ -45,9 +50,11 @@ export default function Products() {
   const [numPages, setNumPages] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState(1);
 
-  function updateFilter(key: string, value: string) {
+  function updateFilter(items: { key: string; value: string }[]) {
     const newParams = new URLSearchParams(searchParams);
-    newParams.set(key, value);
+    for (const item of items) {
+      newParams.set(item.key, item.value);
+    }
     newParams.set("_page", "1");
     setSearchParams(newParams);
     setCurrentPage(1);
@@ -138,6 +145,11 @@ export default function Products() {
                 >
                   <li
                     onClick={() => {
+                      updateFilter([
+                        { key: "_sort", value: "finalPrice" },
+                        { key: "_order", value: "asc" },
+                      ]);
+
                       setSortType("priceAsc");
                       setSelectingSort(false);
                     }}
@@ -147,6 +159,11 @@ export default function Products() {
                   </li>
                   <li
                     onClick={() => {
+                      updateFilter([
+                        { key: "_sort", value: "finalPrice" },
+                        { key: "_order", value: "desc" },
+                      ]);
+
                       setSortType("priceDesc");
                       setSelectingSort(false);
                     }}

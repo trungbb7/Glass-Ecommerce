@@ -5,7 +5,7 @@ import type { Filter, FilterItem } from "@/types/filter";
 
 interface SidebarSelectorItemProps {
   data: Filter;
-  updateFilter: (key: string, value: string) => void;
+  updateFilter: (items: { key: string; value: string }[]) => void;
 }
 
 export default function SidebarSelector({
@@ -34,7 +34,11 @@ export default function SidebarSelector({
       checked: item.title === title,
     }));
     setData(newData);
-    updateFilter(`${data.fieldname}_${data.operator}`, query);
+    updateFilter([{ key: `${data.fieldname}_${data.operator}`, value: query }]);
+    // updateFilter(
+    //   [{ key: `${data.fieldname}_${data.operator}`, value: query }
+
+    //   ]);
   }
 
   return (
