@@ -1,12 +1,12 @@
 interface ProductSpecificationProp {
-  lensWidth: number;
-  templeLength: number;
-  bridgeWidth: number;
-  brand: string;
-  origin: string;
-  suitableFor: string;
-  warranty: string;
-  material: string;
+  lensWidth?: number;
+  templeLength?: number;
+  bridgeWidth?: number;
+  brand?: string;
+  origin?: string;
+  suitableFor?: string;
+  warranty?: string;
+  material?: string;
 }
 
 export default function ProductSpecification({

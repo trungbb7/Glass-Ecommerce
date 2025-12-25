@@ -25,7 +25,7 @@ export function RelatedProducts() {
   }
 
   return (
-    <div className="relative  mt-20">
+    <div className="relative mt-20">
       <div
         onClick={slideLeft}
         className="absolute left-0 top-1/2 z-10 cursor-pointer"
@@ -58,7 +58,7 @@ export function RelatedProducts() {
           img={productImg1}
           discountPercent={40}
           name="Kính Mát MN1268"
-          discountPrice={420000}
+          finalPrice={420000}
           stockPrice={500000}
         />
 
@@ -67,7 +67,7 @@ export function RelatedProducts() {
           img={productImg1}
           discountPercent={40}
           name="Kính Mát MN1268"
-          discountPrice={420000}
+          finalPrice={420000}
           stockPrice={500000}
         />
 
@@ -76,7 +76,7 @@ export function RelatedProducts() {
           img={productImg1}
           discountPercent={40}
           name="Kính Mát MN1268"
-          discountPrice={420000}
+          finalPrice={420000}
           stockPrice={500000}
         />
 
@@ -85,7 +85,7 @@ export function RelatedProducts() {
           img={productImg1}
           discountPercent={40}
           name="Kính Mát MN1268"
-          discountPrice={420000}
+          finalPrice={420000}
           stockPrice={500000}
         />
 
@@ -94,7 +94,7 @@ export function RelatedProducts() {
           img={productImg1}
           discountPercent={40}
           name="Kính Mát MN1268"
-          discountPrice={420000}
+          finalPrice={420000}
           stockPrice={500000}
         />
 
@@ -103,7 +103,7 @@ export function RelatedProducts() {
           img={productImg1}
           discountPercent={40}
           name="Kính Mát MN1268"
-          discountPrice={420000}
+          finalPrice={420000}
           stockPrice={500000}
         />
 
@@ -112,7 +112,7 @@ export function RelatedProducts() {
           img={productImg1}
           discountPercent={40}
           name="Kính Mát MN1268"
-          discountPrice={420000}
+          finalPrice={420000}
           stockPrice={500000}
         />
       </div>

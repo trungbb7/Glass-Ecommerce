@@ -13,15 +13,28 @@ interface ProductReview {
   content: string;
 }
 
+interface ProductSpecification {
+  lensWidth: number;
+  templeLength: number;
+  brand: string;
+  bridgeWidth: number;
+  material: string;
+  origin: string;
+  suitableFor: string;
+  warranty: string;
+}
+
 interface Product {
   id: string;
   name: string;
   description: string;
   stockPrice: number;
   finalPrice: number;
+  specification: ProductSpecification;
   variants: ProductVariant[];
   categories: string[];
   images: string[];
+  reviews?: ProductReview[];
 }
 
-export type { Product, ProductVariant, ProductReview };
+export type { Product, ProductVariant, ProductReview, ProductSpecification };

@@ -1,22 +1,24 @@
 import { Rating } from "@/components/Rating";
 import userAvatar from "@/assets/user_avatar.png";
+import type { ProductReview } from "@/types/product";
 
-export default function ReviewItem() {
+interface ReviewItemProps {
+  review: ProductReview;
+}
+
+export default function ReviewItem({ review }: ReviewItemProps) {
   return (
     <li>
       <div className="flex items-start gap-4">
         <img src={userAvatar} alt="user avatar" className="size-10" />
         <div>
           <div className="flex items-center gap-4">
-            <span className="font-medium">N.V.An</span>
-            <span className="text-sm text-gray-400">3 ngày trước</span>
+            <span className="font-medium">{review.username}</span>
+            <span className="text-sm text-gray-400">{review.datetime}</span>
           </div>
-          <Rating rating={5} size="xs" className="mb-2" />
-          <p className="text-black mb-1">Sản phẩm tốt</p>
-          <p className="text-text2">
-            Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là
-            sản phẩm tốt nhất trong tầm giá
-          </p>
+          <Rating rating={review.rating} size="xs" className="mb-2" />
+          <p className="text-black mb-1">{review.title}</p>
+          <p className="text-text2">{review.content}</p>
         </div>
       </div>
       <div className="h-px bg-gray-300 mt-8"></div>
