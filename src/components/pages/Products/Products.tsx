@@ -7,10 +7,10 @@ import { faHouse } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarSelector from "./SidebarSelector/SidebarSelector";
 import ProductItem from "@/components/ProductItem/ProductItem";
-import productImg1 from "@/assets/product_img1.jpg";
 import { Pagination } from "@/components/Pagination";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import type { Product } from "@/types/product";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -31,10 +31,22 @@ const sortTypeMap = {
 export default function Products() {
   const [selectingSort, setSelectingSort] = useState<boolean>(false);
   const [sortType, setSortType] = useState<SortType>("none");
+  const [products, setProducts] = useState<Product[]>([]);
 
   function toggleSelectingSort() {
     setSelectingSort(!selectingSort);
   }
+
+  useEffect(() => {
+    async function fetchAllProducts() {
+      const response = await fetch("http://127.0.0.1:3000/products");
+      const productsObject = await response.json();
+      console.log(productsObject);
+      setProducts(productsObject);
+    }
+
+    fetchAllProducts();
+  }, []);
 
   return (
     <div className="text-text1">
@@ -96,91 +108,21 @@ export default function Products() {
             </div>
 
             <div className="flex flex-wrap gap-4 mb-8">
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
-              <ProductItem
-                img={productImg1}
-                discountPercent={40}
-                name="Kính Mát MN1268"
-                discountPrice={420000}
-                stockPrice={500000}
-              />
+              {products.map((product) => (
+                <ProductItem
+                  img={product.images[0]}
+                  discountPercent={
+                    Math.round(
+                      product.variants[0].finalPrice /
+                        product.variants[0].stockPrice,
+                    ) * 100
+                  }
+                  discountPrice={product.variants[0].finalPrice}
+                  name={product.name}
+                  stockPrice={product.variants[0].stockPrice}
+                  key={product.id}
+                />
+              ))}
             </div>
 
             <Pagination className="self-center" />

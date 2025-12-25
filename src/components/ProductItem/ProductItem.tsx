@@ -107,7 +107,7 @@ export default function ProductItem({
 
   return (
     <div
-      className={`pb-4 rounded-lg border border-gray-200 cursor-pointer ${className}`}
+      className={`max-w-70 pb-4 rounded-lg border border-gray-200 cursor-pointer ${className}`}
     >
       {/* Top */}
       <div className="group/top relative mb-2 overflow-hidden">
