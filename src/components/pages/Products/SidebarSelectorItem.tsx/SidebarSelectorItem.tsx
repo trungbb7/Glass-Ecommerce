@@ -1,15 +1,17 @@
+import type { FilterItem } from "@/types/filter";
 import { faSquare, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface ItemData {
   title: string;
-  quantity: number;
   checked: boolean;
+  quantity: number;
+  query: string;
 }
 
 export interface SidebarSelectorItemProps {
-  data: ItemData;
-  selectItem: (title: string) => void;
+  data: FilterItem;
+  selectItem: (title: string, query: string) => void;
   className?: string;
 }
 
@@ -20,7 +22,7 @@ export default function SidebarSelectorItem({
 }: SidebarSelectorItemProps) {
   return (
     <li
-      onClick={() => selectItem(data.title)}
+      onClick={() => selectItem(data.title, data.query)}
       aria-checked={data.checked}
       className={`${!data.checked && "text-text2"} font-medium flex items-center justify-between cursor-pointer hover:text-text1 ${className}`}
     >

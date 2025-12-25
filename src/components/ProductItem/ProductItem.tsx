@@ -16,7 +16,7 @@ interface ProductItemProps {
   discountPercent: number;
   name: string;
   stockPrice: number;
-  discountPrice: number;
+  finalPrice: number;
   className?: string;
 }
 
@@ -25,7 +25,7 @@ export default function ProductItem({
   discountPercent,
   name,
   stockPrice,
-  discountPrice,
+  finalPrice,
   className,
 }: ProductItemProps) {
   const dispatch = useAppDispatch();
@@ -163,10 +163,10 @@ export default function ProductItem({
         {/* Price */}
         <div>
           <span className="text-secondary mr-2 font-medium">
-            ${discountPrice}
+            {finalPrice} VNĐ
           </span>
           <span className="text-gray-300 line-through font-medium">
-            ${stockPrice}
+            {stockPrice} VNĐ
           </span>
         </div>
 

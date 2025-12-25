@@ -1,70 +1,54 @@
 import { SeperateLine } from "@/components/SeperateLine";
-import SidebarSelectorItem, {
-  type ItemData,
-} from "../SidebarSelectorItem.tsx/SidebarSelectorItem";
+import SidebarSelectorItem from "../SidebarSelectorItem.tsx/SidebarSelectorItem";
 import { useState } from "react";
+import type { Filter, FilterItem } from "@/types/filter";
 
-const itemData: ItemData[] = [
-  {
-    title: "Tất cả",
-    checked: true,
-    quantity: 300,
-  },
-  {
-    title: "Kính mát nam",
-    checked: false,
-    quantity: 80,
-  },
-  {
-    title: "Kính mát nữ",
-    checked: false,
-    quantity: 70,
-  },
-  {
-    title: "Kính mát unisex",
-    checked: false,
-    quantity: 60,
-  },
-  {
-    title: "Kính mát trẻ em",
-    checked: false,
-    quantity: 40,
-  },
-  {
-    title: "Kính mát kim loại",
-    checked: false,
-    quantity: 120,
-  },
-  {
-    title: "Kính mát nhựa",
-    checked: false,
-    quantity: 90,
-  },
-];
+interface SidebarSelectorItemProps {
+  data: Filter;
+  updateFilter: (key: string, value: string) => void;
+}
 
-export default function SidebarSelector() {
-  const [data, setData] = useState<ItemData[]>(itemData);
+export default function SidebarSelector({
+  data,
+  updateFilter,
+}: SidebarSelectorItemProps) {
+  const initData: FilterItem[] = [
+    {
+      title: "Tất cả",
+      checked: true,
+      quantity: 300,
+      query: "",
+    },
+  ];
 
-  function selectItem(title: string) {
-    const newData = data.map((item) => ({
+  const itemWithChecked = data.items.map((item) => ({
+    ...item,
+    checked: false,
+  }));
+  initData.push(...itemWithChecked);
+  const [items, setData] = useState<FilterItem[]>(initData);
+
+  function selectItem(title: string, query: string) {
+    const newData = items.map((item) => ({
       ...item,
       checked: item.title === title,
     }));
     setData(newData);
+    updateFilter(`${data.fieldname}_${data.operator}`, query);
   }
 
   return (
     <div className="">
       {/* Head */}
       <div className="flex justify-between mb-1">
-        <span className="font-medium text-lg text-secondary">Danh mục</span>
+        <span className="font-medium text-lg text-secondary">{data.name}</span>
         <button className="text-text2 cursor-pointer rounded-sm px-1 hover:bg-gray-100 active:text-secondary ">
           Reset
         </button>
       </div>
       {/* Items */}
       <ul className="pb-6">
-        {data.map((item) => (
+        {items.map((item) => (
           <SidebarSelectorItem
             selectItem={selectItem}
             data={item}

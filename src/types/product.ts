@@ -1,6 +1,4 @@
 interface ProductVariant {
-  stockPrice: number;
-  finalPrice: number;
   color: string;
   quantity: number;
 }
@@ -19,10 +17,11 @@ interface Product {
   id: string;
   name: string;
   description: string;
+  stockPrice: number;
+  finalPrice: number;
   variants: ProductVariant[];
   categories: string[];
   images: string[];
-  reviews: ProductReview[];
 }
 
 export type { Product, ProductVariant, ProductReview };

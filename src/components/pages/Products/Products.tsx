@@ -11,6 +11,8 @@ import { Pagination } from "@/components/Pagination";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import type { Product } from "@/types/product";
+import type { Filter } from "@/types/filter";
+import { useSearchParams } from "react-router-dom";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -29,9 +31,18 @@ const sortTypeMap = {
 };
 
 export default function Products() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [selectingSort, setSelectingSort] = useState<boolean>(false);
   const [sortType, setSortType] = useState<SortType>("none");
   const [products, setProducts] = useState<Product[]>([]);
+  const [filters, setFilters] = useState<Filter[]>([]);
+
+  function updateFilter(key: string, value: string) {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set(key, value);
+    setSearchParams(newParams);
+  }
 
   function toggleSelectingSort() {
     setSelectingSort(!selectingSort);
@@ -39,14 +50,25 @@ export default function Products() {
 
   useEffect(() => {
     async function fetchAllProducts() {
-      const response = await fetch("http://127.0.0.1:3000/products");
+      const queryString = new URLSearchParams(searchParams).toString();
+      const response = await fetch(
+        `http://localhost:3000/products?${queryString}`,
+      );
       const productsObject = await response.json();
       console.log(productsObject);
       setProducts(productsObject);
     }
 
+    async function fetchFilters() {
+      const response = await fetch("http://localhost:3000/filters");
+      const filterObject = await response.json();
+      console.log(filterObject);
+      setFilters(filterObject);
+    }
+
     fetchAllProducts();
-  }, []);
+    fetchFilters();
+  }, [searchParams]);
 
   return (
     <div className="text-text1">
@@ -62,9 +84,13 @@ export default function Products() {
         <div className="flex ">
           {/* Sidebar */}
           <div className="w-1/4 shrink-0 flex flex-col gap-4 pr-4">
-            <SidebarSelector />
-            <SidebarSelector />
-            <SidebarSelector />
+            {filters.map((filter) => (
+              <SidebarSelector
+                updateFilter={updateFilter}
+                data={filter}
+                key={filter.name}
+              />
+            ))}
           </div>
           {/* Content */}
           <div className="w-3/4 flex flex-col gap-4 px-8 pb-4">
@@ -111,15 +137,12 @@ export default function Products() {
               {products.map((product) => (
                 <ProductItem
                   img={product.images[0]}
-                  discountPercent={
-                    Math.round(
-                      product.variants[0].finalPrice /
-                        product.variants[0].stockPrice,
-                    ) * 100
-                  }
-                  discountPrice={product.variants[0].finalPrice}
+                  discountPercent={Math.round(
+                    (1 - product.finalPrice / product.stockPrice) * 100,
+                  )}
+                  finalPrice={product.finalPrice}
                   name={product.name}
-                  stockPrice={product.variants[0].stockPrice}
+                  stockPrice={product.stockPrice}
                   key={product.id}
                 />
               ))}
