@@ -1,42 +1,512 @@
 {
   "products": [
     {
-      "name": "Product 1",
-      "price": 100,
-      "instock": 50,
-      "id": "232a"
-    },
-    {
-      "name": "Product 2",
-      "price": 200,
-      "instock": 500,
-      "id": "591c"
-    },
-    {
-      "name": "Product 3",
-      "price": 300,
-      "instock": 150,
-      "id": "0a3c"
-    },
-    {
-      "id": "1bef",
-      "name": "Product 4",
-      "price": 400,
-      "instock": 5000
-    }
-  ],
-  "users": [
-    {
       "id": "1",
-      "username": "trungbb8",
-      "orderHistory": [
+      "name": "KÍNH RÂM EYE PLUS TR855",
+      "description": "Kính râm TR855 C1 sở hữu thiết kế vuông bo góc hiện đại, mang đến vẻ ngoài cá tính nhưng không kém phần thanh lịch. Gọng kính làm từ chất liệu nhựa TR cứng cáp, chắc chắn, bền nhẹ và có thể nắn chỉnh linh hoạt. Điểm nhấn kim loại ở phần bản lề giúp tăng độ độc đáo cho tổng thể thiết kế.",
+      "stockPrice": 500000,
+      "finalPrice": 450000,
+      "variants": [
         {
-          "date": "2025-01-01T10:30",
-          "name": "order 1"
+          "color": "#000000",
+          "quantity": 10
         },
         {
-          "date": "2025-01-01T10:30",
-          "name": "order 2"
+          "color": "#d67900",
+          "quantity": 0
+        }
+      ],
+      "specification": {
+        "lensWidth": 56,
+        "templeLength": 145,
+        "bridgeWidth": 17,
+        "brand": "Cartier",
+        "origin": "Hàn Quốc",
+        "suitableFor": "male",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["male", "plastic"],
+      "images": [
+        "https://i.ibb.co/R4DRZcjW/1.jpg",
+        "https://i.ibb.co/nMWSLr5m/2.jpg",
+        "https://i.ibb.co/KxDctK29/3.jpg",
+        "https://i.ibb.co/hFgGvkPt/4.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "KÍNH RÂM EYE PLUS 2245",
+      "description": "Kính râm 2245 được thiết kế với kiểu dáng cong ôm sát khuôn mặt, mang đến phong cách thể thao hiện đại và năng động. Đây là mẫu kính lý tưởng dành cho nam giới yêu thích các hoạt động ngoài trời, từ chơi thể thao, đi xe đạp, chạy bộ, đến các chuyến dã ngoại hoặc du lịch.",
+      "stockPrice": 500000,
+      "finalPrice": 450000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 21
+        }
+      ],
+      "specification": {
+        "lensWidth": 56,
+        "templeLength": 145,
+        "bridgeWidth": 17,
+        "brand": "Cartier",
+        "origin": "Hàn Quốc",
+        "suitableFor": "male",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["male", "plastic"],
+      "images": [
+        "https://i.ibb.co/KP5kfk2/IMG-0872.jpg",
+        "https://i.ibb.co/wNk2B5BJ/IMG-0848.jpg",
+        "https://i.ibb.co/KP5kfk2/IMG-0872.jpg",
+        "https://i.ibb.co/KP5kfk2/IMG-0872.jpg"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "KÍNH RÂM EYEPLUS 9078 C4",
+      "description": "Kính râm thời trang EYEPLUS 9078 là mẫu sản phẩm được thiết kế độc quyền bởi Eye Plus. EP 9078 được thiết kế bởi chất liệu nhựa kim loại cao cấp bền bỉ với thời gian, mang đến những trải nghiệm độc đáo như: giá trị sử dụng lâu dài, mặt kính bóng đẹp, khó bị gỉ, chống chịu tốt bởi tác động của môi trường, … Kính râm EP 9078 nổi bật với sự kết hợp khéo léo mắt khói cá tính, tất cả tạo nên một tổng thể hài hoà. Chắc chắn sẽ đem lại vẻ thời trang tối đa cho bạn. Ngoài ra, các kích thước của kính được thiết kế tối ưu với gương mặt Việt. Phần cầu kính có chiều rộng đạt chuẩn, cân đối dáng kính, đồng thời giúp người sử dụng nhìn đúng trọng tâm.",
+      "stockPrice": 800000,
+      "finalPrice": 750000,
+      "variants": [
+        {
+          "color": "#b25ee3",
+          "quantity": 11
+        }
+      ],
+      "specification": {
+        "lensWidth": 53,
+        "templeLength": 147,
+        "bridgeWidth": 21,
+        "brand": "Cartier",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["female", "plastic"],
+      "images": ["https://i.ibb.co/Y4MCy3zn/9078-c4.jpg"]
+    },
+    {
+      "id": "4",
+      "name": "KÍNH RÂM EYEPLUS 9078 C1 GỌNG ĐEN MẮT ĐEN",
+      "description": "Kính râm thời trang EYEPLUS 9078 là mẫu sản phẩm được thiết kế độc quyền bởi Eye Plus. EP 9078 được thiết kế bởi chất liệu nhựa kim loại cao cấp bền bỉ với thời gian, mang đến những trải nghiệm độc đáo như: giá trị sử dụng lâu dài, mặt kính bóng đẹp, khó bị gỉ, chống chịu tốt bởi tác động của môi trường, … Kính râm EP 9078 nổi bật với sự kết hợp khéo léo mắt đen cá tính, tất cả tạo nên một tổng thể hài hoà. Chắc chắn sẽ đem lại vẻ thời trang tối đa cho bạn.",
+      "stockPrice": 800000,
+      "finalPrice": 750000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 34
+        }
+      ],
+      "specification": {
+        "lensWidth": 53,
+        "templeLength": 147,
+        "bridgeWidth": 21,
+        "brand": "Cartier",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["unisex", "plastic"],
+      "images": ["https://i.ibb.co/jPvKRLF3/9078-c1.jpg"]
+    },
+    {
+      "id": "5",
+      "name": "KÍNH RÂM EYEPLUS 7260 C3 MẮT HỒNG",
+      "description": "Kính râm thời trang EYEPLUS 7260 là mẫu sản phẩm được thiết kế độc quyền bởi Eye Plus. EP 7260 được thiết kế bởi chất liệu kim loại cao cấp bền bỉ với thời gian, mang đến những trải nghiệm độc đáo như: giá trị sử dụng lâu dài, mặt kính bóng đẹp, khó bị gỉ, chống chịu tốt bởi tác động của môi trường, … Kính râm EP 7260 nổi bật với sự kết hợp khéo léo mắt hồng cá tính, tất cả tạo nên một tổng thể hài hoà. Chắc chắn sẽ đem lại vẻ thời trang tối đa cho bạn.",
+      "stockPrice": 900000,
+      "finalPrice": 780000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 2
+        }
+      ],
+      "specification": {
+        "lensWidth": 56,
+        "templeLength": 147,
+        "bridgeWidth": 18,
+        "brand": "Cartier",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["unisex", "plastic"],
+      "images": [
+        "https://i.ibb.co/TxXrVKqx/IMG-2131.jpg",
+        "https://i.ibb.co/PvWF8S5j/IMG-2154.jpg",
+        "https://i.ibb.co/1tvSnWHV/IMG-2143.jpg",
+        "https://i.ibb.co/PvrKD1Yx/IMG-2118.jpg",
+        "https://i.ibb.co/Hfsvn7FJ/IMG-2121.jpg"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Kính Râm EYEPLUS 2231 C1 ĐEN NHÁM",
+      "description": "Kính râm thời trang EP 2231 là mẫu sản phẩm được thiết kế độc quyền bởi Ree-man. 2231 được thiết kế bởi chất liệu nhựa cao cấp bền bỉ với thời gian, mang đến những trải nghiệm độc đáo như: giá trị sử dụng lâu dài, mặt kính bóng đẹp, khó bị gỉ, chống chịu tốt bởi tác động của môi trường, … Eye Plus 2231 nổi bật với sự kết hợp khéo léo gam màu đen nhám mắt đen cá tính cho cả phần gọng và mắt kính cá tính, tất cả tạo nên một tổng thể hài hoà. Chắc chắn sẽ đem lại vẻ thời trang tối đa cho bạn.",
+      "stockPrice": 350000,
+      "finalPrice": 175000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 20
+        }
+      ],
+      "specification": {
+        "lensWidth": 56,
+        "templeLength": 140,
+        "bridgeWidth": 18,
+        "brand": "Cartier",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["male", "plastic"],
+      "images": [
+        "https://i.ibb.co/Wp03L8VQ/IMG-2119.jpg",
+        "https://i.ibb.co/Xx4Y520D/IMG-2132.jpg",
+        "https://i.ibb.co/0Rt7Stx4/IMG-2155.jpg ",
+        "https://i.ibb.co/Fkjn8K6D/IMG-2145.jpg"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "KÍNH RÂM EYE PLUS 1001 C2 GỌNG ĐEN MẮT NÂU",
+      "description": "Kính râm thời trang Eye Plus 1001 mang đến trải nghiệm mới mẻ, độc đáo. Phiên bản này được thiết kế form dáng Pilot kết hợp với gam màu mắt nâu thời thượng, tinh tế. Gọng sử dụng chất liệu kim loại cao cấp, mang đến các đặc tính ưu việt cho sản phẩm như: độ cứng cơ học cao, chịu nhiệt tốt, không bị tác động trước các điều kiện môi trường, bề mặt đen nhám trơn, …",
+      "stockPrice": 700000,
+      "finalPrice": 550000,
+      "variants": [
+        {
+          "color": "#96775b",
+          "quantity": 30
+        }
+      ],
+      "specification": {
+        "lensWidth": 51,
+        "templeLength": 154,
+        "bridgeWidth": 21,
+        "brand": "Cartier",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["unisex", "plastic"],
+      "images": [
+        "https://i.ibb.co/ycT16hJV/IMG-0878-1.jpg",
+        "https://i.ibb.co/dJwYny9x/IMG-0866-2.jpg",
+        "https://i.ibb.co/GQKgYPbY/IMG-0889-1.jpg",
+        "https://i.ibb.co/PsCh5Xzk/IMG-0900-1.jpg",
+        "https://i.ibb.co/p6gQB40z/IMG-0852-1.jpg"
+      ]
+    },
+    {
+      "id": "8",
+      "name": "KÍNH RÂM EYE PLUS 5188 C5 GỌNG BẠC MẮT KHÓI",
+      "description": "Kính râm thời trang Eye Plus 29003 mang đến trải nghiệm mới mẻ, độc đáo. Phiên bản này được thiết kế form dáng Pilot kết hợp với gam màu mắt khói thời thượng, tinh tế. Gọng sử dụng chất liệu kim loại cao cấp, mang đến các đặc tính ưu việt cho sản phẩm như: độ cứng cơ học cao, chịu nhiệt tốt, không bị tác động trước các điều kiện môi trường, bề mặt đen nhám trơn, …",
+      "stockPrice": 700000,
+      "finalPrice": 550000,
+      "variants": [
+        {
+          "color": "#58465e",
+          "quantity": 1
+        }
+      ],
+      "specification": {
+        "lensWidth": 57,
+        "templeLength": 149,
+        "bridgeWidth": 16,
+        "brand": "Reeman",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["unisex", "plastic"],
+      "images": [
+        "https://i.ibb.co/mCgPF8Xp/IMG-9697-1.jpg",
+        "https://i.ibb.co/cSCP9y0c/IMG-9714-1.jpg",
+        "https://i.ibb.co/xqFNVP4N/IMG-9729-1.jpg",
+        "https://i.ibb.co/XxfHTbJC/IMG-9745.jpg",
+        "https://i.ibb.co/GfkVT4H0/IMG-9765-1.jpg"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "KÍNH RÂM EYE PLUS 5188 C1 GỌNG GHI MẮT ĐEN",
+      "description": "Kính râm thời trang Eye Plus 29003 mang đến trải nghiệm mới mẻ, độc đáo. Phiên bản này được thiết kế form dáng Pilot kết hợp với gam màu mắt đen thời thượng, tinh tế. Gọng sử dụng chất liệu kim loại cao cấp, mang đến các đặc tính ưu việt cho sản phẩm như: độ cứng cơ học cao, chịu nhiệt tốt, không bị tác động trước các điều kiện môi trường, bề mặt đen nhám trơn, …",
+      "stockPrice": 700000,
+      "finalPrice": 550000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 17
+        }
+      ],
+      "specification": {
+        "lensWidth": 57,
+        "templeLength": 149,
+        "bridgeWidth": 16,
+        "brand": "Reeman",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["unisex", "plastic"],
+      "images": [
+        "https://i.ibb.co/F4jzChXb/IMG-9687-1.jpg",
+        "https://i.ibb.co/spCRyzmH/IMG-9704-1.jpg",
+        "https://i.ibb.co/Fb04Kxcx/IMG-9720-1.jpg",
+        "https://i.ibb.co/DfxPH8rh/IMG-9736-1.jpg",
+        "https://i.ibb.co/x88JhP8v/IMG-9754-1.jpg"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "KÍNH RÂM EYE PLUS 18036 C1 GỌNG GHI MẮT ĐEN",
+      "description": "Kính râm thời trang Eye Plus 18036 mang đến trải nghiệm mới mẻ, độc đáo. Phiên bản này được thiết kế form dáng Pilot kết hợp với gam màu mắt đen thời thượng, tinh tế. Gọng sử dụng chất liệu kim loại cao cấp, mang đến các đặc tính ưu việt cho sản phẩm như: độ cứng cơ học cao, chịu nhiệt tốt, không bị tác động trước các điều kiện môi trường, bề mặt đen nhám trơn, …",
+      "stockPrice": 700000,
+      "finalPrice": 650000,
+      "variants": [
+        {
+          "color": "#7f8a8e",
+          "quantity": 33
+        }
+      ],
+      "specification": {
+        "lensWidth": 60,
+        "templeLength": 140,
+        "bridgeWidth": 14,
+        "brand": "Reeman",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa"
+      },
+      "categories": ["unisex", "plastic"],
+      "images": [
+        "https://i.ibb.co/RGkt7FnS/IMG-9693-1.jpg",
+        "https://i.ibb.co/9kSJtGdC/IMG-9709-1.jpg",
+        "https://i.ibb.co/FbZhWVzv/IMG-9725-1.jpg",
+        "https://i.ibb.co/Cp42L6v6/IMG-9741-1.jpg",
+        "https://i.ibb.co/nN3QHrqK/IMG-9760-1.jpg"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "productId": "1",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "1",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "2",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "2",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "3",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "3",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "4",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "4",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "5",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "5",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "6",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "6",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "7",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "7",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "8",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "8",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "9",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "9",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "productId": "10",
+      "userid": "111",
+      "username": "Nguyễn Văn An",
+      "datetime": "2025-12-20T10:30:00",
+      "rating": 5,
+      "title": "Sản phẩm tốt",
+      "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
+    },
+    {
+      "productId": "10",
+      "userid": "222",
+      "username": "Lê Phương Hoa",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 5,
+      "title": "Rất đẹp",
+      "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    }
+  ],
+  "filters": [
+    {
+      "name": "Danh mục",
+      "fieldname": "categories",
+      "operator": "like",
+      "items": [
+        {
+          "title": "Kính mát nam",
+          "quantity": "80",
+          "query": "^male"
+        },
+        {
+          "title": "Kính mát nữ",
+          "quantity": "70",
+          "query": "^female"
+        },
+        {
+          "title": "Kính mát unisex",
+          "quantity": "60",
+          "query": "^unisex"
+        },
+        {
+          "title": "Kính mát trẻ em",
+          "quantity": "40",
+          "query": "^kid"
         }
       ]
     }
