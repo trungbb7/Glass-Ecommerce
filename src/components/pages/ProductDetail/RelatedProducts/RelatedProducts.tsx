@@ -1,5 +1,6 @@
 import productImg1 from "@/assets/product_img1.jpg";
 import ProductItem from "@/components/ProductItem/ProductItem";
+import type { Product } from "@/types/product";
 import {
   faCircleChevronLeft,
   faCircleChevronRight,
@@ -7,7 +8,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
 
-export function RelatedProducts() {
+interface RelatedProductsProps {
+  products: Product[];
+}
+
+export function RelatedProducts({ products }: RelatedProductsProps) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
   function slideRight() {
@@ -53,7 +58,22 @@ export function RelatedProducts() {
         ref={sliderRef}
         className="w-full flex items-center gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth"
       >
-        <ProductItem
+        {products.map((product) => (
+          <ProductItem
+            id={product.id}
+            img={product.images[0]}
+            discountPercent={Math.round(
+              (1 - product.finalPrice / product.stockPrice) * 100,
+            )}
+            finalPrice={product.finalPrice}
+            name={product.name}
+            stockPrice={product.stockPrice}
+            key={product.id}
+            className="min-w-70"
+          />
+        ))}
+
+        {/* <ProductItem
           className="min-w-70"
           img={productImg1}
           discountPercent={40}
@@ -114,7 +134,7 @@ export function RelatedProducts() {
           name="Kính Mát MN1268"
           finalPrice={420000}
           stockPrice={500000}
-        />
+        /> */}
       </div>
     </div>
   );

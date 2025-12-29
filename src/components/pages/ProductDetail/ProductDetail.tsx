@@ -57,6 +57,8 @@ export default function ProductDetail() {
     "specification",
   );
 
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+
   const dispatch = useAppDispatch();
 
   function getCurrentStock() {
@@ -170,7 +172,15 @@ export default function ProductDetail() {
         setCurrentVariance(productObject.variants[0].color);
       }
     }
+
+    async function fetchRelatedProducts() {
+      const response = await fetch(`http://localhost:3000/related-products`);
+      const productObject = (await response.json()) as Product[];
+      setRelatedProducts(productObject);
+    }
+
     fetchProduct();
+    fetchRelatedProducts();
   }, [id]);
 
   return (
@@ -366,7 +376,7 @@ export default function ProductDetail() {
         </div>
 
         {/* Related products */}
-        <RelatedProducts />
+        <RelatedProducts products={relatedProducts} />
       </div>
       <Footer />
     </div>

@@ -999,5 +999,326 @@
         }
       ]
     }
+  ],
+  "related-products": [
+    {
+      "id": "7",
+      "name": "KÍNH RÂM EYE PLUS 1001 C2 GỌNG ĐEN MẮT NÂU",
+      "description": "Kính râm thời trang Eye Plus 1001 mang đến trải nghiệm mới mẻ, độc đáo. Phiên bản này được thiết kế form dáng Pilot kết hợp với gam màu mắt nâu thời thượng, tinh tế. Gọng sử dụng chất liệu kim loại cao cấp, mang đến các đặc tính ưu việt cho sản phẩm như: độ cứng cơ học cao, chịu nhiệt tốt, không bị tác động trước các điều kiện môi trường, bề mặt đen nhám trơn, …",
+      "stockPrice": 700000,
+      "finalPrice": 550000,
+      "variants": [
+        {
+          "color": "#96775b",
+          "quantity": 30
+        }
+      ],
+      "specification": {
+        "lensWidth": 51,
+        "templeLength": 154,
+        "bridgeWidth": 21,
+        "brand": "Reeman",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa",
+        "style": "Oval"
+      },
+      "categories": ["unisex", "plastic"],
+      "images": [
+        "https://i.ibb.co/ycT16hJV/IMG-0878-1.jpg",
+        "https://i.ibb.co/dJwYny9x/IMG-0866-2.jpg",
+        "https://i.ibb.co/GQKgYPbY/IMG-0889-1.jpg",
+        "https://i.ibb.co/PsCh5Xzk/IMG-0900-1.jpg",
+        "https://i.ibb.co/p6gQB40z/IMG-0852-1.jpg"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "KÍNH RÂM EYE PLUS 5188 C1 GỌNG GHI MẮT ĐEN",
+      "description": "Kính râm thời trang Eye Plus 29003 mang đến trải nghiệm mới mẻ, độc đáo. Phiên bản này được thiết kế form dáng Pilot kết hợp với gam màu mắt đen thời thượng, tinh tế. Gọng sử dụng chất liệu kim loại cao cấp, mang đến các đặc tính ưu việt cho sản phẩm như: độ cứng cơ học cao, chịu nhiệt tốt, không bị tác động trước các điều kiện môi trường, bề mặt đen nhám trơn, …",
+      "stockPrice": 700000,
+      "finalPrice": 550000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 17
+        }
+      ],
+      "specification": {
+        "lensWidth": 57,
+        "templeLength": 149,
+        "bridgeWidth": 16,
+        "brand": "Reeman",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Kim loại",
+        "style": "Phi công"
+      },
+      "categories": ["unisex"],
+      "images": [
+        "https://i.ibb.co/F4jzChXb/IMG-9687-1.jpg",
+        "https://i.ibb.co/spCRyzmH/IMG-9704-1.jpg",
+        "https://i.ibb.co/Fb04Kxcx/IMG-9720-1.jpg",
+        "https://i.ibb.co/DfxPH8rh/IMG-9736-1.jpg",
+        "https://i.ibb.co/x88JhP8v/IMG-9754-1.jpg"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "KÍNH RÂM EYE PLUS 18036 C1 GỌNG GHI MẮT ĐEN",
+      "description": "Kính râm thời trang Eye Plus 18036 mang đến trải nghiệm mới mẻ, độc đáo. Phiên bản này được thiết kế form dáng Pilot kết hợp với gam màu mắt đen thời thượng, tinh tế. Gọng sử dụng chất liệu kim loại cao cấp, mang đến các đặc tính ưu việt cho sản phẩm như: độ cứng cơ học cao, chịu nhiệt tốt, không bị tác động trước các điều kiện môi trường, bề mặt đen nhám trơn, …",
+      "stockPrice": 700000,
+      "finalPrice": 650000,
+      "variants": [
+        {
+          "color": "#7f8a8e",
+          "quantity": 33
+        }
+      ],
+      "specification": {
+        "lensWidth": 60,
+        "templeLength": 140,
+        "bridgeWidth": 14,
+        "brand": "Reeman",
+        "origin": "Hàn Quốc",
+        "suitableFor": "unisex",
+        "warranty": "1 năm",
+        "material": "Kim loại",
+        "style": "Phi công"
+      },
+      "categories": ["unisex"],
+      "images": [
+        "https://i.ibb.co/RGkt7FnS/IMG-9693-1.jpg",
+        "https://i.ibb.co/9kSJtGdC/IMG-9709-1.jpg",
+        "https://i.ibb.co/FbZhWVzv/IMG-9725-1.jpg",
+        "https://i.ibb.co/Cp42L6v6/IMG-9741-1.jpg",
+        "https://i.ibb.co/nN3QHrqK/IMG-9760-1.jpg"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Prada Eyewear - Sunglasses - 0PR B50S",
+      "description": "Mắt kính Prada Eyewear Sunglasses 0PR B50S là sự lựa chọn hoàn hảo cho những ai tìm kiếm phong cách độc đáo mà không kém phần thanh lịch. Sản phẩm nổi bật với sự kết hợp giữa thiết kế vượt thời gian và vật liệu chất lượng cao, mang lại vẻ ngoài trẻ trung, hiện đại.",
+      "stockPrice": 15180000,
+      "finalPrice": 12144000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 2
+        }
+      ],
+      "specification": {
+        "lensWidth": 52,
+        "templeLength": 120,
+        "bridgeWidth": 19,
+        "brand": "Prada",
+        "origin": "Ý",
+        "suitableFor": "Nữ",
+        "warranty": "1 năm",
+        "material": "Nhựa CR39",
+        "style": "Cánh bướm"
+      },
+      "categories": ["female"],
+      "images": [
+        "https://i.ibb.co/CKFzPjXs/k-nh-m-t-prada-n-0pr-b50s-4-1d86ac7d2861499aabf37ea723ac5710-master.jpg",
+        "https://i.ibb.co/BKPP4Cz7/k-nh-m-t-prada-n-0pr-b50s-10-c1ee7f1dc01849f38445e90abbeee35b-master.jpg",
+        "https://i.ibb.co/FkWktKRN/k-nh-m-t-prada-n-0pr-b50s-5-c804992ae24d4f36aec5e9e92453a80f-master.jpg",
+        "https://i.ibb.co/SwNg4rbg/k-nh-m-t-prada-n-0pr-b50s-6-aaf6eaad2cdd44129a54f3687d9bb9bf-master.jpg",
+        "https://i.ibb.co/RTB04cYV/k-nh-m-t-prada-n-0pr-b50s-7-6f5ae199e26e443d8aff54eec57a8625-master.jpg",
+        "https://i.ibb.co/jP0ztG0Q/k-nh-m-t-prada-n-0pr-b50s-8-c48e833798104d2d8b83b457a26adb08-master.jpg",
+        "https://i.ibb.co/PGnnhqwP/k-nh-m-t-prada-n-0pr-b50s-9-3439e397090041d481c83c3a4c0a1e23-master.jpg"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Kính Mát MN1270",
+      "description": "Kính Mát MN1270 không chỉ là một phụ kiện, mà còn là trợ thủ đắc lực bảo vệ đôi mắt của bạn. Chiếc kính này là sự kết hợp hoàn hảo giữa vẻ ngoài thời trang và công năng vượt trội, mang lại sự tự tin và thoải mái cho người đeo.",
+      "stockPrice": 550000,
+      "finalPrice": 490000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 19
+        }
+      ],
+      "specification": {
+        "lensWidth": 63,
+        "templeLength": 151,
+        "bridgeWidth": 19,
+        "brand": "OEM",
+        "origin": "Trung Quốc",
+        "suitableFor": "Nữ",
+        "warranty": "1 năm",
+        "material": "Nhựa TR90",
+        "style": "Cánh bướm"
+      },
+      "categories": ["female"],
+      "images": [
+        "https://i.ibb.co/Jj887X4S/k-nh-m-t-nam-n-mn1270-4-77e3b173ac6c43b4981e9388fb177bb6-master.jpg",
+        "https://i.ibb.co/5xwVCkR4/k-nh-m-t-nam-n-mn1270-3-e67177096473460da77f1edf5f83e1aa-master.jpg",
+        "https://i.ibb.co/Q7jWg0Fr/k-nh-m-t-nam-n-mn1270-2-deedc3bcd7bb44d8a23b89362df2d28b-master.jpg",
+        "https://i.ibb.co/Y7DzYT4Z/k-nh-m-t-nam-n-mn1270-1-109ca731b76b4c5a87d799e44c8861ac-master.jpg",
+        "https://i.ibb.co/YTk6ZJFx/k-nh-m-t-nam-n-mn1270-6-27ab2381847b46c58ca3a2cabeeb513a-master.jpg"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Kính Mát MN1269",
+      "description": "Kính Mát MN1269 không chỉ là một phụ kiện, mà còn là trợ thủ đắc lực bảo vệ đôi mắt của bạn. Chiếc kính này là sự kết hợp hoàn hảo giữa vẻ ngoài thời trang và công năng vượt trội, mang lại sự tự tin và thoải mái cho người đeo.",
+      "stockPrice": 500000,
+      "finalPrice": 420000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 33
+        },
+        {
+          "color": "#9b6701",
+          "quantity": 10
+        },
+        {
+          "color": "#8e8e8e",
+          "quantity": 50
+        }
+      ],
+      "specification": {
+        "lensWidth": 53,
+        "templeLength": 144,
+        "bridgeWidth": 17,
+        "brand": "OEM",
+        "origin": "Trung Quốc",
+        "suitableFor": "Nữ",
+        "warranty": "1 năm",
+        "material": "Nhựa TR90",
+        "style": "Cánh bướm"
+      },
+      "categories": ["female"],
+      "images": [
+        "https://i.ibb.co/0pFwxwgv/k-nh-m-t-nam-n-mn1269-6-b9a005ca93ae4872a49004c4d3a9f8c1-master.jpg",
+        "https://i.ibb.co/mr8FgdhW/k-nh-m-t-nam-n-mn1269-1-920e6dbae31c41e482a21adfa180c3f0-master.jpg",
+        "https://i.ibb.co/rRXyvNQ9/k-nh-m-t-nam-n-mn1269-2-a3f70d654aba4d368dbadb7c1003c8ad-master.jpg",
+        "https://i.ibb.co/9mQTcF9R/k-nh-m-t-nam-n-mn1269-4-094c8a09f382413b80092fdb29d99c51-master-1.jpg",
+        "https://i.ibb.co/9mQTcF9R/k-nh-m-t-nam-n-mn1269-4-094c8a09f382413b80092fdb29d99c51-master-1.jpg"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Prada Eyewear - Sunglasses - 0PR B15SF",
+      "description": "Mắt kính Prada Eyewear Sunglasses 0PR B15SF là sự lựa chọn hoàn hảo cho những ai tìm kiếm phong cách độc đáo mà không kém phần thanh lịch. Sản phẩm nổi bật với sự kết hợp giữa thiết kế vượt thời gian và vật liệu chất lượng cao, mang lại vẻ ngoài trẻ trung, hiện đại.",
+      "stockPrice": 12560000,
+      "finalPrice": 10048000,
+      "variants": [
+        {
+          "color": "#9b6701",
+          "quantity": 4
+        }
+      ],
+      "specification": {
+        "lensWidth": 52,
+        "templeLength": 145,
+        "bridgeWidth": 19,
+        "brand": "Prada",
+        "origin": "Ý",
+        "suitableFor": "Nữ",
+        "warranty": "1 năm",
+        "material": "Nhựa Acetate",
+        "style": "Tròn"
+      },
+      "categories": ["female"],
+      "images": [
+        "https://i.ibb.co/HDqp4kf3/k-nh-m-t-prada-nam-n-0pr-b15sf-3-bcc4de690d1244659845c4a9254a1a3a-master.jpg",
+        "https://i.ibb.co/MjZ9K8g/k-nh-m-t-prada-nam-n-0pr-b15sf-4-5b9c43c88bda4dec973db4e2b3f7deea-master.jpg",
+        "https://i.ibb.co/XrHchpFv/k-nh-m-t-prada-nam-n-0pr-b15sf-5-77738bf1f6004f688e94766bfe547470-master.jpg",
+        "https://i.ibb.co/6c13DWjZ/k-nh-m-t-prada-nam-n-0pr-b15sf-6-a0f3a0fe23ae40b7821493910c252779-master.jpg",
+        "https://i.ibb.co/GQxCkgWX/k-nh-m-t-prada-nam-n-0pr-b15sf-1-d72cd06987d2476e92ea3d3602779a97-master.jpg"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Prada Eyewear - Sunglasses - 0PR B11SF",
+      "description": "Mắt kính Prada Eyewear Sunglasses 0PR B11SF là sự lựa chọn hoàn hảo cho những ai tìm kiếm phong cách độc đáo mà không kém phần thanh lịch. Sản phẩm nổi bật với sự kết hợp giữa thiết kế vượt thời gian và vật liệu chất lượng cao, mang lại vẻ ngoài trẻ trung, hiện đại.",
+      "stockPrice": 12560000,
+      "finalPrice": 10048000,
+      "variants": [
+        {
+          "color": "#000000",
+          "quantity": 4
+        },
+        {
+          "color": "#0163ae",
+          "quantity": 1
+        },
+        {
+          "color": "#0c9919",
+          "quantity": 3
+        }
+      ],
+      "specification": {
+        "lensWidth": 57,
+        "templeLength": 145,
+        "bridgeWidth": 15,
+        "brand": "Prada",
+        "origin": "Ý",
+        "suitableFor": "Unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa Acetate",
+        "style": "Tròn"
+      },
+      "categories": ["unisex"],
+      "images": [
+        "https://i.ibb.co/j946xm9P/k-nh-m-t-prada-nam-n-0pr-b11sf-4-3e3c2f6e0e1847bc8d914fcd977001e4-master.jpg",
+        "https://i.ibb.co/V0c3JtQs/k-nh-m-t-prada-nam-n-0pr-b11sf-5-4cf03a0843844886b288bc2d8b3eb149-master.jpg",
+        "https://i.ibb.co/Gfwy6sST/k-nh-m-t-prada-nam-n-0pr-b11sf-6-d4d01f6a81964f82904b4a73cbba5c6d-master.jpg",
+        "https://i.ibb.co/GvFtM6tg/k-nh-m-t-prada-nam-n-0pr-b11sf-7-9472d2f386ce4a65b301986895324e87-master.jpg",
+        "https://i.ibb.co/gb2jgKpQ/k-nh-m-t-prada-nam-n-0pr-b11sf-8-ddafa9a9038d454186b1b7555793d3d0-master.jpg",
+        "https://i.ibb.co/4wYJ1v2d/k-nh-m-t-prada-nam-n-0pr-b11sf-1-1dcb2ea41b274aa3ba0d76f04350bd89-master.jpg"
+      ]
+    },
+
+    {
+      "id": "19",
+      "name": "Kính Mát MN1267",
+      "description": "Sản phẩm OEM kính mắt MN1267 là phụ kiện hoàn hảo dành cho những ai tìm kiếm sự kết hợp giữa phong cách thời trang và khả năng bảo vệ mắt vượt trội. Với thiết kế tinh tế và chất liệu cao cấp, sản phẩm không chỉ là điểm nhấn giúp bạn thể hiện cá tính mà còn đảm bảo tầm nhìn rõ nét, an toàn dưới mọi điều kiện ánh sáng.",
+      "stockPrice": 500000,
+      "finalPrice": 420000,
+      "variants": [
+        {
+          "color": "#9b6701",
+          "quantity": 70
+        },
+        {
+          "color": "#000000",
+          "quantity": 43
+        },
+        {
+          "color": "#8e8e8e",
+          "quantity": 11
+        }
+      ],
+      "specification": {
+        "lensWidth": 50,
+        "templeLength": 144,
+        "bridgeWidth": 20,
+        "brand": "OEM",
+        "origin": "Trung Quốc",
+        "suitableFor": "Unisex",
+        "warranty": "1 năm",
+        "material": "Nhựa TR",
+        "style": "Tròn"
+      },
+      "categories": ["unisex"],
+      "images": [
+        "https://i.ibb.co/xqL758SR/k-nh-m-t-nam-n-mn1267-4-bf51fe49ec3248d5af712f63347927b5-master.jpg",
+        "https://i.ibb.co/XfWML4cp/k-nh-m-t-nam-n-mn1267-5-e835e0652da64b8dbdccac1134f87f64-master.jpg",
+        "https://i.ibb.co/7tMSFMp1/k-nh-m-t-nam-n-mn1267-6-8e673df284074be191a51ac4978f78fd-master.jpg",
+        "https://i.ibb.co/jPSTVVyr/k-nh-m-t-nam-n-mn1267-7-85ad32836f53410bab84a2101cc28913-master.jpg",
+        "https://i.ibb.co/BVShT0xZ/k-nh-m-t-nam-n-mn1267-10-cebd29c588034c96b7b656e8706a1a07-master.jpg",
+        "https://i.ibb.co/0j8PnFXJ/k-nh-m-t-nam-n-mn1267-1-93e56650245e4f3ba8dea5dd4d6eebbb-master.jpg",
+        "https://i.ibb.co/N2jCB0gy/k-nh-m-t-nam-n-mn1267-2-70cd7d21a7234988a29588ff861735f3-master.jpg",
+        "https://i.ibb.co/nsJCfHCM/k-nh-m-t-nam-n-mn1267-3-78ac284ba90743b596d72d9eff391861-master.jpg"
+      ]
+    }
   ]
 }
