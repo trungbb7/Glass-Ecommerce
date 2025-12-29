@@ -12,6 +12,8 @@ export default function SidebarSelector({
   data,
   updateFilter,
 }: SidebarSelectorItemProps) {
+  const [open, setOpen] = useState<boolean>(false);
+
   const initData: FilterItem[] = [
     {
       title: "Tất cả",
@@ -52,7 +54,10 @@ export default function SidebarSelector({
         </button>
       </div>
       {/* Items */}
-      <ul className="pb-6">
+      <ul
+        data-open={open}
+        className="pb-6 [&>li:nth-child(n+6)]:hidden data-[open=true]:[&>li:nth-child(n+6)]:flex"
+      >
         {items.map((item) => (
           <SidebarSelectorItem
             selectItem={selectItem}
@@ -61,6 +66,17 @@ export default function SidebarSelector({
           />
         ))}
       </ul>
+      {items.length > 5 && (
+        <button
+          onClick={() => {
+            setOpen((prev) => !prev);
+          }}
+          className="block text-secondary mx-auto cursor-pointer hover:underline"
+        >
+          {open ? "Thu gọn" : "Mở rộng"}
+        </button>
+      )}
+
       <SeperateLine />
     </div>
   );
