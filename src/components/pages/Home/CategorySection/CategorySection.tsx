@@ -89,7 +89,7 @@ export default function CategorySection() {
           inStock={130}
           className="shrink-0"
           onClick={() => {
-            goToProductCategory("categories_like=^unisex");
+            goToProductCategory("categories_like=^kid");
           }}
         />
         <CategoryItem
@@ -108,7 +108,7 @@ export default function CategorySection() {
           inStock={50}
           className="shrink-0"
           onClick={() => {
-            goToProductCategory("specification.material_like=^Kim+Loại");
+            goToProductCategory("specification.material_like=^Kim+loại");
           }}
         />
       </div>

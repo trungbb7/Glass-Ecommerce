@@ -1,7 +1,7 @@
 import { SeperateLine } from "@/components/SeperateLine";
 import SidebarSelectorItem from "../SidebarSelectorItem.tsx/SidebarSelectorItem";
 import { useState } from "react";
-import type { Filter, FilterItem } from "@/types/filter";
+import type { Filter } from "@/types/filter";
 
 interface SidebarSelectorItemProps {
   data: Filter;
@@ -14,28 +14,16 @@ export default function SidebarSelector({
 }: SidebarSelectorItemProps) {
   const [open, setOpen] = useState<boolean>(false);
 
-  const initData: FilterItem[] = [
+  const items = [
     {
       title: "Tất cả",
-      checked: true,
       quantity: 300,
       query: ["", "999999999"],
     },
+    ...data.items,
   ];
 
-  const itemWithChecked = data.items.map((item) => ({
-    ...item,
-    checked: false,
-  }));
-  initData.push(...itemWithChecked);
-  const [items, setData] = useState<FilterItem[]>(initData);
-
-  function selectItem(title: string, query: string[]) {
-    const newData = items.map((item) => ({
-      ...item,
-      checked: item.title === title,
-    }));
-    setData(newData);
+  function selectItem(query: string[]) {
     updateFilter(
       data.operator.map((operator, index) => ({
         key: `${data.fieldname}_${operator}`,
@@ -51,7 +39,7 @@ export default function SidebarSelector({
         <span className="font-medium text-lg text-secondary">{data.name}</span>
         <button
           onClick={() => {
-            selectItem("Tất cả", ["", "999999999"]);
+            selectItem(["", "999999999"]);
           }}
           className="text-text2 cursor-pointer rounded-sm px-1 hover:bg-gray-100 active:text-secondary "
         >
@@ -65,6 +53,8 @@ export default function SidebarSelector({
       >
         {items.map((item) => (
           <SidebarSelectorItem
+            param={`${data.fieldname}_${data.operator[0]}`}
+            value={`${item.query[0]}`}
             selectItem={selectItem}
             data={item}
             key={item.title}
