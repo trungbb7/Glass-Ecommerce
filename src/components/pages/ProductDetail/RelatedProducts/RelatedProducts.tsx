@@ -1,4 +1,3 @@
-import productImg1 from "@/assets/product_img1.jpg";
 import ProductItem from "@/components/ProductItem/ProductItem";
 import type { Product } from "@/types/product";
 import {
@@ -72,69 +71,6 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
             className="min-w-70"
           />
         ))}
-
-        {/* <ProductItem
-          className="min-w-70"
-          img={productImg1}
-          discountPercent={40}
-          name="Kính Mát MN1268"
-          finalPrice={420000}
-          stockPrice={500000}
-        />
-
-        <ProductItem
-          className="min-w-70"
-          img={productImg1}
-          discountPercent={40}
-          name="Kính Mát MN1268"
-          finalPrice={420000}
-          stockPrice={500000}
-        />
-
-        <ProductItem
-          className="min-w-70"
-          img={productImg1}
-          discountPercent={40}
-          name="Kính Mát MN1268"
-          finalPrice={420000}
-          stockPrice={500000}
-        />
-
-        <ProductItem
-          className="min-w-70"
-          img={productImg1}
-          discountPercent={40}
-          name="Kính Mát MN1268"
-          finalPrice={420000}
-          stockPrice={500000}
-        />
-
-        <ProductItem
-          className="min-w-70"
-          img={productImg1}
-          discountPercent={40}
-          name="Kính Mát MN1268"
-          finalPrice={420000}
-          stockPrice={500000}
-        />
-
-        <ProductItem
-          className="min-w-70"
-          img={productImg1}
-          discountPercent={40}
-          name="Kính Mát MN1268"
-          finalPrice={420000}
-          stockPrice={500000}
-        />
-
-        <ProductItem
-          className="min-w-70"
-          img={productImg1}
-          discountPercent={40}
-          name="Kính Mát MN1268"
-          finalPrice={420000}
-          stockPrice={500000}
-        /> */}
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import {
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { useAppSelector } from "@/hooks";
 import { Link } from "react-router-dom";
+import SearchResult from "./SearchResult/SearchResult";
 export default function Header() {
   const shaking = useAppSelector((state) => state.header.cartShaking);
   const bounce = useAppSelector((state) => state.header.wishlistBounce);
@@ -57,7 +58,7 @@ export default function Header() {
         </div>
 
         {/* Search bar */}
-        <div className="flex items-center bg-primary-light p-2.5 rounded-xl border-3 border-transparent has-focus:border-gray-300 transition-colors duration-200 ease-linear">
+        <div className="relative flex items-center bg-primary-light p-2.5 rounded-xl border-3 border-transparent has-focus:border-gray-300 transition-colors duration-200 ease-linear">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             className="text-gray-400 mr-3"
@@ -68,6 +69,7 @@ export default function Header() {
             type="text"
             placeholder="Search products"
           />
+          <SearchResult />
         </div>
       </div>
 
