@@ -6,10 +6,13 @@ import NotFound from "./components/pages/NotFound/NotFound";
 import { Login } from "./components/pages/Login";
 import { Register } from "./components/pages/Register";
 import { ProductDetail } from "./components/pages/ProductDetail";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      {/* Auto scroll to top when navigating */}
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Products />} />

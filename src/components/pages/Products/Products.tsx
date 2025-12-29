@@ -191,6 +191,7 @@ export default function Products() {
               )}
               {products.map((product) => (
                 <ProductItem
+                  id={product.id}
                   img={product.images[0]}
                   discountPercent={Math.round(
                     (1 - product.finalPrice / product.stockPrice) * 100,

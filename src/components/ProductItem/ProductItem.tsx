@@ -10,8 +10,10 @@ import {
   stopShakingCart,
 } from "../Header/headerSlice";
 import { Rating } from "../Rating";
+import { useNavigate } from "react-router-dom";
 
 interface ProductItemProps {
+  id: string;
   img: string;
   discountPercent: number;
   name: string;
@@ -21,6 +23,7 @@ interface ProductItemProps {
 }
 
 export default function ProductItem({
+  id,
   img,
   discountPercent,
   name,
@@ -28,6 +31,7 @@ export default function ProductItem({
   finalPrice,
   className,
 }: ProductItemProps) {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -105,6 +109,10 @@ export default function ProductItem({
     }
   }
 
+  function goToDetail() {
+    navigate(`/product/${id}`);
+  }
+
   return (
     <div
       className={`max-w-70 pb-4 rounded-lg border border-gray-200 cursor-pointer ${className}`}
@@ -149,7 +157,10 @@ export default function ProductItem({
           Thêm vào giỏ hàng
         </button>
 
-        <div className="absolute top-12 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer">
+        <div
+          onClick={goToDetail}
+          className="absolute top-12 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
+        >
           <FontAwesomeIcon
             icon={faEye}
             className="text-gray-300 hover:text-black"
@@ -159,7 +170,12 @@ export default function ProductItem({
       {/* Body */}
       <div className="px-2">
         {/* Name */}
-        <p className="mb-2 text-lg font-medium hover:underline">{name}</p>
+        <p
+          onClick={goToDetail}
+          className="mb-2 text-lg font-medium hover:underline"
+        >
+          {name}
+        </p>
         {/* Price */}
         <div>
           <span className="text-secondary mr-2 font-medium">

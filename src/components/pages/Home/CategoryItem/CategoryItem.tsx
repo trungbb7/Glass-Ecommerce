@@ -2,6 +2,7 @@ interface CategoryItemProps {
   image: string;
   category: string;
   inStock: number;
+  onClick: () => void;
   className?: string;
 }
 
@@ -9,10 +10,12 @@ export default function CategoryItem({
   image,
   category,
   inStock,
+  onClick,
   className,
 }: CategoryItemProps) {
   return (
     <div
+      onClick={() => onClick()}
       className={`flex gap-6 items-center p-3 border border-gray-300 shadow rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer ${className}`}
     >
       {/* Image */}

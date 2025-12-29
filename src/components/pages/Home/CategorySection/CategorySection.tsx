@@ -6,8 +6,10 @@ import womenGlassesImg from "@/assets/women_glasses.webp";
 import plasticGlassesImg from "@/assets/plastic_glasses.jpeg";
 import kidsGlassesImg from "@/assets/kids_glasses.webp";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CategorySection() {
+  const navigate = useNavigate();
   const sliderRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (sliderRef.current) {
@@ -47,6 +49,10 @@ export default function CategorySection() {
     }
   }, []);
 
+  function goToProductCategory(query: string) {
+    navigate(`/product?${query}`);
+  }
+
   return (
     <div className="select-none">
       <CategoryHeading
@@ -63,12 +69,18 @@ export default function CategorySection() {
           category="Kính mát nam"
           inStock={200}
           className="shrink-0"
+          onClick={() => {
+            goToProductCategory("categories_like=^male");
+          }}
         />
         <CategoryItem
           image={womenGlassesImg}
           category="Kính mát nữ"
           inStock={240}
           className="shrink-0"
+          onClick={() => {
+            goToProductCategory("categories_like=^female");
+          }}
         />
 
         <CategoryItem
@@ -76,12 +88,18 @@ export default function CategorySection() {
           category="Kính mát trẻ em"
           inStock={130}
           className="shrink-0"
+          onClick={() => {
+            goToProductCategory("categories_like=^unisex");
+          }}
         />
         <CategoryItem
           image={plasticGlassesImg}
           category="Kính mát nhựa"
           inStock={110}
           className="shrink-0"
+          onClick={() => {
+            goToProductCategory("specification.material_like=^Nhựa");
+          }}
         />
 
         <CategoryItem
@@ -89,6 +107,9 @@ export default function CategorySection() {
           category="Kính mát Kim loại"
           inStock={50}
           className="shrink-0"
+          onClick={() => {
+            goToProductCategory("specification.material_like=^Kim+Loại");
+          }}
         />
       </div>
     </div>
