@@ -879,86 +879,123 @@
     {
       "name": "Danh mục",
       "fieldname": "categories",
-      "operator": "like",
+      "operator": ["like"],
       "items": [
         {
           "title": "Kính mát nam",
           "quantity": "80",
-          "query": "^male"
+          "query": ["^male"]
         },
         {
           "title": "Kính mát nữ",
           "quantity": "70",
-          "query": "^female"
+          "query": ["^female"]
         },
         {
           "title": "Kính mát unisex",
           "quantity": "60",
-          "query": "^unisex"
+          "query": ["^unisex"]
         },
         {
           "title": "Kính mát trẻ em",
           "quantity": "40",
-          "query": "^kid"
+          "query": ["^kid"]
         }
       ]
     },
     {
       "name": "Chất liệu",
       "fieldname": "specification.material",
-      "operator": "like",
+      "operator": ["like"],
       "items": [
         {
           "title": "Nhựa",
           "quantity": "10",
-          "query": "^Nhựa"
+          "query": ["^Nhựa"]
         },
         {
           "title": "Hợp kim",
           "quantity": "30",
-          "query": "^Hợp kim"
+          "query": ["^Hợp kim"]
         },
         {
           "title": "Kim loại",
           "quantity": "20",
-          "query": "^Kim loại"
+          "query": ["^Kim loại"]
         }
       ]
     },
     {
       "name": "Kiểu dáng",
       "fieldname": "specification.style",
-      "operator": "like",
+      "operator": ["like"],
       "items": [
         {
           "title": "Vuông",
           "quantity": "12",
-          "query": "^Vuông"
+          "query": ["^Vuông"]
         },
         {
           "title": "Tròn",
           "quantity": "20",
-          "query": "^Tròn"
+          "query": ["^Tròn"]
         },
         {
           "title": "Oval",
           "quantity": "25",
-          "query": "^Oval"
+          "query": ["^Oval"]
         },
         {
           "title": "Cánh bướm",
           "quantity": "11",
-          "query": "^Cánh bướm"
+          "query": ["^Cánh bướm"]
         },
         {
           "title": "Thể thao",
           "quantity": "28",
-          "query": "^Thể thao"
+          "query": ["^Thể thao"]
         },
         {
           "title": "Phi công",
           "quantity": "21",
-          "query": "^Phi công"
+          "query": ["^Phi công"]
+        }
+      ]
+    },
+    {
+      "name": "Giá",
+      "fieldname": "finalPrice",
+      "operator": ["gte", "lte"],
+      "items": [
+        {
+          "title": "Nhỏ hơn 300.000VNĐ",
+          "quantity": "33",
+          "query": ["0", "300000"]
+        },
+        {
+          "title": "300.000 - 600.000VNĐ",
+          "quantity": "12",
+          "query": ["300000", "600000"]
+        },
+        {
+          "title": "600.000 - 900.000VNĐ",
+          "quantity": "20",
+          "query": ["600000", "900000"]
+        },
+        {
+          "title": "900.000 - 1.200.000VNĐ",
+          "quantity": "18",
+          "query": ["900000", "1200000"]
+        },
+        {
+          "title": "1.200.000 - 1.500.000VNĐ",
+          "quantity": "10",
+          "query": ["1200000", "1500000"]
+        },
+        {
+          "title": "Lớn hơn 2.000.000VNĐ",
+          "quantity": "8",
+          "query": ["2000000", "9999999999"]
         }
       ]
     }

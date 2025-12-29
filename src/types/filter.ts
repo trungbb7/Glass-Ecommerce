@@ -2,13 +2,13 @@ interface FilterItem {
   title: string;
   quantity: number;
   checked?: boolean;
-  query: string;
+  query: string[];
 }
 
 interface Filter {
   name: string;
   fieldname: string;
-  operator: string;
+  operator: string[];
   items: FilterItem[];
 }
 

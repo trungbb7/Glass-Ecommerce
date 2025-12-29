@@ -19,7 +19,7 @@ export default function SidebarSelector({
       title: "Tất cả",
       checked: true,
       quantity: 300,
-      query: "",
+      query: ["", "999999999"],
     },
   ];
 
@@ -30,13 +30,18 @@ export default function SidebarSelector({
   initData.push(...itemWithChecked);
   const [items, setData] = useState<FilterItem[]>(initData);
 
-  function selectItem(title: string, query: string) {
+  function selectItem(title: string, query: string[]) {
     const newData = items.map((item) => ({
       ...item,
       checked: item.title === title,
     }));
     setData(newData);
-    updateFilter([{ key: `${data.fieldname}_${data.operator}`, value: query }]);
+    updateFilter(
+      data.operator.map((operator, index) => ({
+        key: `${data.fieldname}_${operator}`,
+        value: query[index],
+      })),
+    );
   }
 
   return (
@@ -46,7 +51,7 @@ export default function SidebarSelector({
         <span className="font-medium text-lg text-secondary">{data.name}</span>
         <button
           onClick={() => {
-            selectItem("Tất cả", "");
+            selectItem("Tất cả", ["", "999999999"]);
           }}
           className="text-text2 cursor-pointer rounded-sm px-1 hover:bg-gray-100 active:text-secondary "
         >

@@ -35,7 +35,7 @@ export interface ParamItem {
   value: string;
 }
 
-const limit = 3;
+const limit = 6;
 
 export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams({

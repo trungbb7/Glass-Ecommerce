@@ -11,7 +11,7 @@ export interface ItemData {
 
 export interface SidebarSelectorItemProps {
   data: FilterItem;
-  selectItem: (title: string, query: string) => void;
+  selectItem: (title: string, query: string[]) => void;
   className?: string;
 }
 
