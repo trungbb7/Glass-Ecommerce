@@ -47,6 +47,7 @@ export default function Products() {
   const [sortType, setSortType] = useState<SortType>("none");
   const [products, setProducts] = useState<Product[]>([]);
   const [filters, setFilters] = useState<Filter[]>([]);
+  const [totalCount, setTotalCount] = useState<number>(0);
   const [numPages, setNumPages] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -56,6 +57,7 @@ export default function Products() {
       newParams.set(item.key, item.value);
     }
     newParams.set("_page", "1");
+    newParams.set("_limit", `${limit}`);
     setSearchParams(newParams);
     setCurrentPage(1);
   }
@@ -78,9 +80,10 @@ export default function Products() {
         `http://localhost:3000/products?${queryString}`,
       );
 
-      const totalCount = response.headers.get("x-total-count");
-      if (totalCount) {
-        setNumPages(Math.ceil(parseInt(totalCount) / limit));
+      const totalCountStr = response.headers.get("x-total-count");
+      if (totalCountStr) {
+        setTotalCount(parseInt(totalCountStr));
+        setNumPages(Math.ceil(parseInt(totalCountStr) / limit));
       }
 
       const productsObject = await response.json();
@@ -127,7 +130,12 @@ export default function Products() {
           {/* Content */}
           <div className="w-3/4 flex flex-col gap-4 px-8 pb-4">
             {/* head */}
-            <div className="flex justify-end">
+            <div className="flex justify-between items-center">
+              <div className="font-medium">
+                {totalCount === 0 ? 0 : (currentPage - 1) * limit + 1} -{" "}
+                {Math.min(currentPage * limit, totalCount)} của {totalCount} sản
+                phẩm
+              </div>
               <div className="relative">
                 <div
                   onClick={toggleSelectingSort}
@@ -195,12 +203,14 @@ export default function Products() {
               ))}
             </div>
 
-            <Pagination
-              numPages={numPages}
-              currentPage={currentPage}
-              changeNumPage={changeNumPage}
-              className="self-center"
-            />
+            {totalCount !== 0 && (
+              <Pagination
+                numPages={numPages}
+                currentPage={currentPage}
+                changeNumPage={changeNumPage}
+                className="self-center"
+              />
+            )}
           </div>
         </div>
       </div>

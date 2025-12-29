@@ -7,6 +7,7 @@ interface ProductSpecificationProp {
   suitableFor?: string;
   warranty?: string;
   material?: string;
+  style?: string;
 }
 
 export default function ProductSpecification({
@@ -18,6 +19,7 @@ export default function ProductSpecification({
   suitableFor,
   warranty,
   material,
+  style,
 }: ProductSpecificationProp) {
   return (
     <div className="mt-8">
@@ -53,6 +55,10 @@ export default function ProductSpecification({
         <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
           <span>Chất liệu</span>
           <span>{material}</span>
+        </li>
+        <li className="flex items-center justify-between pb-2 border-b border-b-neutral-300">
+          <span>Phong cách</span>
+          <span>{style}</span>
         </li>
       </ul>
     </div>

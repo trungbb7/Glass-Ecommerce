@@ -35,10 +35,6 @@ export default function SidebarSelector({
     }));
     setData(newData);
     updateFilter([{ key: `${data.fieldname}_${data.operator}`, value: query }]);
-    // updateFilter(
-    //   [{ key: `${data.fieldname}_${data.operator}`, value: query }
-
-    //   ]);
   }
 
   return (
@@ -46,7 +42,12 @@ export default function SidebarSelector({
       {/* Head */}
       <div className="flex justify-between mb-1">
         <span className="font-medium text-lg text-secondary">{data.name}</span>
-        <button className="text-text2 cursor-pointer rounded-sm px-1 hover:bg-gray-100 active:text-secondary ">
+        <button
+          onClick={() => {
+            selectItem("Tất cả", "");
+          }}
+          className="text-text2 cursor-pointer rounded-sm px-1 hover:bg-gray-100 active:text-secondary "
+        >
           Reset
         </button>
       </div>

@@ -22,6 +22,7 @@ interface ProductSpecification {
   origin: string;
   suitableFor: string;
   warranty: string;
+  style: string;
 }
 
 interface Product {

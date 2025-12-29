@@ -355,6 +355,7 @@ export default function ProductDetail() {
               origin={product?.specification.origin}
               suitableFor={product?.specification.suitableFor}
               warranty={product?.specification.warranty}
+              style={product?.specification.style}
             />
           )}
 

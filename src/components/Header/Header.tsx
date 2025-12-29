@@ -36,7 +36,7 @@ export default function Header() {
                 Trang chủ
               </span>
             </Link>
-            <Link to="/products">
+            <Link to="/product">
               <span className="text-base mr-6 hover:text-secondary cursor-pointer">
                 Sản phẩm
               </span>
