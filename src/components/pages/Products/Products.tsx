@@ -87,7 +87,6 @@ export default function Products() {
       }
 
       const productsObject = await response.json();
-      console.log(productsObject);
       setProducts(productsObject);
     }
 
@@ -98,7 +97,6 @@ export default function Products() {
     async function fetchFilters() {
       const response = await fetch("http://localhost:3000/filters");
       const filterObject = await response.json();
-      console.log(filterObject);
       setFilters(filterObject);
     }
 

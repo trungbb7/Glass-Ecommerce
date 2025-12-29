@@ -11,8 +11,6 @@ export default function Pagination({
   currentPage,
   changeNumPage,
 }: PaginationProps) {
-  console.log(numPages);
-
   return (
     <nav className={`text-text2 ${className}`}>
       <ul className="flex">
