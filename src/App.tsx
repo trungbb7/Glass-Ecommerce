@@ -7,6 +7,7 @@ import { Login } from "./components/pages/Login";
 import { Register } from "./components/pages/Register";
 import { ProductDetail } from "./components/pages/ProductDetail";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { WishList } from "./components/pages/WishList";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/wishlist" element={<WishList />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/hooks";
 import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
 import {
@@ -19,6 +19,8 @@ interface ProductItemProps {
   name: string;
   stockPrice: number;
   finalPrice: number;
+  colors: string[];
+  isWishList?: boolean;
   className?: string;
 }
 
@@ -29,8 +31,14 @@ export default function ProductItem({
   name,
   stockPrice,
   finalPrice,
+  colors,
+  isWishList = false,
   className,
 }: ProductItemProps) {
+  if (!colors) {
+    console.log(`Colors undefined - id: ${id}`);
+  }
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const imgRef = useRef<HTMLImageElement>(null);
@@ -109,13 +117,17 @@ export default function ProductItem({
     }
   }
 
+  function handleRemoveWishList() {
+    console.log("Remove wishlist item");
+  }
+
   function goToDetail() {
     navigate(`/product/${id}`);
   }
 
   return (
     <div
-      className={`max-w-70 h-104 pb-4 rounded-lg border border-gray-200 cursor-pointer ${className}`}
+      className={`max-w-70 h-108 pb-4 rounded-lg border border-gray-200 cursor-pointer ${className}`}
     >
       {/* Top */}
       <div className="group/top relative mb-2 overflow-hidden">
@@ -128,17 +140,30 @@ export default function ProductItem({
         <div className="absolute top-2 left-2 text-xs font-medium text-white px-2 py-1 rounded-sm bg-secondary">
           -{discountPercent}%
         </div>
-        <div
-          onClick={(e) => {
-            handleAddToWishList(e);
-          }}
-          className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
-        >
-          <FontAwesomeIcon
-            icon={faHeart}
-            className="text-gray-300 hover:text-black"
-          />
-        </div>
+
+        {isWishList ? (
+          <div
+            onClick={handleRemoveWishList}
+            className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
+          >
+            <FontAwesomeIcon
+              icon={faTrashCan}
+              className="text-gray-300 hover:text-black"
+            />
+          </div>
+        ) : (
+          <div
+            onClick={(e) => {
+              handleAddToWishList(e);
+            }}
+            className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
+          >
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="text-gray-300 hover:text-black"
+            />
+          </div>
+        )}
 
         <button
           onClick={handleAddToCart}
@@ -176,6 +201,18 @@ export default function ProductItem({
         >
           {name}
         </p>
+
+        {/* Colors */}
+        <ul className="flex gap-2">
+          {colors.map((color) => (
+            <li
+              key={color}
+              style={{ backgroundColor: color }}
+              className="size-4 border border-amber-300 rounded-full"
+            ></li>
+          ))}
+        </ul>
+
         {/* Price */}
         <div>
           <span className="text-secondary mr-2 font-medium">

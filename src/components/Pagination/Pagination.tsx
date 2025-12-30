@@ -1,6 +1,7 @@
+import { useSearchParams } from "react-router-dom";
+
 interface PaginationProps {
   numPages: number;
-  currentPage: number;
   changeNumPage: (page: number) => void;
   className?: string;
 }
@@ -8,9 +9,11 @@ interface PaginationProps {
 export default function Pagination({
   className,
   numPages,
-  currentPage,
   changeNumPage,
 }: PaginationProps) {
+  const [searchParams] = useSearchParams();
+  const currentPage = parseInt(searchParams.get("_page") || "1");
+
   return (
     <nav className={`text-text2 ${className}`}>
       <ul className="flex">

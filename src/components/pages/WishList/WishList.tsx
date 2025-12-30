@@ -5,20 +5,18 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { faHouse } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SidebarSelector from "./SidebarSelector/SidebarSelector";
 import ProductItem from "@/components/ProductItem/ProductItem";
 import { Pagination } from "@/components/Pagination";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import type { Product } from "@/types/product";
-import type { Filter } from "@/types/filter";
 import { useSearchParams } from "react-router-dom";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
   {
-    name: "Sản phẩm",
-    path: "/products",
+    name: "Danh sách yêu thích",
+    path: "/wishlist",
   },
 ];
 
@@ -35,9 +33,9 @@ export interface ParamItem {
   value: string;
 }
 
-const limit = 6;
+const limit = 8;
 
-export default function Products() {
+export default function WishList() {
   const [searchParams, setSearchParams] = useSearchParams({
     _page: "1",
     _limit: `${limit}`,
@@ -46,7 +44,6 @@ export default function Products() {
   const [selectingSort, setSelectingSort] = useState<boolean>(false);
   const [sortType, setSortType] = useState<SortType>("none");
   const [products, setProducts] = useState<Product[]>([]);
-  const [filters, setFilters] = useState<Filter[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [numPages, setNumPages] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -93,16 +90,6 @@ export default function Products() {
     fetchAllProducts();
   }, [searchParams, setSearchParams]);
 
-  useEffect(() => {
-    async function fetchFilters() {
-      const response = await fetch("http://localhost:3000/filters");
-      const filterObject = await response.json();
-      setFilters(filterObject);
-    }
-
-    fetchFilters();
-  }, []);
-
   return (
     <div className="text-text1">
       <Header />
@@ -115,18 +102,8 @@ export default function Products() {
 
         {/* Body */}
         <div className="flex ">
-          {/* Sidebar */}
-          <div className="w-1/4 shrink-0 flex flex-col gap-4 pr-4">
-            {filters.map((filter) => (
-              <SidebarSelector
-                updateFilter={updateFilter}
-                data={filter}
-                key={filter.name}
-              />
-            ))}
-          </div>
           {/* Content */}
-          <div className="w-3/4 flex flex-col gap-4 px-8 pb-4">
+          <div className="w-full flex flex-col gap-4 px-8 pb-4">
             {/* head */}
             <div className="flex justify-between items-center">
               <div className="font-medium">
@@ -198,6 +175,7 @@ export default function Products() {
                   name={product.name}
                   stockPrice={product.stockPrice}
                   colors={product.variants.map((item) => item.color)}
+                  isWishList={true}
                   key={product.id}
                 />
               ))}
