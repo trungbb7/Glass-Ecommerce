@@ -10,7 +10,7 @@ import { Pagination } from "@/components/Pagination";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import type { Product } from "@/types/product";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -36,6 +36,7 @@ export interface ParamItem {
 const limit = 8;
 
 export default function WishList() {
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams({
     _page: "1",
     _limit: `${limit}`,
@@ -89,6 +90,22 @@ export default function WishList() {
 
     fetchAllProducts();
   }, [searchParams, setSearchParams]);
+
+  useEffect(() => {
+    function resetState() {
+      setSelectingSort(false);
+      setSortType("none");
+      setCurrentPage(1);
+      setSearchParams({
+        _page: "1",
+        _limit: `${limit}`,
+      });
+    }
+
+    if (location.search === "") {
+      resetState();
+    }
+  }, [location, setSearchParams]);
 
   return (
     <div className="text-text1">

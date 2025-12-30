@@ -31,7 +31,7 @@ export default function ProductItem({
   name,
   stockPrice,
   finalPrice,
-  colors,
+  colors = [],
   isWishList = false,
   className,
 }: ProductItemProps) {

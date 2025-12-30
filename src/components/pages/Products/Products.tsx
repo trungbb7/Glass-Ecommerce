@@ -12,7 +12,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import type { Product } from "@/types/product";
 import type { Filter } from "@/types/filter";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -38,10 +38,14 @@ export interface ParamItem {
 const limit = 6;
 
 export default function Products() {
+  const location = useLocation();
+
   const [searchParams, setSearchParams] = useSearchParams({
     _page: "1",
     _limit: `${limit}`,
   });
+
+  const currentPageInit = parseInt(searchParams.get("_page") || "1");
 
   const [selectingSort, setSelectingSort] = useState<boolean>(false);
   const [sortType, setSortType] = useState<SortType>("none");
@@ -49,7 +53,7 @@ export default function Products() {
   const [filters, setFilters] = useState<Filter[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [numPages, setNumPages] = useState<number>(1);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(currentPageInit);
 
   function updateFilter(items: { key: string; value: string }[]) {
     const newParams = new URLSearchParams(searchParams);
@@ -102,6 +106,22 @@ export default function Products() {
 
     fetchFilters();
   }, []);
+
+  useEffect(() => {
+    function resetState() {
+      setSelectingSort(false);
+      setSortType("none");
+      setCurrentPage(1);
+      setSearchParams({
+        _page: "1",
+        _limit: `${limit}`,
+      });
+    }
+
+    if (location.search === "") {
+      resetState();
+    }
+  }, [location, setSearchParams]);
 
   return (
     <div className="text-text1">
