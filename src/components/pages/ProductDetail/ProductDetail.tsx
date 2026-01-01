@@ -19,9 +19,12 @@ import ColorItem from "./ColorItem/ColorItem";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "@/hooks";
 import {
+  setCompareProduct,
   startBounceWishlist,
+  startComparing,
   startShakingCart,
   stopBounceWishlist,
+  stopComparing,
   stopShakingCart,
 } from "@/components/Header/headerSlice";
 import ProductSpecification from "./ProductSpecification/ProductSpecification";
@@ -29,6 +32,7 @@ import ProductCarousel from "./ProductCarousel/ProductCarousel";
 import { RelatedProducts } from "./RelatedProducts/RelatedProducts";
 import { useParams } from "react-router-dom";
 import type { Product } from "@/types/product";
+import ComparisonSection from "./ComparisonSection/ComparisonSection";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -59,7 +63,20 @@ export default function ProductDetail() {
 
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
+  const [activeComparison, setActiveComparison] = useState<boolean>(false);
+
   const dispatch = useAppDispatch();
+
+  function stopComparison() {
+    setActiveComparison(false);
+    dispatch(stopComparing());
+    dispatch(setCompareProduct(null));
+  }
+
+  function startComparison() {
+    setActiveComparison(true);
+    dispatch(startComparing());
+  }
 
   function getCurrentStock() {
     return product?.variants.find((item) => item.color === currentVariance)
@@ -380,88 +397,20 @@ export default function ProductDetail() {
       </div>
       <Footer />
 
+      {/* Comparison button */}
+      <button
+        onClick={startComparison}
+        className="fixed bottom-15 right-15 py-2 px-3 text-center shadow bg-white border border-secondary text-secondary font-medium rounded-4xl z-20 hover:bg-secondary hover:text-white cursor-pointer"
+      >
+        So sánh sản phẩm
+      </button>
+
       {/* Product Comparison */}
-      <div className="fixed w-full top-22 left-0 right-0 max-h-150 overflow-y-auto shadow z-9999">
-        <div className="mx-auto max-w-250 bg-white py-4 rounded-2xl">
-          {/* Top */}
-          <div>
-            {/* Images */}
-            <div className="flex items-center justify-around mb-6">
-              <img
-                className="size-50"
-                src="https://i.ibb.co/Y4MCy3zn/9078-c4.jpg"
-                alt="product image1"
-              />
-              <img
-                className="size-50"
-                src="https://i.ibb.co/jPvKRLF3/9078-c1.jpg"
-                alt="product image2"
-              />
-            </div>
-            {/* Titile */}
-            <div className="flex items-center mb-4">
-              <p className="flex-4 text-xl font-medium text-center">
-                KÍNH RÂM EYEPLUS 9078 C4
-              </p>
-              <p className="flex-1 text-center font-medium text-3xl">VS</p>
-              <p className="flex-4 text-xl font-medium text-center">
-                KÍNH RÂM EYEPLUS 9078 C1 GỌNG ĐEN MẮT ĐEN
-              </p>
-            </div>
-
-            <div className="w-full h-1 bg-slate-700"></div>
-
-            {/* Specification */}
-            <ul className="flex flex-col gap-1">
-              <li className="flex items-center text-center font-medium odd:bg-red-50 even:bg-white">
-                <span className="flex-4  p-4">53mm</span>
-                <span className="flex-2 p-4 bg-slate-700 text-white h-full">
-                  Độ rộng tròng
-                </span>
-                <span className="flex-4 p-4">52mm</span>
-              </li>
-              <li className="flex items-center text-center font-medium odd:bg-red-50 even:bg-white">
-                <span className="flex-4  p-4">53mm</span>
-                <span className="flex-2 p-4 bg-slate-700 text-white h-full">
-                  Độ rộng tròng
-                </span>
-                <span className="flex-4 p-4">52mm</span>
-              </li>
-              <li className="flex items-center text-center font-medium odd:bg-red-50 even:bg-white">
-                <span className="flex-4  p-4">53mm</span>
-                <span className="flex-2 p-4 bg-slate-700 text-white h-full">
-                  Độ rộng tròng
-                </span>
-                <span className="flex-4 p-4">52mm</span>
-              </li>
-              <li className="flex items-center text-center font-medium">
-                <span className="flex-4  p-4">53mm</span>
-                <span className="flex-2 p-4 bg-slate-700 text-white h-full">
-                  Độ rộng tròng
-                </span>
-                <span className="flex-4 p-4">52mm</span>
-              </li>
-
-              <li className="flex items-center text-center font-medium">
-                <span className="flex-4  p-4">53mm</span>
-                <span className="flex-2 p-4 bg-slate-700 text-white h-full">
-                  Độ rộng tròng
-                </span>
-                <span className="flex-4 p-4">52mm</span>
-              </li>
-
-              <li className="flex items-center text-center font-medium">
-                <span className="flex-4  p-4">53mm</span>
-                <span className="flex-2 p-4 bg-slate-700 text-white h-full">
-                  Độ rộng tròng
-                </span>
-                <span className="flex-4 p-4">52mm</span>
-              </li>
-            </ul>
-            <div className="w-full h-1 bg-slate-700"></div>
-          </div>
-        </div>
-      </div>
+      <ComparisonSection
+        product={product}
+        activeComparison={activeComparison}
+        stopComparison={stopComparison}
+      />
     </div>
   );
 }

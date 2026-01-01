@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar/SearchBar";
 export default function Header() {
   const shaking = useAppSelector((state) => state.header.cartShaking);
   const bounce = useAppSelector((state) => state.header.wishlistBounce);
+  const isComparing = useAppSelector((state) => state.header.isComparing);
 
   const navigate = useNavigate();
 
@@ -15,7 +16,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 flex justify-between px-25 py-4 border-b border-gray-200 bg-white shadow-xs z-10">
+    <header className="sticky top-0 flex justify-between px-25 py-4 border-b border-gray-200 bg-white shadow-xs z-30">
       {/* Left side */}
       <div className="flex items-center">
         {/* Left 1 */}
@@ -60,7 +61,7 @@ export default function Header() {
         </div>
 
         {/* Search bar */}
-        <SearchBar />
+        <SearchBar isComparing={isComparing} />
       </div>
 
       {/* Right side */}

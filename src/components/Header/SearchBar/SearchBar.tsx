@@ -8,7 +8,11 @@ import { useEffect, useRef, useState } from "react";
 import type { Product } from "@/types/product";
 import { useClickOutside } from "@/hooks/customhooks";
 
-export default function SearchBar() {
+interface SearchBarProps {
+  isComparing: boolean;
+}
+
+export default function SearchBar({ isComparing }: SearchBarProps) {
   const searchBarRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState<string>("");
   const [searchResult, setSearchResult] = useState<Product[]>([]);
@@ -16,8 +20,12 @@ export default function SearchBar() {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   useClickOutside(searchBarRef, () => {
-    setVisible(false);
+    closeSearchResult();
   });
+
+  function closeSearchResult() {
+    setVisible(false);
+  }
 
   useEffect(() => {
     if (query.trim().length < 2) {
@@ -48,8 +56,9 @@ export default function SearchBar() {
 
   return (
     <div
+      data-comparing={isComparing}
       ref={searchBarRef}
-      className="relative flex items-center bg-primary-light p-2.5 rounded-xl border-3 border-transparent has-focus:border-gray-300 transition-colors duration-200 ease-linear"
+      className="relative flex items-center bg-primary-light p-2.5 rounded-xl border-3 border-transparent z-30 has-focus:border-gray-300 transition-colors duration-200 ease-linear  data-[comparing=true]:border-secondary-300"
     >
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
@@ -59,7 +68,7 @@ export default function SearchBar() {
         id="search"
         className="outline-none text-sm text-gray-400 w-120"
         type="text"
-        placeholder="Search products"
+        placeholder="Tìm kiếm sản phẩm"
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);
@@ -78,7 +87,11 @@ export default function SearchBar() {
           {!isLoading && (
             <>
               {searchResult.map((product) => (
-                <SearchResultItem product={product} key={product.id} />
+                <SearchResultItem
+                  product={product}
+                  closeSearchResult={closeSearchResult}
+                  key={product.id}
+                />
               ))}
             </>
           )}
