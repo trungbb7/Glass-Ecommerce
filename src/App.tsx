@@ -8,6 +8,7 @@ import { Register } from "./components/pages/Register";
 import { ProductDetail } from "./components/pages/ProductDetail";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { WishList } from "./components/pages/WishList";
+import { Contact } from "./components/pages/Contact";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/wishlist" element={<WishList />} />
+        <Route path="/contact" element={<Contact />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
