@@ -48,6 +48,11 @@ const breadcrumbData: BreadcrumbData[] = [
 ];
 
 export default function ProductDetail() {
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+
   const { id } = useParams();
   const imgRef = useRef<HTMLImageElement | null>(null);
 
@@ -245,11 +250,11 @@ export default function ProductDetail() {
               <div className="flex items-center gap-4">
                 {/* current */}
                 <p className="text-text1 text-lg font-medium">
-                  {product?.finalPrice} VNĐ
+                  {formatter.format(product?.finalPrice || 0)}
                 </p>
                 {/* stock */}
                 <p className="text-text2 text-lg font-medium line-through">
-                  {product?.stockPrice} VNĐ
+                  {formatter.format(product?.stockPrice || 0)}
                 </p>
               </div>
 

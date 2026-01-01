@@ -39,6 +39,11 @@ export default function ProductItem({
     console.log(`Colors undefined - id: ${id}`);
   }
 
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const imgRef = useRef<HTMLImageElement>(null);
@@ -216,10 +221,10 @@ export default function ProductItem({
         {/* Price */}
         <div>
           <span className="text-secondary mr-2 font-medium">
-            {finalPrice} VNĐ
+            {formatter.format(finalPrice)}
           </span>
           <span className="text-gray-300 line-through font-medium">
-            {stockPrice} VNĐ
+            {formatter.format(stockPrice)}
           </span>
         </div>
 
