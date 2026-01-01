@@ -33,6 +33,7 @@ import { RelatedProducts } from "./RelatedProducts/RelatedProducts";
 import { useParams } from "react-router-dom";
 import type { Product } from "@/types/product";
 import ComparisonSection from "./ComparisonSection/ComparisonSection";
+import { ProductNotFound } from "./ProductNotFound/ProductNotFound";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -64,6 +65,8 @@ export default function ProductDetail() {
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
   const [activeComparison, setActiveComparison] = useState<boolean>(false);
+
+  const [validProduct, setValidProduct] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
 
@@ -179,14 +182,19 @@ export default function ProductDetail() {
 
   useEffect(() => {
     async function fetchProduct() {
-      const response = await fetch(
-        `http://localhost:3000/products/${id}?_embed=reviews`,
-      );
-      const productObject = (await response.json()) as Product;
-      if (productObject) {
-        setProduct(productObject);
-        setCurrentInstock(productObject.variants[0].quantity);
-        setCurrentVariance(productObject.variants[0].color);
+      try {
+        const response = await fetch(
+          `http://localhost:3000/products/${id}?_embed=reviews`,
+        );
+        const productObject = (await response.json()) as Product;
+        if (productObject) {
+          setProduct(productObject);
+          setCurrentInstock(productObject.variants[0].quantity);
+          setCurrentVariance(productObject.variants[0].color);
+        }
+      } catch {
+        setValidProduct(false);
+        console.log("error");
       }
     }
 
@@ -204,213 +212,218 @@ export default function ProductDetail() {
     <div className="text-text1">
       <Header />
 
-      <div className="px-30 pb-20">
-        {/* Top */}
-        <div className="pt-4 pb-10">
-          <Breadcrumb data={breadcrumbData} />
-        </div>
-
-        {/* Body */}
-        <div className="flex gap-8 mb-30">
-          {/* Product Images */}
-          <ProductCarousel images={product?.images || []} ref={imgRef} />
-
-          <div className="grow-5 w-1/2 flex flex-col gap-4 ">
-            {/* Product name */}
-            <p className="text-2xl font-semibold">{product?.name}</p>
-            <div className="flex items-center gap-4">
-              {/* Rating */}
-              <Rating size="sm" rating={5} />
-              <p className="text-sm text-text2">({150} Đánh giá)</p>
-              <div className="w-0.5 bg-text2 h-4"></div>
-              <p
-                style={{ color: currentStock > 0 ? "#05df72" : "#f27474" }}
-                className="text-green-400 text-sm font-medium"
-              >
-                {currentStock > 0 ? "Còn hàng" : "Hết hàng"}
-              </p>
-            </div>
-            {/* Price */}
-            <div className="flex items-center gap-4">
-              {/* current */}
-              <p className="text-text1 text-lg font-medium">
-                {product?.finalPrice} VNĐ
-              </p>
-              {/* stock */}
-              <p className="text-text2 text-lg font-medium line-through">
-                {product?.stockPrice} VNĐ
-              </p>
-            </div>
-
-            {/* Brief Descripion */}
-            <p className="font-medium text-sm text-text2">
-              {product?.description}
-            </p>
-
-            <div className="h-px bg-text2 mt-4"></div>
-
-            {/* Colors */}
-            <div className="flex items-center gap-6">
-              <span className="text-lg">Màu sắc:</span>
-              <ul className="flex items-center gap-2">
-                {product?.variants.map((item) => (
-                  <ColorItem
-                    setVariance={setVariance}
-                    active={item.color === currentVariance}
-                    color={item.color}
-                    key={item.color}
-                  />
-                ))}
-              </ul>
-            </div>
-
-            <div className="flex gap-4">
-              <span>Còn lại:</span>
-              <span className="font-medium">{getCurrentStock()}</span>
-            </div>
-
-            <div className="flex items-center gap-4">
-              {/* Quantity selection */}
-              <div className="flex items-center">
-                <button
-                  onClick={decreaseQuantity}
-                  className="border-2 border-gray-300 p-2 rounded-l-md cursor-pointer hover:bg-gray-200"
-                >
-                  <FontAwesomeIcon icon={faMinus} />
-                </button>
-                <div className="text-center font-medium border-y-2 border-gray-300 py-2 w-20">
-                  {quantity}
-                </div>
-                <button
-                  onClick={increaseQuantity}
-                  className=" p-2.5 bg-secondary text-white rounded-r-md cursor-pointer hover:bg-secondary-500"
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                </button>
-              </div>
-
-              {/*  */}
-              <Button type="primary" className="py-2.5 px-8">
-                Mua ngay
-              </Button>
-              <Button
-                onClick={(e) => {
-                  handleAddToCart(e);
-                }}
-                type="secondary"
-                className="py-2.5 px-6"
-              >
-                <FontAwesomeIcon icon={faCartShopping} /> Thêm vào giỏ hàng
-              </Button>
-              <Button
-                onClick={(e) => {
-                  handleAddToWishList(e);
-                }}
-                type="secondary"
-              >
-                <FontAwesomeIcon icon={faHeart} />
-              </Button>
-            </div>
-
-            {/* Promotion */}
-            <div className="flex flex-wrap flex-row gap-3 mt-4">
-              <div className="grow w-1/2 flex gap-4 items-center p-3 border-2 border-gray-500">
-                <FontAwesomeIcon
-                  icon={faTruck}
-                  size="lg"
-                  className="font-medium"
-                />
-                <div>
-                  <p className="font-medium text-lg">Miễn phí vẫn chuyển</p>
-                  <p className="font-medium text-sm">
-                    Miễn phí vận chuyển khắp cả nước
-                  </p>
-                </div>
-              </div>
-
-              <div className="grow w-1/2 flex gap-4 items-center p-3 border-2 border-gray-500">
-                <FontAwesomeIcon
-                  icon={faArrowRotateLeft}
-                  size="lg"
-                  className="font-medium"
-                />
-                <div>
-                  <p className="font-medium text-lg">Hoàn trả miễn phí</p>
-                  <p className="font-medium text-sm">
-                    30 ngày hoàn trả miễn phí
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Product Info */}
-        <div>
+      {!validProduct ? (
+        <ProductNotFound />
+      ) : (
+        <div className="px-30 pb-20">
           {/* Top */}
-          <div className="flex mb-10">
-            {/* Description */}
-            <div
-              onClick={() => setCurrentTab("specification")}
-              data-active={currentTab === "specification"}
-              className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
-            >
-              Đặc tả
-            </div>
-
-            <div
-              onClick={() => {
-                setCurrentTab("review");
-              }}
-              data-active={currentTab === "review"}
-              className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
-            >
-              Đánh giá
-            </div>
-
-            <div className="grow border-b-4 border-b-neutral-400"></div>
+          <div className="pt-4 pb-10">
+            <Breadcrumb data={breadcrumbData} />
           </div>
 
-          {/* Specification */}
-          {currentTab === "specification" && (
-            <ProductSpecification
-              lensWidth={product?.specification?.lensWidth}
-              templeLength={product?.specification?.templeLength}
-              brand={product?.specification.brand}
-              bridgeWidth={product?.specification.bridgeWidth}
-              material={product?.specification.material}
-              origin={product?.specification.origin}
-              suitableFor={product?.specification.suitableFor}
-              warranty={product?.specification.warranty}
-              style={product?.specification.style}
-            />
-          )}
+          {/* Body */}
+          <div className="flex gap-8 mb-30">
+            {/* Product Images */}
+            <ProductCarousel images={product?.images || []} ref={imgRef} />
 
-          {/* Review */}
-          {currentTab === "review" && (
-            <Review reviews={product?.reviews || []} />
-          )}
+            <div className="grow-5 w-1/2 flex flex-col gap-4 ">
+              {/* Product name */}
+              <p className="text-2xl font-semibold">{product?.name}</p>
+              <div className="flex items-center gap-4">
+                {/* Rating */}
+                <Rating size="sm" rating={5} />
+                <p className="text-sm text-text2">({150} Đánh giá)</p>
+                <div className="w-0.5 bg-text2 h-4"></div>
+                <p
+                  style={{ color: currentStock > 0 ? "#05df72" : "#f27474" }}
+                  className="text-green-400 text-sm font-medium"
+                >
+                  {currentStock > 0 ? "Còn hàng" : "Hết hàng"}
+                </p>
+              </div>
+              {/* Price */}
+              <div className="flex items-center gap-4">
+                {/* current */}
+                <p className="text-text1 text-lg font-medium">
+                  {product?.finalPrice} VNĐ
+                </p>
+                {/* stock */}
+                <p className="text-text2 text-lg font-medium line-through">
+                  {product?.stockPrice} VNĐ
+                </p>
+              </div>
+
+              {/* Brief Descripion */}
+              <p className="font-medium text-sm text-text2">
+                {product?.description}
+              </p>
+
+              <div className="h-px bg-text2 mt-4"></div>
+
+              {/* Colors */}
+              <div className="flex items-center gap-6">
+                <span className="text-lg">Màu sắc:</span>
+                <ul className="flex items-center gap-2">
+                  {product?.variants.map((item) => (
+                    <ColorItem
+                      setVariance={setVariance}
+                      active={item.color === currentVariance}
+                      color={item.color}
+                      key={item.color}
+                    />
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex gap-4">
+                <span>Còn lại:</span>
+                <span className="font-medium">{getCurrentStock()}</span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                {/* Quantity selection */}
+                <div className="flex items-center">
+                  <button
+                    onClick={decreaseQuantity}
+                    className="border-2 border-gray-300 p-2 rounded-l-md cursor-pointer hover:bg-gray-200"
+                  >
+                    <FontAwesomeIcon icon={faMinus} />
+                  </button>
+                  <div className="text-center font-medium border-y-2 border-gray-300 py-2 w-20">
+                    {quantity}
+                  </div>
+                  <button
+                    onClick={increaseQuantity}
+                    className=" p-2.5 bg-secondary text-white rounded-r-md cursor-pointer hover:bg-secondary-500"
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                  </button>
+                </div>
+
+                {/*  */}
+                <Button type="primary" className="py-2.5 px-8">
+                  Mua ngay
+                </Button>
+                <Button
+                  onClick={(e) => {
+                    handleAddToCart(e);
+                  }}
+                  type="secondary"
+                  className="py-2.5 px-6"
+                >
+                  <FontAwesomeIcon icon={faCartShopping} /> Thêm vào giỏ hàng
+                </Button>
+                <Button
+                  onClick={(e) => {
+                    handleAddToWishList(e);
+                  }}
+                  type="secondary"
+                >
+                  <FontAwesomeIcon icon={faHeart} />
+                </Button>
+              </div>
+
+              {/* Promotion */}
+              <div className="flex flex-wrap flex-row gap-3 mt-4">
+                <div className="grow w-1/2 flex gap-4 items-center p-3 border-2 border-gray-500">
+                  <FontAwesomeIcon
+                    icon={faTruck}
+                    size="lg"
+                    className="font-medium"
+                  />
+                  <div>
+                    <p className="font-medium text-lg">Miễn phí vẫn chuyển</p>
+                    <p className="font-medium text-sm">
+                      Miễn phí vận chuyển khắp cả nước
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grow w-1/2 flex gap-4 items-center p-3 border-2 border-gray-500">
+                  <FontAwesomeIcon
+                    icon={faArrowRotateLeft}
+                    size="lg"
+                    className="font-medium"
+                  />
+                  <div>
+                    <p className="font-medium text-lg">Hoàn trả miễn phí</p>
+                    <p className="font-medium text-sm">
+                      30 ngày hoàn trả miễn phí
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Info */}
+          <div>
+            {/* Top */}
+            <div className="flex mb-10">
+              {/* Description */}
+              <div
+                onClick={() => setCurrentTab("specification")}
+                data-active={currentTab === "specification"}
+                className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
+              >
+                Đặc tả
+              </div>
+
+              <div
+                onClick={() => {
+                  setCurrentTab("review");
+                }}
+                data-active={currentTab === "review"}
+                className="w-fit text-neutral-400 font-normal text-center text-lg p-4 border-b-4 border-b-neutral-400 cursor-pointer hover:text-secondary-200 data-[active=true]:font-medium data-[active=true]:text-secondary data-[active=true]:border-b-secondary-400"
+              >
+                Đánh giá
+              </div>
+
+              <div className="grow border-b-4 border-b-neutral-400"></div>
+            </div>
+
+            {/* Specification */}
+            {currentTab === "specification" && (
+              <ProductSpecification
+                lensWidth={product?.specification?.lensWidth}
+                templeLength={product?.specification?.templeLength}
+                brand={product?.specification.brand}
+                bridgeWidth={product?.specification.bridgeWidth}
+                material={product?.specification.material}
+                origin={product?.specification.origin}
+                suitableFor={product?.specification.suitableFor}
+                warranty={product?.specification.warranty}
+                style={product?.specification.style}
+              />
+            )}
+
+            {/* Review */}
+            {currentTab === "review" && (
+              <Review reviews={product?.reviews || []} />
+            )}
+          </div>
+
+          {/* Related products */}
+          <RelatedProducts products={relatedProducts} />
+
+          {/* Comparison button */}
+          <button
+            onClick={startComparison}
+            className="fixed bottom-15 right-15 py-2 px-3 text-center shadow bg-white border border-secondary text-secondary font-medium rounded-4xl z-20 hover:bg-secondary hover:text-white cursor-pointer"
+          >
+            So sánh sản phẩm
+          </button>
+
+          {/* Product Comparison */}
+          <ComparisonSection
+            product={product}
+            activeComparison={activeComparison}
+            stopComparison={stopComparison}
+          />
         </div>
+      )}
 
-        {/* Related products */}
-        <RelatedProducts products={relatedProducts} />
-      </div>
       <Footer />
-
-      {/* Comparison button */}
-      <button
-        onClick={startComparison}
-        className="fixed bottom-15 right-15 py-2 px-3 text-center shadow bg-white border border-secondary text-secondary font-medium rounded-4xl z-20 hover:bg-secondary hover:text-white cursor-pointer"
-      >
-        So sánh sản phẩm
-      </button>
-
-      {/* Product Comparison */}
-      <ComparisonSection
-        product={product}
-        activeComparison={activeComparison}
-        stopComparison={stopComparison}
-      />
     </div>
   );
 }
