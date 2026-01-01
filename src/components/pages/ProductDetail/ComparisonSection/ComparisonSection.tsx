@@ -20,7 +20,7 @@ export default function ComparisonSection({
   return (
     <div
       data-active={activeComparison}
-      className="data-[active=false]:hidden fixed  w-full top-22 left-0 right-0 max-h-150 overflow-y-auto shadow z-21 bg-white/85"
+      className="data-[active=false]:hidden fixed  w-full top-22 left-0 right-0 max-h-150 overflow-y-auto shadow z-21 bg-white/85 animate-dropdown "
     >
       <div className="relative flex flex-col gap-4 shadow items-center bg-white w-fit mx-auto rounded-3xl pt-4">
         {/* Close button */}
@@ -53,7 +53,7 @@ export default function ComparisonSection({
               />
             </div>
             {/* Titile */}
-            <div className="flex items-center mb-4 px-2">
+            <div className="flex items-center mb-4 px-1">
               <p className="flex-4 text-xl font-medium text-center">
                 {product?.name}
               </p>

@@ -7,12 +7,20 @@ import RecommededBanner from "./RecommendedBanner/RecommendedBanner";
 import { SeperateLine } from "@/components/SeperateLine";
 import { Footer } from "@/components/Footer";
 import CategorySection from "./CategorySection/CategorySection";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Product } from "@/types/product";
 
 export default function Home() {
   const [onSaleProducts, setOnSaleProducts] = useState<Product[]>([]);
   const [newProducts, setNewProducts] = useState<Product[]>([]);
+  const scrollTargetRef = useRef<HTMLDivElement | null>(null);
+
+  function scrollToTarget() {
+    scrollTargetRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
 
   // Fetch products
   useEffect(() => {
@@ -41,32 +49,35 @@ export default function Home() {
       <Header />
       {/* Body */}
       <div className="mt-10 px-30">
-        <Banner />
+        <Banner scrollFunction={scrollToTarget} />
 
         <SeperateLine className="my-15" />
 
         {/* Flash Sales */}
 
-        <CategoryHeading
-          title="Hôm nay"
-          description="Flash Sales"
-          endDate={new Date(2026, 2, 10, 0, 0, 0)}
-          className="mb-4 "
-        />
-        <div className="flex flex-wrap gap-4 mb-8">
-          {onSaleProducts.map((product) => (
-            <ProductItem
-              id={product.id}
-              img={product.images[0]}
-              discountPercent={Math.round(
-                (1 - product.finalPrice / product.stockPrice) * 100,
-              )}
-              finalPrice={product.finalPrice}
-              name={product.name}
-              stockPrice={product.stockPrice}
-              key={product.id}
-            />
-          ))}
+        <div ref={scrollTargetRef} className="h-fit">
+          <CategoryHeading
+            title="Hôm nay"
+            description="Flash Sales"
+            endDate={new Date(2026, 2, 10, 0, 0, 0)}
+            className="mb-4 "
+          />
+          <div className="flex flex-wrap gap-4 mb-8">
+            {onSaleProducts.map((product) => (
+              <ProductItem
+                id={product.id}
+                img={product.images[0]}
+                discountPercent={Math.round(
+                  (1 - product.finalPrice / product.stockPrice) * 100,
+                )}
+                finalPrice={product.finalPrice}
+                name={product.name}
+                stockPrice={product.stockPrice}
+                colors={product.variants.map((item) => item.color)}
+                key={product.id}
+              />
+            ))}
+          </div>
         </div>
 
         <SeperateLine className="my-15" />
@@ -98,6 +109,7 @@ export default function Home() {
               finalPrice={product.finalPrice}
               name={product.name}
               stockPrice={product.stockPrice}
+              colors={product.variants.map((item) => item.color)}
               key={product.id}
             />
           ))}
