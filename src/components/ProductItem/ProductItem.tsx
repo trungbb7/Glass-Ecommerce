@@ -35,10 +35,6 @@ export default function ProductItem({
   isWishList = false,
   className,
 }: ProductItemProps) {
-  if (!colors) {
-    console.log(`Colors undefined - id: ${id}`);
-  }
-
   const formatter = new Intl.NumberFormat("vi-VN", {
     style: "currency",
     currency: "VND",

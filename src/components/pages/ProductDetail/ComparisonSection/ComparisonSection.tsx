@@ -16,6 +16,10 @@ export default function ComparisonSection({
   activeComparison,
   stopComparison,
 }: ComparisonSectionProps) {
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
   const compareProduct = useAppSelector((state) => state.header.compareProduct);
   return (
     <div
@@ -52,15 +56,36 @@ export default function ComparisonSection({
                 alt="product image2"
               />
             </div>
-            {/* Titile */}
-            <div className="flex items-center mb-4 px-1">
-              <p className="flex-4 text-xl font-medium text-center">
+            {/* Title */}
+            <div className="flex items-center justify-around mb-4 px-1">
+              <p className="flex-4 text-xl font-medium text-center max-w-75">
                 {product?.name}
               </p>
-              <p className="flex-1 text-center font-medium text-3xl">VS</p>
-              <p className="flex-4 text-xl font-medium text-center">
+              <p className="flex-4 text-xl font-medium text-center max-w-75">
                 {compareProduct ? compareProduct.name : ""}
               </p>
+            </div>
+
+            <p className="flex-1 text-center font-medium text-3xl">VS</p>
+
+            {/* Price */}
+            <div className="flex items-center justify-around mb-2">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-medium text-text1 line-through">
+                  {formatter.format(product?.stockPrice || 0)}
+                </span>
+                <span className="text-lg font-medium text-secondary">
+                  {formatter.format(product?.finalPrice || 0)}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-medium text-text1 line-through">
+                  {formatter.format(compareProduct?.stockPrice || 0)}
+                </span>
+                <span className="text-lg font-medium text-secondary">
+                  {formatter.format(compareProduct?.finalPrice || 0)}
+                </span>
+              </div>
             </div>
 
             <div className="w-full h-1 bg-slate-700"></div>
