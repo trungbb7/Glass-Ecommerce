@@ -43,7 +43,7 @@ export default function ComparisonSection({
             <div className="flex items-center justify-around mb-6">
               <img
                 className="size-50 shadow rounded-2xl"
-                src="https://i.ibb.co/Y4MCy3zn/9078-c4.jpg"
+                src={product?.images[0]}
                 alt="product image1"
               />
               <img

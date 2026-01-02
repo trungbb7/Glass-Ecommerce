@@ -17,7 +17,7 @@ const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
   {
     name: "Giới thiệu",
-    path: "/about-us",
+    path: "/about",
   },
 ];
 export default function AboutUs() {
