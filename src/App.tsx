@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { WishList } from "./components/pages/WishList";
 import { Contact } from "./components/pages/Contact";
 import AboutUs from "./components/pages/AboutUs/AboutUs";
+import { ForgotPassword } from "./components/pages/ForgotPassword";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

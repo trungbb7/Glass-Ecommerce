@@ -60,7 +60,7 @@ export default function Login() {
           </div>
 
           <div className="self-end font-medium text-sm text-text1 hover:text-secondary cursor-pointer mb-4">
-            Quên mật khẩu
+            <Link to="/forgot-password">Quên mật khẩu</Link>
           </div>
 
           <button className="self-center w-full py-3 mb-4 text-white font-medium rounded-2xl bg-secondary-300 hover:bg-secondary cursor-pointer">
