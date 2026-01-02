@@ -41,17 +41,14 @@ const breadcrumbData: BreadcrumbData[] = [
     name: "Sản phẩm",
     path: "/products",
   },
-  {
-    name: "EYE PLUS TR855",
-    path: "/products/tr855",
-  },
 ];
-
 export default function ProductDetail() {
   const formatter = new Intl.NumberFormat("vi-VN", {
     style: "currency",
     currency: "VND",
   });
+
+  const [breadcrum, setBreadCrum] = useState<BreadcrumbData[]>(breadcrumbData);
 
   const { id } = useParams();
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -196,6 +193,11 @@ export default function ProductDetail() {
           setProduct(productObject);
           setCurrentInstock(productObject.variants[0].quantity);
           setCurrentVariance(productObject.variants[0].color);
+          setBreadCrum((prev) => [
+            prev[0],
+            prev[1],
+            { name: productObject.name, path: `/product/${productObject.id}` },
+          ]);
         }
       } catch {
         setValidProduct(false);
@@ -223,7 +225,7 @@ export default function ProductDetail() {
         <div className="px-30 pb-20">
           {/* Top */}
           <div className="pt-4 pb-10">
-            <Breadcrumb data={breadcrumbData} />
+            <Breadcrumb data={breadcrum} />
           </div>
 
           {/* Body */}
@@ -237,7 +239,9 @@ export default function ProductDetail() {
               <div className="flex items-center gap-4">
                 {/* Rating */}
                 <Rating size="sm" rating={5} />
-                <p className="text-sm text-text2">({150} Đánh giá)</p>
+                <p className="text-sm text-text2">
+                  ({product?.reviews?.length || 0} Đánh giá)
+                </p>
                 <div className="w-0.5 bg-text2 h-4"></div>
                 <p
                   style={{ color: currentStock > 0 ? "#05df72" : "#f27474" }}

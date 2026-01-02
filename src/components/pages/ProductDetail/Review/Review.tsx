@@ -12,7 +12,44 @@ export default function Review({ reviews }: ReviewProps) {
     <div className="">
       <div className="flex flex-col gap-8">
         {/* Head */}
-        <ReviewInfo />
+        <ReviewInfo
+          one={reviews.reduce((acc, cur) => {
+            if (cur.rating === 1) {
+              return acc + 1;
+            } else {
+              return acc;
+            }
+          }, 0)}
+          two={reviews.reduce((acc, cur) => {
+            if (cur.rating === 2) {
+              return acc + 1;
+            } else {
+              return acc;
+            }
+          }, 0)}
+          three={reviews.reduce((acc, cur) => {
+            if (cur.rating === 3) {
+              return acc + 1;
+            } else {
+              return acc;
+            }
+          }, 0)}
+          four={reviews.reduce((acc, cur) => {
+            if (cur.rating === 4) {
+              return acc + 1;
+            } else {
+              return acc;
+            }
+          }, 0)}
+          five={reviews.reduce((acc, cur) => {
+            if (cur.rating === 5) {
+              return acc + 1;
+            } else {
+              return acc;
+            }
+          }, 0)}
+          count={reviews.length}
+        />
         {/* Review List */}
         <div className="max-w-150">
           <p className="text-xl font-semibold mb-6">Đánh giá</p>

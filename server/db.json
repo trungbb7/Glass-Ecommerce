@@ -693,8 +693,9 @@
   ],
   "reviews": [
     {
+      "id": "694cca7cc38161d0310bcfc7",
       "productId": "1",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -702,6 +703,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfc8",
       "productId": "1",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -711,8 +713,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfc9",
       "productId": "2",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -720,6 +723,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfca",
       "productId": "2",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -729,8 +733,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfcb",
       "productId": "3",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -738,6 +743,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfcc",
       "productId": "3",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -747,8 +753,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfcd",
       "productId": "4",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -756,6 +763,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfce",
       "productId": "4",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -765,8 +773,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfcf",
       "productId": "5",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -774,6 +783,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfd0",
       "productId": "5",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -783,8 +793,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfd1",
       "productId": "6",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -792,6 +803,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfd2",
       "productId": "6",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -801,8 +813,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfd3",
       "productId": "7",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -810,6 +823,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfd4",
       "productId": "7",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -819,8 +833,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfd5",
       "productId": "8",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -828,6 +843,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfd6",
       "productId": "8",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -837,8 +853,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfd7",
       "productId": "9",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -846,6 +863,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfd8",
       "productId": "9",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -855,8 +873,9 @@
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
     },
     {
+      "id": "694cca7cc38161d0310bcfd9",
       "productId": "10",
-      "userid": "111",
+      "userId": "111",
       "username": "Nguyễn Văn An",
       "datetime": "2025-12-20T10:30:00",
       "rating": 5,
@@ -864,6 +883,7 @@
       "content": "Có nhiều phiên bản khác nhau của sản phẩm cùng loại, nhưng đây là sản phẩm tốt nhất trong tầm giá"
     },
     {
+      "id": "694cca7cc38161d0310bcfda",
       "productId": "10",
       "userid": "222",
       "username": "Lê Phương Hoa",
@@ -871,6 +891,16 @@
       "rating": 5,
       "title": "Rất đẹp",
       "content": "CNhìn ở ngoài thực sự đẹp hơn trong hình, độ bền cao, rất xứng đáng với số tiển bỏ ra."
+    },
+    {
+      "id": "69579c362201beebe554eb8d",
+      "productId": "2",
+      "userid": "533",
+      "username": "Trần Trọng Phúc",
+      "datetime": "2025-12-10T6:00:00",
+      "rating": 1,
+      "title": "Rất tệ",
+      "content": "Sản phẩm rất nhiều lỗi, dễ hỏng"
     }
   ],
   "filters": [
