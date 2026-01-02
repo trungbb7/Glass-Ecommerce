@@ -9,7 +9,7 @@ interface BannerProps {
 export default function Banner({ scrollFunction }: BannerProps) {
   const navigate = useNavigate();
   return (
-    <div className=" px-20 min-h-140 flex items-center">
+    <div className="px-20 min-h-140 flex items-center">
       {/* Left side */}
       <div className="flex flex-col gap-6 grow-9 pt-10">
         <div className="text-5xl font-bold ">Tầm nhìn mới</div>
