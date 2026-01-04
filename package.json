@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "server": "json-server --watch server/db.json"
+    "server": "cd server & node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",

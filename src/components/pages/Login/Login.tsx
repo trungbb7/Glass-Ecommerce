@@ -1,15 +1,45 @@
 import posterImg from "@/assets/poster.png";
+import { loginUser } from "@/components/Auth/authSlice";
+import { useAppDispatch } from "@/hooks";
+import type { User } from "@/types/user";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [hidePassword, setHidePassword] = useState<boolean>(true);
 
   function toggleHidePassword() {
     setHidePassword((prev) => !prev);
+  }
+
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (email && password) {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email, password: password }),
+      });
+
+      if (response.ok) {
+        const user = (await response.json()) as User;
+        dispatch(loginUser(user));
+        navigate("/");
+      } else {
+        setErrorMessage("Sai tên đăng nhập hoặc mật khẩu");
+      }
+    }
   }
 
   return (
@@ -20,7 +50,11 @@ export default function Login() {
         <p className="text-text2 font-medium mb-20">
           Chào mừng bạn trở lại! Vui lòng điền thông tin của bản
         </p>
-        <form className="flex flex-col items-start w-100">
+        <p className="text-red-600">{errorMessage}</p>
+        <form
+          onSubmit={handleLogin}
+          className="flex flex-col items-start w-100"
+        >
           <label className="block font-medium mb-3" htmlFor="email">
             Email
           </label>
@@ -29,6 +63,10 @@ export default function Login() {
             name="email"
             id="email"
             placeholder="Vui lòng điền tên Email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             className="text-text2 px-2 py-2 mb-6 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 outline-gray-400"
           />
 
@@ -41,6 +79,10 @@ export default function Login() {
               name="password"
               id="password"
               placeholder="Vui lòng điền mật khẩu"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               className="grow outline-0"
             />
 

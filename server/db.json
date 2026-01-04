@@ -1,4 +1,19 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "email": "trungbb8@gmail.com",
+      "fullName": "Nguyễn Minh Trung",
+      "role": "user",
+      "password": "1234",
+      "token": "token-1"
+    },
+    {
+      "username": "trungbb8",
+      "password": "1234",
+      "id": "jBKr9eO"
+    }
+  ],
   "products": [
     {
       "id": "1",
@@ -1304,7 +1319,6 @@
         "https://i.ibb.co/4wYJ1v2d/k-nh-m-t-prada-nam-n-0pr-b11sf-1-1dcb2ea41b274aa3ba0d76f04350bd89-master.jpg"
       ]
     },
-
     {
       "id": "19",
       "name": "Kính Mát MN1267",

@@ -12,8 +12,32 @@ import { Contact } from "./components/pages/Contact";
 import AboutUs from "./components/pages/AboutUs/AboutUs";
 import { ForgotPassword } from "./components/pages/ForgotPassword";
 import { ViewHistory } from "./components/pages/ViewHistory";
+import { useAppDispatch, useAppSelector } from "./hooks";
+import { useEffect } from "react";
+import type { User } from "./types/user";
+import { loginUser, logoutUser } from "./components/Auth/authSlice";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
+  const token = useAppSelector((state) => state.auth.token);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    async function fetchUserInfo(token: string) {
+      const reponse = await fetch(`http://localhost:3000/users/${token}`);
+      if (reponse.ok) {
+        const user = (await reponse.json()) as User;
+        dispatch(loginUser(user));
+      } else {
+        dispatch(logoutUser());
+      }
+    }
+
+    if (token) {
+      fetchUserInfo(token);
+    }
+  }, [token, dispatch]);
+
   return (
     <BrowserRouter>
       {/* Auto scroll to top when navigating */}
@@ -24,11 +48,25 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/wishlist" element={<WishList />} />
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <WishList />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/view-history" element={<ViewHistory />} />
+        <Route
+          path="/view-history"
+          element={
+            <ProtectedRoute>
+              <ViewHistory />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

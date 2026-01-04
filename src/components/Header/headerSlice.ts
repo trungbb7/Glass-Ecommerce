@@ -1,6 +1,5 @@
 import type { Product } from "@/types/product";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
 interface HeaderState {
   cartShaking: boolean;
   wishlistBounce: boolean;
