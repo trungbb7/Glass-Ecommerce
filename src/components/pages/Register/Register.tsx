@@ -21,7 +21,7 @@ export default function Register() {
       {/* Left */}
       <div className="w-1/2 flex flex-col items-center justify-center">
         <p className="text-5xl font-semibold mb-4">Đăng ký</p>
-        <p className="text-text2 font-medium mb-20">
+        <p className="text-text2 font-medium mb-6">
           Đăng ký để sử dụng tính đầy đủ tính năng
         </p>
         <form className="flex flex-col items-start w-100">
@@ -33,13 +33,46 @@ export default function Register() {
             name="email"
             id="email"
             placeholder="Vui lòng điền tên Email"
-            className="text-text2 px-2 py-2 mb-6 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 outline-gray-400"
+            className="text-text2 px-2 py-2 mb-3 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 outline-gray-400"
+          />
+
+          <label className="block font-medium mb-3" htmlFor="name">
+            Họ tên
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Vui lòng diền đầy đủ họ tên"
+            className="text-text2 px-2 py-2 mb-3 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 outline-gray-400"
+          />
+
+          <label className="block font-medium mb-3" htmlFor="address">
+            Địa chỉ
+          </label>
+          <input
+            type="text"
+            name="address"
+            id="address"
+            placeholder="Vui lòng điền địa chỉ"
+            className="text-text2 px-2 py-2 mb-3 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 outline-gray-400"
+          />
+
+          <label className="block font-medium mb-3" htmlFor="tel">
+            Số điện thoại
+          </label>
+          <input
+            type="tel"
+            name="tel"
+            id="tel"
+            placeholder="Vui lòng điền số điện thoại"
+            className="text-text2 px-2 py-2 mb-3 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 outline-gray-400"
           />
 
           <label className="block font-medium mb-3" htmlFor="password">
             Mật khẩu
           </label>
-          <div className="flex gap-1 items-center text-text2 px-2 py-2 mb-6 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 has-focus:border-gray-400">
+          <div className="flex gap-1 items-center text-text2 px-2 py-2 mb-3 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 has-focus:border-gray-400">
             <input
               type={hidePassword ? "password" : "text"}
               name="password"
@@ -66,7 +99,7 @@ export default function Register() {
           <label className="block font-medium mb-3" htmlFor="retype-password">
             Nhập lại mật khẩu
           </label>
-          <div className="flex gap-1 items-center text-text2 px-2 py-2 mb-6 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 has-focus:border-gray-400">
+          <div className="flex gap-1 items-center text-text2 px-2 py-2 mb-3 bg-white border border-gray-300 rounded-lg w-full shadow shadow-gray-200 has-focus:border-gray-400">
             <input
               type={hideRetypePassword ? "password" : "text"}
               name="password"
@@ -94,7 +127,7 @@ export default function Register() {
             Quên mật khẩu
           </div> */}
 
-          <button className="self-center w-full py-3 mb-4 text-white font-medium rounded-2xl bg-secondary-300 hover:bg-secondary cursor-pointer">
+          <button className="self-center w-full py-3 mb-4 mt-4 text-white font-medium rounded-2xl bg-secondary-300 hover:bg-secondary cursor-pointer">
             Đăng ký
           </button>
           <div className="self-center text-sm font-medium text-text2">
