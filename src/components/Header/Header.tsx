@@ -4,15 +4,30 @@ import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { useAppSelector } from "@/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar/SearchBar";
+import DropDownSelection from "./DropdownSelection/DropdownSelection";
+import { useRef, useState } from "react";
+import { useClickOutside } from "@/hooks/customhooks";
 export default function Header() {
+  const navigate = useNavigate();
   const shaking = useAppSelector((state) => state.header.cartShaking);
   const bounce = useAppSelector((state) => state.header.wishlistBounce);
   const isComparing = useAppSelector((state) => state.header.isComparing);
 
-  const navigate = useNavigate();
+  const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+
+  const drowndownRef = useRef<HTMLDivElement | null>(null);
+
+  useClickOutside(drowndownRef, () => {
+    setOpenDropdown(false);
+  });
 
   function goToPage(path: string) {
     navigate(`/${path}`);
+  }
+
+  function itemClicked(path: string) {
+    setOpenDropdown(false);
+    goToPage(path);
   }
 
   return (
@@ -77,8 +92,16 @@ export default function Header() {
           </span>
         </div>
         {/* User */}
-        <div className="mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
+        <div
+          onClick={() => setOpenDropdown((prev) => !prev)}
+          className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer"
+        >
           <FontAwesomeIcon icon={faUser} />
+          <DropDownSelection
+            ref={drowndownRef}
+            itemClicked={itemClicked}
+            openDropDown={openDropdown}
+          />
         </div>
         {/* Cart */}
         <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
