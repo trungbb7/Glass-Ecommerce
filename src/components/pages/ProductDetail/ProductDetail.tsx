@@ -34,6 +34,7 @@ import { useParams } from "react-router-dom";
 import type { Product } from "@/types/product";
 import ComparisonSection from "./ComparisonSection/ComparisonSection";
 import { ProductNotFound } from "./ProductNotFound/ProductNotFound";
+import { addViewHistoryProduct } from "@/utils/viewHistoryUtils";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -198,6 +199,8 @@ export default function ProductDetail() {
             prev[1],
             { name: productObject.name, path: `/product/${productObject.id}` },
           ]);
+
+          addViewHistoryProduct(productObject);
         }
       } catch {
         setValidProduct(false);
