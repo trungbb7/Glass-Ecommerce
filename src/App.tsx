@@ -17,9 +17,14 @@ import { useEffect } from "react";
 import type { User } from "./types/user";
 import { loginUser, logoutUser } from "./components/Auth/authSlice";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Notification } from "./components/Notification";
 
 function App() {
   const token = useAppSelector((state) => state.auth.token);
+  const showNotification = useAppSelector((state) => state.notification.show);
+  const notification = useAppSelector(
+    (state) => state.notification.notification,
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -42,6 +47,12 @@ function App() {
     <BrowserRouter>
       {/* Auto scroll to top when navigating */}
       <ScrollToTop />
+      {/* Notification */}
+      {showNotification && notification && (
+        <Notification notification={notification} />
+      )}
+
+      {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Products />} />
