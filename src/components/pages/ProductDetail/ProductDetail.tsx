@@ -17,7 +17,7 @@ import { faHeart, faTruck } from "@fortawesome/free-regular-svg-icons";
 import Review from "./Review/Review";
 import ColorItem from "./ColorItem/ColorItem";
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
   setCompareProduct,
   startBounceWishlist,
@@ -35,6 +35,7 @@ import type { Product } from "@/types/product";
 import ComparisonSection from "./ComparisonSection/ComparisonSection";
 import { ProductNotFound } from "./ProductNotFound/ProductNotFound";
 import { addViewHistoryProduct } from "@/utils/viewHistoryUtils";
+import { pushNotification } from "@/components/Notification/notificationSlice";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -71,6 +72,7 @@ export default function ProductDetail() {
 
   const [validProduct, setValidProduct] = useState<boolean>(true);
 
+  const logged = useAppSelector((state) => state.auth.logged);
   const dispatch = useAppDispatch();
 
   function stopComparison() {
@@ -112,74 +114,94 @@ export default function ProductDetail() {
   function handleAddToCart(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
-    // Add-to-cart effect
-    if (imgRef.current) {
-      const startRect = event.currentTarget.getBoundingClientRect();
+    if (logged) {
+      // Add-to-cart effect
+      if (imgRef.current) {
+        const startRect = event.currentTarget.getBoundingClientRect();
 
-      const cart = document.getElementById("cart") as HTMLElement;
-      const endRect = cart?.getBoundingClientRect();
+        const cart = document.getElementById("cart") as HTMLElement;
+        const endRect = cart?.getBoundingClientRect();
 
-      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+        const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
 
-      flyingImg.style.left = startRect.left + "px";
-      flyingImg.style.top = startRect.top + "px";
+        flyingImg.style.left = startRect.left + "px";
+        flyingImg.style.top = startRect.top + "px";
 
-      flyingImg.classList.add("flying-image");
+        flyingImg.classList.add("flying-image");
 
-      document.body.appendChild(flyingImg);
-      setTimeout(() => {
-        const deltaX = endRect.left - startRect.left;
-        const deltaY = endRect.top - startRect.top;
+        document.body.appendChild(flyingImg);
+        setTimeout(() => {
+          const deltaX = endRect.left - startRect.left;
+          const deltaY = endRect.top - startRect.top;
 
-        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
-        flyingImg.style.opacity = "0.5";
-      }, 10);
-
-      setTimeout(() => {
-        flyingImg.remove();
-        dispatch(startShakingCart());
+          flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+          flyingImg.style.opacity = "0.5";
+        }, 10);
 
         setTimeout(() => {
-          dispatch(stopShakingCart());
-        }, 200);
-      }, 500);
+          flyingImg.remove();
+          dispatch(startShakingCart());
+
+          setTimeout(() => {
+            dispatch(stopShakingCart());
+          }, 200);
+        }, 500);
+      }
+    } else {
+      dispatch(
+        pushNotification({
+          title: "Opps",
+          message: "Vui lòng đăng nhập để thực hiện chức năng này",
+          type: "error",
+        }),
+      );
     }
   }
 
   function handleAddToWishList(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
-    // Add-to-cart effect
-    if (imgRef.current) {
-      const startRect = event.currentTarget.getBoundingClientRect();
+    if (logged) {
+      // Add-to-cart effect
+      if (imgRef.current) {
+        const startRect = event.currentTarget.getBoundingClientRect();
 
-      const wishlist = document.getElementById("wishlist") as HTMLElement;
-      const endRect = wishlist?.getBoundingClientRect();
+        const wishlist = document.getElementById("wishlist") as HTMLElement;
+        const endRect = wishlist?.getBoundingClientRect();
 
-      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+        const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
 
-      flyingImg.style.left = startRect.left + "px";
-      flyingImg.style.top = startRect.top + "px";
+        flyingImg.style.left = startRect.left + "px";
+        flyingImg.style.top = startRect.top + "px";
 
-      flyingImg.classList.add("flying-image");
+        flyingImg.classList.add("flying-image");
 
-      document.body.appendChild(flyingImg);
-      setTimeout(() => {
-        const deltaX = endRect.left - startRect.left;
-        const deltaY = endRect.top - startRect.top;
+        document.body.appendChild(flyingImg);
+        setTimeout(() => {
+          const deltaX = endRect.left - startRect.left;
+          const deltaY = endRect.top - startRect.top;
 
-        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
-        flyingImg.style.opacity = "0.5";
-      }, 10);
-
-      setTimeout(() => {
-        flyingImg.remove();
-        dispatch(startBounceWishlist());
+          flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+          flyingImg.style.opacity = "0.5";
+        }, 10);
 
         setTimeout(() => {
-          dispatch(stopBounceWishlist());
+          flyingImg.remove();
+          dispatch(startBounceWishlist());
+
+          setTimeout(() => {
+            dispatch(stopBounceWishlist());
+          }, 500);
         }, 500);
-      }, 500);
+      }
+    } else {
+      dispatch(
+        pushNotification({
+          title: "Opps",
+          message: "Vui lòng đăng nhập để thực hiện chức năng này",
+          type: "error",
+        }),
+      );
     }
   }
 

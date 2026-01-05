@@ -4,14 +4,31 @@
       "id": "1",
       "email": "trungbb8@gmail.com",
       "fullName": "Nguyễn Minh Trung",
+      "address": "Binh Chau HCM",
+      "tel": "0367784857",
       "role": "user",
       "password": "1234",
       "token": "1"
     },
     {
-      "username": "trungbb8",
+      "id": 1767591275968,
+      "email": "trungbb9@gmail.com",
+      "fullName": "Minh Trung",
+      "address": "Thu Duc TP.HCM",
+      "tel": "0335631990",
       "password": "1234",
-      "id": "jBKr9eO"
+      "role": "user",
+      "token": 1767591275968
+    },
+    {
+      "id": 1767592562769,
+      "email": "trungbb7@gmail.com",
+      "fullName": "Nguyễn Minh Trung",
+      "address": "Nhà mái ngói, Trọ Sinh Viên, Đường Đất Đỏ, Khu Phố 6, Đông Hoà, Dĩ An, Bình Dương",
+      "tel": "0123456789",
+      "password": "1111",
+      "role": "user",
+      "token": 1767592562769
     }
   ],
   "products": [
@@ -42,7 +59,10 @@
         "material": "Nhựa TR",
         "style": "Vuông bo góc"
       },
-      "categories": ["male", "plastic"],
+      "categories": [
+        "male",
+        "plastic"
+      ],
       "images": [
         "https://i.ibb.co/R4DRZcjW/1.jpg",
         "https://i.ibb.co/nMWSLr5m/2.jpg",
@@ -73,7 +93,10 @@
         "material": "Nhựa cao cấp",
         "style": "Thể thao"
       },
-      "categories": ["male", "plastic"],
+      "categories": [
+        "male",
+        "plastic"
+      ],
       "images": [
         "https://i.ibb.co/KP5kfk2/IMG-0872.jpg",
         "https://i.ibb.co/wNk2B5BJ/IMG-0848.jpg"
@@ -102,8 +125,13 @@
         "material": "Nhựa",
         "style": "Tròn"
       },
-      "categories": ["female", "plastic"],
-      "images": ["https://i.ibb.co/Y4MCy3zn/9078-c4.jpg"]
+      "categories": [
+        "female",
+        "plastic"
+      ],
+      "images": [
+        "https://i.ibb.co/Y4MCy3zn/9078-c4.jpg"
+      ]
     },
     {
       "id": "4",
@@ -128,8 +156,13 @@
         "material": "Nhựa",
         "style": "Tròn"
       },
-      "categories": ["unisex", "plastic"],
-      "images": ["https://i.ibb.co/jPvKRLF3/9078-c1.jpg"]
+      "categories": [
+        "unisex",
+        "plastic"
+      ],
+      "images": [
+        "https://i.ibb.co/jPvKRLF3/9078-c1.jpg"
+      ]
     },
     {
       "id": "5",
@@ -154,7 +187,10 @@
         "material": "Nhựa",
         "style": "Vuông bo tròn"
       },
-      "categories": ["unisex", "plastic"],
+      "categories": [
+        "unisex",
+        "plastic"
+      ],
       "images": [
         "https://i.ibb.co/TxXrVKqx/IMG-2131.jpg",
         "https://i.ibb.co/PvWF8S5j/IMG-2154.jpg",
@@ -186,7 +222,10 @@
         "material": "Nhựa",
         "style": "Vuông"
       },
-      "categories": ["male", "plastic"],
+      "categories": [
+        "male",
+        "plastic"
+      ],
       "images": [
         "https://i.ibb.co/Wp03L8VQ/IMG-2119.jpg",
         "https://i.ibb.co/Xx4Y520D/IMG-2132.jpg",
@@ -217,7 +256,10 @@
         "material": "Nhựa",
         "style": "Oval"
       },
-      "categories": ["unisex", "plastic"],
+      "categories": [
+        "unisex",
+        "plastic"
+      ],
       "images": [
         "https://i.ibb.co/ycT16hJV/IMG-0878-1.jpg",
         "https://i.ibb.co/dJwYny9x/IMG-0866-2.jpg",
@@ -249,7 +291,10 @@
         "material": "Nhựa",
         "style": "Phi công"
       },
-      "categories": ["unisex", "plastic"],
+      "categories": [
+        "unisex",
+        "plastic"
+      ],
       "images": [
         "https://i.ibb.co/mCgPF8Xp/IMG-9697-1.jpg",
         "https://i.ibb.co/cSCP9y0c/IMG-9714-1.jpg",
@@ -281,7 +326,9 @@
         "material": "Kim loại",
         "style": "Phi công"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/F4jzChXb/IMG-9687-1.jpg",
         "https://i.ibb.co/spCRyzmH/IMG-9704-1.jpg",
@@ -313,7 +360,9 @@
         "material": "Kim loại",
         "style": "Phi công"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/RGkt7FnS/IMG-9693-1.jpg",
         "https://i.ibb.co/9kSJtGdC/IMG-9709-1.jpg",
@@ -345,7 +394,9 @@
         "material": "Nhựa CR39",
         "style": "Cánh bướm"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/CKFzPjXs/k-nh-m-t-prada-n-0pr-b50s-4-1d86ac7d2861499aabf37ea723ac5710-master.jpg",
         "https://i.ibb.co/BKPP4Cz7/k-nh-m-t-prada-n-0pr-b50s-10-c1ee7f1dc01849f38445e90abbeee35b-master.jpg",
@@ -383,7 +434,9 @@
         "material": "Hợp kim",
         "style": "Vuông"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/dw0bhwR5/k-nh-m-t-nam-n-mn1272-4-900aaaa74c494ca3b8ebf61162b1b4d4-master.jpg",
         "https://i.ibb.co/QF0TcmgK/k-nh-m-t-nam-n-mn1272-6-eacc6ea7cf4b4668badbf06da576af6c-master-1.jpg",
@@ -422,7 +475,9 @@
         "material": "Nhựa TR90",
         "style": "Cánh bướm"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/DHhwGzm3/k-nh-m-t-nam-n-mn1271-13-3e8ed343dd7444ba8ab674226e7dc6b3-master.jpg",
         "https://i.ibb.co/5xXGCzMk/k-nh-m-t-nam-n-mn1271-11-d9b63353449e472bbf3045bcc7c26f8b-master.jpg",
@@ -456,7 +511,9 @@
         "material": "Nhựa TR90",
         "style": "Cánh bướm"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/Jj887X4S/k-nh-m-t-nam-n-mn1270-4-77e3b173ac6c43b4981e9388fb177bb6-master.jpg",
         "https://i.ibb.co/5xwVCkR4/k-nh-m-t-nam-n-mn1270-3-e67177096473460da77f1edf5f83e1aa-master.jpg",
@@ -496,7 +553,9 @@
         "material": "Nhựa TR90",
         "style": "Cánh bướm"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/0pFwxwgv/k-nh-m-t-nam-n-mn1269-6-b9a005ca93ae4872a49004c4d3a9f8c1-master.jpg",
         "https://i.ibb.co/mr8FgdhW/k-nh-m-t-nam-n-mn1269-1-920e6dbae31c41e482a21adfa180c3f0-master.jpg",
@@ -528,7 +587,9 @@
         "material": "Nhựa Acetate",
         "style": "Tròn"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/HDqp4kf3/k-nh-m-t-prada-nam-n-0pr-b15sf-3-bcc4de690d1244659845c4a9254a1a3a-master.jpg",
         "https://i.ibb.co/MjZ9K8g/k-nh-m-t-prada-nam-n-0pr-b15sf-4-5b9c43c88bda4dec973db4e2b3f7deea-master.jpg",
@@ -568,7 +629,9 @@
         "material": "Nhựa Acetate",
         "style": "Tròn"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/j946xm9P/k-nh-m-t-prada-nam-n-0pr-b11sf-4-3e3c2f6e0e1847bc8d914fcd977001e4-master.jpg",
         "https://i.ibb.co/V0c3JtQs/k-nh-m-t-prada-nam-n-0pr-b11sf-5-4cf03a0843844886b288bc2d8b3eb149-master.jpg",
@@ -609,7 +672,9 @@
         "material": "Nhựa TR",
         "style": "Tròn"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/XrZ7XLJh/k-nh-m-t-nam-n-mn1268-4-4689ba5c7ae540fab3be665efaae8c52-master.jpg",
         "https://i.ibb.co/VcnpY4Hj/k-nh-m-t-nam-n-mn1268-5-c5df07cb68b249c0b8ad9a52aada5357-master.jpg",
@@ -652,7 +717,9 @@
         "material": "Nhựa TR",
         "style": "Tròn"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/xqL758SR/k-nh-m-t-nam-n-mn1267-4-bf51fe49ec3248d5af712f63347927b5-master.jpg",
         "https://i.ibb.co/XfWML4cp/k-nh-m-t-nam-n-mn1267-5-e835e0652da64b8dbdccac1134f87f64-master.jpg",
@@ -695,7 +762,9 @@
         "material": "Nhựa TR",
         "style": "Tròn"
       },
-      "categories": ["kids"],
+      "categories": [
+        "kids"
+      ],
       "images": [
         "https://i.ibb.co/20FStRQm/k-nh-m-t-em-b-nam-n-mn1266-24-eecbde1e3e944410b5da3f1c1130f26c-master.jpg",
         "https://i.ibb.co/gbMQzWkF/k-nh-m-t-em-b-nam-n-mn1266-25-cc4401b762194f7a97d00fa07713b0bb-master.jpg",
@@ -922,123 +991,176 @@
     {
       "name": "Danh mục",
       "fieldname": "categories",
-      "operator": ["like"],
+      "operator": [
+        "like"
+      ],
       "items": [
         {
           "title": "Kính mát nam",
           "quantity": "80",
-          "query": ["^male"]
+          "query": [
+            "^male"
+          ]
         },
         {
           "title": "Kính mát nữ",
           "quantity": "70",
-          "query": ["^female"]
+          "query": [
+            "^female"
+          ]
         },
         {
           "title": "Kính mát unisex",
           "quantity": "60",
-          "query": ["^unisex"]
+          "query": [
+            "^unisex"
+          ]
         },
         {
           "title": "Kính mát trẻ em",
           "quantity": "40",
-          "query": ["^kid"]
+          "query": [
+            "^kid"
+          ]
         }
       ]
     },
     {
       "name": "Chất liệu",
       "fieldname": "specification.material",
-      "operator": ["like"],
+      "operator": [
+        "like"
+      ],
       "items": [
         {
           "title": "Nhựa",
           "quantity": "10",
-          "query": ["^Nhựa"]
+          "query": [
+            "^Nhựa"
+          ]
         },
         {
           "title": "Hợp kim",
           "quantity": "30",
-          "query": ["^Hợp kim"]
+          "query": [
+            "^Hợp kim"
+          ]
         },
         {
           "title": "Kim loại",
           "quantity": "20",
-          "query": ["^Kim loại"]
+          "query": [
+            "^Kim loại"
+          ]
         }
       ]
     },
     {
       "name": "Kiểu dáng",
       "fieldname": "specification.style",
-      "operator": ["like"],
+      "operator": [
+        "like"
+      ],
       "items": [
         {
           "title": "Vuông",
           "quantity": "12",
-          "query": ["^Vuông"]
+          "query": [
+            "^Vuông"
+          ]
         },
         {
           "title": "Tròn",
           "quantity": "20",
-          "query": ["^Tròn"]
+          "query": [
+            "^Tròn"
+          ]
         },
         {
           "title": "Oval",
           "quantity": "25",
-          "query": ["^Oval"]
+          "query": [
+            "^Oval"
+          ]
         },
         {
           "title": "Cánh bướm",
           "quantity": "11",
-          "query": ["^Cánh bướm"]
+          "query": [
+            "^Cánh bướm"
+          ]
         },
         {
           "title": "Thể thao",
           "quantity": "28",
-          "query": ["^Thể thao"]
+          "query": [
+            "^Thể thao"
+          ]
         },
         {
           "title": "Phi công",
           "quantity": "21",
-          "query": ["^Phi công"]
+          "query": [
+            "^Phi công"
+          ]
         }
       ]
     },
     {
       "name": "Giá",
       "fieldname": "finalPrice",
-      "operator": ["gte", "lte"],
+      "operator": [
+        "gte",
+        "lte"
+      ],
       "items": [
         {
           "title": "Nhỏ hơn 300.000VNĐ",
           "quantity": "33",
-          "query": ["0", "300000"]
+          "query": [
+            "0",
+            "300000"
+          ]
         },
         {
           "title": "300.000 - 600.000VNĐ",
           "quantity": "12",
-          "query": ["300000", "600000"]
+          "query": [
+            "300000",
+            "600000"
+          ]
         },
         {
           "title": "600.000 - 900.000VNĐ",
           "quantity": "20",
-          "query": ["600000", "900000"]
+          "query": [
+            "600000",
+            "900000"
+          ]
         },
         {
           "title": "900.000 - 1.200.000VNĐ",
           "quantity": "18",
-          "query": ["900000", "1200000"]
+          "query": [
+            "900000",
+            "1200000"
+          ]
         },
         {
           "title": "1.200.000 - 1.500.000VNĐ",
           "quantity": "10",
-          "query": ["1200000", "1500000"]
+          "query": [
+            "1200000",
+            "1500000"
+          ]
         },
         {
           "title": "Lớn hơn 2.000.000VNĐ",
           "quantity": "8",
-          "query": ["2000000", "9999999999"]
+          "query": [
+            "2000000",
+            "9999999999"
+          ]
         }
       ]
     }
@@ -1067,7 +1189,10 @@
         "material": "Nhựa",
         "style": "Oval"
       },
-      "categories": ["unisex", "plastic"],
+      "categories": [
+        "unisex",
+        "plastic"
+      ],
       "images": [
         "https://i.ibb.co/ycT16hJV/IMG-0878-1.jpg",
         "https://i.ibb.co/dJwYny9x/IMG-0866-2.jpg",
@@ -1099,7 +1224,9 @@
         "material": "Kim loại",
         "style": "Phi công"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/F4jzChXb/IMG-9687-1.jpg",
         "https://i.ibb.co/spCRyzmH/IMG-9704-1.jpg",
@@ -1131,7 +1258,9 @@
         "material": "Kim loại",
         "style": "Phi công"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/RGkt7FnS/IMG-9693-1.jpg",
         "https://i.ibb.co/9kSJtGdC/IMG-9709-1.jpg",
@@ -1163,7 +1292,9 @@
         "material": "Nhựa CR39",
         "style": "Cánh bướm"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/CKFzPjXs/k-nh-m-t-prada-n-0pr-b50s-4-1d86ac7d2861499aabf37ea723ac5710-master.jpg",
         "https://i.ibb.co/BKPP4Cz7/k-nh-m-t-prada-n-0pr-b50s-10-c1ee7f1dc01849f38445e90abbeee35b-master.jpg",
@@ -1197,7 +1328,9 @@
         "material": "Nhựa TR90",
         "style": "Cánh bướm"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/Jj887X4S/k-nh-m-t-nam-n-mn1270-4-77e3b173ac6c43b4981e9388fb177bb6-master.jpg",
         "https://i.ibb.co/5xwVCkR4/k-nh-m-t-nam-n-mn1270-3-e67177096473460da77f1edf5f83e1aa-master.jpg",
@@ -1237,7 +1370,9 @@
         "material": "Nhựa TR90",
         "style": "Cánh bướm"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/0pFwxwgv/k-nh-m-t-nam-n-mn1269-6-b9a005ca93ae4872a49004c4d3a9f8c1-master.jpg",
         "https://i.ibb.co/mr8FgdhW/k-nh-m-t-nam-n-mn1269-1-920e6dbae31c41e482a21adfa180c3f0-master.jpg",
@@ -1269,7 +1404,9 @@
         "material": "Nhựa Acetate",
         "style": "Tròn"
       },
-      "categories": ["female"],
+      "categories": [
+        "female"
+      ],
       "images": [
         "https://i.ibb.co/HDqp4kf3/k-nh-m-t-prada-nam-n-0pr-b15sf-3-bcc4de690d1244659845c4a9254a1a3a-master.jpg",
         "https://i.ibb.co/MjZ9K8g/k-nh-m-t-prada-nam-n-0pr-b15sf-4-5b9c43c88bda4dec973db4e2b3f7deea-master.jpg",
@@ -1309,7 +1446,9 @@
         "material": "Nhựa Acetate",
         "style": "Tròn"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/j946xm9P/k-nh-m-t-prada-nam-n-0pr-b11sf-4-3e3c2f6e0e1847bc8d914fcd977001e4-master.jpg",
         "https://i.ibb.co/V0c3JtQs/k-nh-m-t-prada-nam-n-0pr-b11sf-5-4cf03a0843844886b288bc2d8b3eb149-master.jpg",
@@ -1350,7 +1489,9 @@
         "material": "Nhựa TR",
         "style": "Tròn"
       },
-      "categories": ["unisex"],
+      "categories": [
+        "unisex"
+      ],
       "images": [
         "https://i.ibb.co/xqL758SR/k-nh-m-t-nam-n-mn1267-4-bf51fe49ec3248d5af712f63347927b5-master.jpg",
         "https://i.ibb.co/XfWML4cp/k-nh-m-t-nam-n-mn1267-5-e835e0652da64b8dbdccac1134f87f64-master.jpg",
