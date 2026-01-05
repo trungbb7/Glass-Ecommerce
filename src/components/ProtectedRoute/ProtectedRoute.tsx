@@ -9,7 +9,7 @@ export default function ProtectedRoute({
 }) {
   const logged = useAppSelector((state) => state.auth.logged);
 
-  if (logged) {
+  if (!logged) {
     return <Navigate to="/login" replace />;
   }
   return children;

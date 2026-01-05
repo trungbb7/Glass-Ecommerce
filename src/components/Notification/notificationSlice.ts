@@ -17,10 +17,6 @@ export const notificationSlice = createSlice({
     pushNotification: (state, action: PayloadAction<Notification>) => {
       state.show = true;
       state.notification = action.payload;
-      setTimeout(() => {
-        state.show = false;
-        state.notification = undefined;
-      }, 3000);
     },
     closeNotification: (state) => {
       state.show = false;

@@ -1,8 +1,8 @@
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   startBounceWishlist,
   startShakingCart,
@@ -11,6 +11,10 @@ import {
 } from "../Header/headerSlice";
 import { Rating } from "../Rating";
 import { useNavigate } from "react-router-dom";
+import {
+  closeNotification,
+  pushNotification,
+} from "../Notification/notificationSlice";
 
 interface ProductItemProps {
   id: string;
@@ -42,79 +46,102 @@ export default function ProductItem({
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const logged = useAppSelector((state) => state.auth.logged);
+  const show = useAppSelector((state) => state.notification.show);
+
   const imgRef = useRef<HTMLImageElement>(null);
 
   function handleAddToCart(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
-    // Add-to-cart effect
-    if (imgRef.current) {
-      const startRect = event.currentTarget.getBoundingClientRect();
+    if (logged) {
+      // Add-to-cart effect
+      if (imgRef.current) {
+        const startRect = event.currentTarget.getBoundingClientRect();
 
-      const cart = document.getElementById("cart") as HTMLElement;
-      const endRect = cart?.getBoundingClientRect();
+        const cart = document.getElementById("cart") as HTMLElement;
+        const endRect = cart?.getBoundingClientRect();
 
-      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+        const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
 
-      flyingImg.style.left = startRect.left + "px";
-      flyingImg.style.top = startRect.top + "px";
+        flyingImg.style.left = startRect.left + "px";
+        flyingImg.style.top = startRect.top + "px";
 
-      flyingImg.classList.add("flying-image");
+        flyingImg.classList.add("flying-image");
 
-      document.body.appendChild(flyingImg);
-      setTimeout(() => {
-        const deltaX = endRect.left - startRect.left;
-        const deltaY = endRect.top - startRect.top;
+        document.body.appendChild(flyingImg);
+        setTimeout(() => {
+          const deltaX = endRect.left - startRect.left;
+          const deltaY = endRect.top - startRect.top;
 
-        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
-        flyingImg.style.opacity = "0.5";
-      }, 10);
-
-      setTimeout(() => {
-        flyingImg.remove();
-        dispatch(startShakingCart());
+          flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+          flyingImg.style.opacity = "0.5";
+        }, 10);
 
         setTimeout(() => {
-          dispatch(stopShakingCart());
-        }, 200);
-      }, 500);
+          flyingImg.remove();
+          dispatch(startShakingCart());
+
+          setTimeout(() => {
+            dispatch(stopShakingCart());
+          }, 200);
+        }, 500);
+      }
+    } else {
+      dispatch(
+        pushNotification({
+          title: "Opps",
+          message: "Vui lòng đăng nhập để thực hiện chức năng này",
+          type: "error",
+        }),
+      );
     }
   }
 
   function handleAddToWishList(
     event: React.MouseEvent<HTMLElement, MouseEvent>,
   ) {
-    // Add-to-cart effect
-    if (imgRef.current) {
-      const startRect = event.currentTarget.getBoundingClientRect();
+    if (logged) {
+      // Add-to-cart effect
+      if (imgRef.current) {
+        const startRect = event.currentTarget.getBoundingClientRect();
 
-      const wishlist = document.getElementById("wishlist") as HTMLElement;
-      const endRect = wishlist?.getBoundingClientRect();
+        const wishlist = document.getElementById("wishlist") as HTMLElement;
+        const endRect = wishlist?.getBoundingClientRect();
 
-      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+        const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
 
-      flyingImg.style.left = startRect.left + "px";
-      flyingImg.style.top = startRect.top + "px";
+        flyingImg.style.left = startRect.left + "px";
+        flyingImg.style.top = startRect.top + "px";
 
-      flyingImg.classList.add("flying-image");
+        flyingImg.classList.add("flying-image");
 
-      document.body.appendChild(flyingImg);
-      setTimeout(() => {
-        const deltaX = endRect.left - startRect.left;
-        const deltaY = endRect.top - startRect.top;
+        document.body.appendChild(flyingImg);
+        setTimeout(() => {
+          const deltaX = endRect.left - startRect.left;
+          const deltaY = endRect.top - startRect.top;
 
-        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
-        flyingImg.style.opacity = "0.5";
-      }, 10);
-
-      setTimeout(() => {
-        flyingImg.remove();
-        dispatch(startBounceWishlist());
+          flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+          flyingImg.style.opacity = "0.5";
+        }, 10);
 
         setTimeout(() => {
-          dispatch(stopBounceWishlist());
+          flyingImg.remove();
+          dispatch(startBounceWishlist());
+
+          setTimeout(() => {
+            dispatch(stopBounceWishlist());
+          }, 500);
         }, 500);
-      }, 500);
+      }
+    } else {
+      dispatch(
+        pushNotification({
+          title: "Opps",
+          message: "Vui lòng đăng nhập để thực hiện chức năng này",
+          type: "error",
+        }),
+      );
     }
   }
 
@@ -125,6 +152,16 @@ export default function ProductItem({
   function goToDetail() {
     navigate(`/product/${id}`);
   }
+
+  useEffect(() => {
+    if (show) {
+      const timer = setTimeout(() => {
+        dispatch(closeNotification());
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [show, dispatch]);
 
   return (
     <div
