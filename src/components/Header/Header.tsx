@@ -7,8 +7,11 @@ import SearchBar from "./SearchBar/SearchBar";
 import DropDownSelection from "./DropdownSelection/DropdownSelection";
 import { useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/customhooks";
+import { Button } from "../Button";
 export default function Header() {
   const navigate = useNavigate();
+  const logged = useAppSelector((state) => state.auth.logged);
+  const user = useAppSelector((state) => state.auth.user);
   const shaking = useAppSelector((state) => state.header.cartShaking);
   const bounce = useAppSelector((state) => state.header.wishlistBounce);
   const isComparing = useAppSelector((state) => state.header.isComparing);
@@ -80,37 +83,48 @@ export default function Header() {
       </div>
 
       {/* Right side */}
-      <div className="flex items-center">
-        {/* Whish list */}
-        <div
-          onClick={() => goToPage("wishlist")}
-          className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer"
+      {!logged ? (
+        <Button
+          onClick={() => navigate("/login")}
+          type="primary"
+          className="text-sm"
         >
-          <FontAwesomeIcon icon={faHeart} bounce={bounce} id="wishlist" />
-          <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
-            5
-          </span>
+          Đăng nhập
+        </Button>
+      ) : (
+        <div className="flex items-center">
+          {/* Whish list */}
+          <div
+            onClick={() => goToPage("wishlist")}
+            className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer"
+          >
+            <FontAwesomeIcon icon={faHeart} bounce={bounce} id="wishlist" />
+            <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
+              5
+            </span>
+          </div>
+          {/* User */}
+          <div
+            onClick={() => setOpenDropdown((prev) => !prev)}
+            className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer"
+          >
+            <FontAwesomeIcon icon={faUser} />
+            <DropDownSelection
+              ref={drowndownRef}
+              user={user || { email: "" }}
+              itemClicked={itemClicked}
+              openDropDown={openDropdown}
+            />
+          </div>
+          {/* Cart */}
+          <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
+            <FontAwesomeIcon icon={faCartShopping} shake={shaking} id="cart" />
+            <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
+              2
+            </span>
+          </div>
         </div>
-        {/* User */}
-        <div
-          onClick={() => setOpenDropdown((prev) => !prev)}
-          className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer"
-        >
-          <FontAwesomeIcon icon={faUser} />
-          <DropDownSelection
-            ref={drowndownRef}
-            itemClicked={itemClicked}
-            openDropDown={openDropdown}
-          />
-        </div>
-        {/* Cart */}
-        <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
-          <FontAwesomeIcon icon={faCartShopping} shake={shaking} id="cart" />
-          <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
-            2
-          </span>
-        </div>
-      </div>
+      )}
     </header>
   );
 }

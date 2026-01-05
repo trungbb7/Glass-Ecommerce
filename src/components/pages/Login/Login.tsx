@@ -33,7 +33,7 @@ export default function Login() {
       });
 
       if (response.ok) {
-        const user = (await response.json()) as User;
+        const user = (await response.json()).user as User;
         dispatch(loginUser(user));
         navigate("/");
       } else {

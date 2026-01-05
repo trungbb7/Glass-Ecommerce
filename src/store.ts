@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import headerReducer from "@/components/Header/headerSlice";
 import authReducer from "@/components/Auth/authSlice";
-import notificationReducer from "@/components/Notification/NotificationSlice";
+import notificationReducer from "@/components/Notification/notificationSlice";
 export const store = configureStore({
   reducer: {
     header: headerReducer,

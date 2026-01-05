@@ -1,4 +1,7 @@
 import userAvatarImg from "@/assets/user_avatar.png";
+import { logoutUser } from "@/components/Auth/authSlice";
+import { useAppDispatch } from "@/hooks";
+import type { User } from "@/types/user";
 import {
   faArrowRightFromBracket,
   faClockRotateLeft,
@@ -7,8 +10,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface DropDownSelectionProps {
+  user: User;
   openDropDown: boolean;
   itemClicked: (path: string) => void;
 }
@@ -16,7 +21,10 @@ interface DropDownSelectionProps {
 const DropDownSelection = forwardRef<
   HTMLDivElement | null,
   DropDownSelectionProps
->(({ itemClicked, openDropDown }, ref) => {
+>(({ user, itemClicked, openDropDown }, ref) => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   return (
     <div
       ref={ref}
@@ -32,8 +40,8 @@ const DropDownSelection = forwardRef<
           className="size-8 rounded-full"
         />
         <div>
-          <h2 className="text-sm font-medium">Minh Trung</h2>
-          <h3 className="text-sm">trungbb8@gmail.com</h3>
+          <h2 className="text-sm font-medium">{user.fullName}</h2>
+          <h3 className="text-sm">{user.email}</h3>
         </div>
       </div>
 
@@ -64,7 +72,13 @@ const DropDownSelection = forwardRef<
         </li>
 
         <li className="h-0.5 bg-neutral-100"></li>
-        <li className="flex items-center gap-2 rounded-lg p-1.5 text-red-600 hover:bg-neutral-50">
+        <li
+          onClick={() => {
+            dispatch(logoutUser());
+            navigate("/login");
+          }}
+          className="flex items-center gap-2 rounded-lg p-1.5 text-red-600 hover:bg-neutral-50"
+        >
           <FontAwesomeIcon icon={faArrowRightFromBracket} size="sm" />
           <span className="font-medium text-base">Đăng xuất</span>
         </li>

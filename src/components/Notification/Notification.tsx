@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/hooks";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { closeNotification } from "./NotificationSlice";
+import { closeNotification } from "./notificationSlice";
 import type { Notification as NotificatinType } from "@/types/notification";
 
 interface NotificationProps {

@@ -19,7 +19,13 @@ server.post("/login", (req, res) => {
 
   if (user) {
     res.status(200).json({
-      user: { id: user.id, email: user.email },
+      user: {
+        id: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+        token: user.token,
+      },
     });
   } else {
     res.status(401).json({ error: "Sai tài khoản hoặc mật khẩu" });
