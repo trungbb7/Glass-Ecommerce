@@ -1,37 +1,16 @@
-import {AppWindowIcon, CodeIcon, MinusIcon, Plus, Search, Star, Trash} from "lucide-react"
+import {Search, Star} from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs.tsx";
+import {Button} from "@/components/ui/button"
+import {Input} from "@/components/ui/input"
+import {Tabs, TabsContent, TabsList, TabsTrigger,} from "@/components/ui/tabs.tsx";
 import {Header} from "@/components/Header/index.ts";
-import {
-    Item,
-    ItemActions,
-    ItemContent,
-    ItemDescription,
-    ItemGroup,
-    ItemMedia,
-    ItemTitle
-} from "@/components/ui/item.tsx";
-import {Checkbox} from "@/components/ui/checkbox.tsx";
+import {Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle} from "@/components/ui/item.tsx";
 import {Avatar, AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import {formatCurrency} from "@/utils/formattor.ts";
 import {ButtonGroup} from "@/components/ui/button-group.tsx";
 import OrderStatusBadge from "@/components/Badge/Badge.tsx";
+import OrderStatus from "@/types/order.ts";
+
 export function Order() {
     return (
         <>
@@ -51,6 +30,7 @@ type OrderItemType = {
     quantity: number;
     price: number;
     status: string;
+    statusValue?: string;
 }
 const sampleOrderItems: OrderItemType[] = [
     {
@@ -59,6 +39,7 @@ const sampleOrderItems: OrderItemType[] = [
         quantity: 2,
         price: 100000,
         status: "Đang xử lý",
+        statusValue: 'PENDING'
     },
     {
         id: 2,
@@ -66,6 +47,7 @@ const sampleOrderItems: OrderItemType[] = [
         quantity: 1,
         price: 200000,
         status: "Đang vận chuyển",
+        statusValue: 'DELIVERING'
     },
     {
         id: 3,
@@ -73,13 +55,14 @@ const sampleOrderItems: OrderItemType[] = [
         quantity: 3,
         price: 150000,
         status: "Đã giao",
+        statusValue: 'DELIVERED'
     },
 ];
 
 
 export function OrderContent() {
     const tabContent = [
-        { title: "Tất cả", value: "account" },
+        { title: "Tất cả", value: "all" },
         { title: "Chờ thanh toán", value: "wait-pay" },
         { title: "Đang xử lý", value: "processing" },
         { title: "Đang vận chuyển", value: "delivering" },
@@ -96,7 +79,7 @@ export function OrderContent() {
     ));
     return (
         <div className="flex w-full max-w-8/10 flex-col gap-6 layout-padding my-8 mx-auto">
-            <Tabs defaultValue="account">
+            <Tabs defaultValue="all">
                 <TabsList className="w-full flex flex-nowrap overflow-x-auto justify-around">
                     {renderTabTriggers}
                 </TabsList>
@@ -109,40 +92,22 @@ export function OrderContent() {
                     <Search />
                 </div>
 
-                <TabsContent value="account">
-                    <OrderItemList items={sampleOrderItems}></OrderItemList>
+                <TabsContent value="all">
+                    <OrderItemList items={sampleOrderItems} statusType={"all"}></OrderItemList>
                 </TabsContent>
-                <TabsContent value="password">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Password</CardTitle>
-                            <CardDescription>
-                                Change your password here. After saving, you&apos;ll be logged
-                                out.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="grid gap-6">
-                            <div className="grid gap-3">
-                                <Label htmlFor="tabs-demo-current">Current password</Label>
-                                <Input id="tabs-demo-current" type="password" />
-                            </div>
-                            <div className="grid gap-3">
-                                <Label htmlFor="tabs-demo-new">New password</Label>
-                                <Input id="tabs-demo-new" type="password" />
-                            </div>
-                        </CardContent>
-                        <CardFooter>
-                            <Button>Save password</Button>
-                        </CardFooter>
-                    </Card>
+                <TabsContent value={OrderStatus.Pending}>
+                    <OrderItemList items={sampleOrderItems} statusType={OrderStatus.Pending}></OrderItemList>
                 </TabsContent>
             </Tabs>
         </div>
     )
 }
 
-function OrderItemList({items}:{items: OrderItemType[]}) {
-    const renderedItems = items.map((item: OrderItemType) => (
+function OrderItemList({items, statusType}: {items: OrderItemType[]; statusType: string}) {
+    const filteredItems = (items as OrderItemType[]).filter((item) => {
+        return statusType === "all" || item.statusValue === statusType;
+    });
+    const renderedItems = (filteredItems as OrderItemType[]).map((item: OrderItemType) => (
         <OrderItem key={item.id} item={item}></OrderItem>
     ));
     return (
