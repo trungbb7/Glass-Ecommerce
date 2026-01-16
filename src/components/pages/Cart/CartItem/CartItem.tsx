@@ -28,11 +28,11 @@ function CartItem({item}: { item: CartItemType }) {
         <>
             <Item
                 variant="outline"
-                className="w-full max-w-8/10 hover:bg-accent/50 flex items-center gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950"
+                className="w-full hover:bg-accent/50 flex items-center gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950"
                 role="listitem">
                 <Checkbox
                     id={item.id}
-                    className=" w-5 h-5 mt-2"
+                    className="w-5 h-5 mt-2"
                 ></Checkbox>
                 {/*<ItemContent>*/}
                 {/*    <ItemTitle>{item.id}</ItemTitle>*/}
