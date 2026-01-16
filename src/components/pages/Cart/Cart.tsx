@@ -1,4 +1,4 @@
-import CartItem from "@/components/pages/Cart/CartItem/CartItem.tsx";
+import CartItem, {EmptyCardAlert} from "@/components/pages/Cart/CartItem/CartItem.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Header} from "@/components/Header/index.ts";
 import {useNavigate} from "react-router-dom";
@@ -53,7 +53,8 @@ export default function Cart({items}: {items?: CartItemType[]}) {
             <div>
                 <div className="cart-page layout-padding gap-8 flex flex-col m-8">
                     <section className="product-list">
-                        {renderedItems}
+                        {renderedItems?.length === 0 ?
+                        <EmptyCardAlert></EmptyCardAlert> : renderedItems}
                     </section>
                     <section className="mt-4 w-full max-w-8/10 flex flex-col gap-6 bottom-0 position-sticky">
                         <OrderSummarySimple

@@ -1,4 +1,4 @@
-import {MinusIcon, Plus, Trash, X} from "lucide-react";
+import {AlertCircleIcon, CheckCircle2Icon, MinusIcon, Plus, Trash, X} from "lucide-react";
 import {
     Item,
     ItemActions,
@@ -12,6 +12,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {Avatar, AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import type {CartItemType} from "@/components/pages/Cart/Cart.tsx";
 import {useState} from "react";
+import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert.tsx";
 
 function CartItem({item}: { item: CartItemType }) {
     const [quantity, setQuantity] = useState(item.quantity);
@@ -71,5 +72,19 @@ function CartItem({item}: { item: CartItemType }) {
         </>
     );
 }
+function EmptyCardAlert() {
+    return (
+        <>
+            <Alert>
+                <AlertCircleIcon  />
+                <AlertTitle>Bạn chưa thêm sản phẩm nào!</AlertTitle>
+                <AlertDescription>
+                    Tiếp tục mua sắm để thêm sản phẩm vào giỏ hàng của bạn.
+                </AlertDescription>
+            </Alert>
+        </>
+    )
+}
 
 export default CartItem;
+export {EmptyCardAlert};
