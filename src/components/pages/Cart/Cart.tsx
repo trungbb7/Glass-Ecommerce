@@ -58,8 +58,7 @@ export default function Cart({items}: {items?: CartItemType[]}) {
                     </section>
                     <section className="mt-4 w-full max-w-8/10 flex flex-col gap-6 bottom-0 position-sticky">
                         <OrderSummarySimple
-                            chosenItems={renderedItems?.length ?? 0}
-                            className="relative bottom-0 z-20"></OrderSummarySimple>
+                            chosenItems={renderedItems?.length ?? 0}></OrderSummarySimple>
                     </section>
                 </div>
             </div>

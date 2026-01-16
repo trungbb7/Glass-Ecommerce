@@ -21,6 +21,7 @@ import { Notification } from "./components/Notification";
 import Cart from "@/components/pages/Cart/Cart.tsx";
 import Profile from "@/components/pages/Profile/Profile.tsx";
 import Checkout from "@/components/pages/Checkout/Checkout.tsx";
+import {Order} from "@/components/pages/Order/Order.tsx";
 
 function App() {
   const token = useAppSelector((state) => state.auth.token);
@@ -65,6 +66,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/account" element={<Profile />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orders" element={<Order />} />
         <Route
           path="/wishlist"
           element={

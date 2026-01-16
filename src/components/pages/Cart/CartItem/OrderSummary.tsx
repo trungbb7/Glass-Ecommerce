@@ -69,7 +69,7 @@ function OrderSummarySimple({chosenItems}: { chosenItems: number }) {
                         <Button
                             className="w-full max-w-48"
                             size="lg"
-                            onClick={()=> navigate("/checkout")}>Mua hàng</Button>
+                            onClick={()=> navigate("/checkout")}>Thanh toán</Button>
                     </ItemActions>
                 </Item>
             </div>
