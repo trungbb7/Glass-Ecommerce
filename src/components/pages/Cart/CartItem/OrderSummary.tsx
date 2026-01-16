@@ -2,6 +2,7 @@ import {Item, ItemActions, ItemContent, ItemDescription, ItemGroup, ItemTitle} f
 import {Button} from "@/components/ui/button.tsx";
 import {Ticket} from "lucide-react";
 import {useNavigate} from "react-router-dom";
+import {VoucherDialog} from "@/components/Voucher/Voucher.tsx";
 
 function OrderSummary(props) {
     //use shadcn components
@@ -64,11 +65,7 @@ function OrderSummarySimple({chosenItems}: { chosenItems: number }) {
                         <ItemDescription className="text-lg">{3}</ItemDescription>
                     </ItemContent>
                     <ItemActions>
-                        <Button
-                            className="max-w-48"
-                        variant="outline">
-                            <Ticket />
-                            Nhập mã khuyến mãi</Button>
+                        <VoucherDialog></VoucherDialog>
                         <Button
                             className="w-full max-w-48"
                             size="lg"
