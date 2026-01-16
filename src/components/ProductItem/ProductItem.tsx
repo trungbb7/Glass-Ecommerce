@@ -1,67 +1,172 @@
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
-import { startShaking, stopShaking } from "../Header/headerSlice";
+import { useEffect, useRef } from "react";
+import {
+  startBounceWishlist,
+  startShakingCart,
+  stopBounceWishlist,
+  stopShakingCart,
+} from "../Header/headerSlice";
+import { Rating } from "../Rating";
+import { useNavigate } from "react-router-dom";
+import {
+  closeNotification,
+  pushNotification,
+} from "../Notification/notificationSlice";
 
 interface ProductItemProps {
+  id: string;
   img: string;
   discountPercent: number;
   name: string;
   stockPrice: number;
-  discountPrice: number;
+  finalPrice: number;
+  colors: string[];
+  isWishList?: boolean;
+  className?: string;
 }
 
 export default function ProductItem({
+  id,
   img,
   discountPercent,
   name,
   stockPrice,
-  discountPrice,
+  finalPrice,
+  colors = [],
+  isWishList = false,
+  className,
 }: ProductItemProps) {
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const logged = useAppSelector((state) => state.auth.logged);
+  const show = useAppSelector((state) => state.notification.show);
+
   const imgRef = useRef<HTMLImageElement>(null);
 
   function handleAddToCart(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
-    // Add-to-cart effect
-    if (imgRef.current) {
-      const startRect = event.currentTarget.getBoundingClientRect();
+    if (logged) {
+      // Add-to-cart effect
+      if (imgRef.current) {
+        const startRect = event.currentTarget.getBoundingClientRect();
 
-      const cart = document.getElementById("cart") as HTMLElement;
-      const endRect = cart?.getBoundingClientRect();
+        const cart = document.getElementById("cart") as HTMLElement;
+        const endRect = cart?.getBoundingClientRect();
 
-      const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+        const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
 
-      flyingImg.style.left = startRect.left + "px";
-      flyingImg.style.top = startRect.top + "px";
+        flyingImg.style.left = startRect.left + "px";
+        flyingImg.style.top = startRect.top + "px";
 
-      flyingImg.classList.add("flying-image");
+        flyingImg.classList.add("flying-image");
 
-      document.body.appendChild(flyingImg);
-      setTimeout(() => {
-        const deltaX = endRect.left - startRect.left;
-        const deltaY = endRect.top - startRect.top;
+        document.body.appendChild(flyingImg);
+        setTimeout(() => {
+          const deltaX = endRect.left - startRect.left;
+          const deltaY = endRect.top - startRect.top;
 
-        flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
-        flyingImg.style.opacity = "0.5";
-      }, 10);
-
-      setTimeout(() => {
-        flyingImg.remove();
-        dispatch(startShaking());
+          flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+          flyingImg.style.opacity = "0.5";
+        }, 10);
 
         setTimeout(() => {
-          dispatch(stopShaking());
-        }, 200);
-      }, 500);
+          flyingImg.remove();
+          dispatch(startShakingCart());
+
+          setTimeout(() => {
+            dispatch(stopShakingCart());
+          }, 200);
+        }, 500);
+      }
+    } else {
+      dispatch(
+        pushNotification({
+          title: "Opps",
+          message: "Vui lòng đăng nhập để thực hiện chức năng này",
+          type: "error",
+        }),
+      );
     }
   }
 
+  function handleAddToWishList(
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
+  ) {
+    if (logged) {
+      // Add-to-cart effect
+      if (imgRef.current) {
+        const startRect = event.currentTarget.getBoundingClientRect();
+
+        const wishlist = document.getElementById("wishlist") as HTMLElement;
+        const endRect = wishlist?.getBoundingClientRect();
+
+        const flyingImg = imgRef.current?.cloneNode() as HTMLImageElement;
+
+        flyingImg.style.left = startRect.left + "px";
+        flyingImg.style.top = startRect.top + "px";
+
+        flyingImg.classList.add("flying-image");
+
+        document.body.appendChild(flyingImg);
+        setTimeout(() => {
+          const deltaX = endRect.left - startRect.left;
+          const deltaY = endRect.top - startRect.top;
+
+          flyingImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.2)`;
+          flyingImg.style.opacity = "0.5";
+        }, 10);
+
+        setTimeout(() => {
+          flyingImg.remove();
+          dispatch(startBounceWishlist());
+
+          setTimeout(() => {
+            dispatch(stopBounceWishlist());
+          }, 500);
+        }, 500);
+      }
+    } else {
+      dispatch(
+        pushNotification({
+          title: "Opps",
+          message: "Vui lòng đăng nhập để thực hiện chức năng này",
+          type: "error",
+        }),
+      );
+    }
+  }
+
+  function handleRemoveWishList() {
+    console.log("Remove wishlist item");
+  }
+
+  function goToDetail() {
+    navigate(`/product/${id}`);
+  }
+
+  useEffect(() => {
+    if (show) {
+      const timer = setTimeout(() => {
+        dispatch(closeNotification());
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [show, dispatch]);
+
   return (
-    <div className="pb-4 rounded-lg border border-gray-200 cursor-pointer">
+    <div
+      className={`max-w-70 h-108 pb-4 rounded-lg border border-gray-200 cursor-pointer ${className}`}
+    >
       {/* Top */}
       <div className="group/top relative mb-2 overflow-hidden">
         <img
@@ -73,12 +178,30 @@ export default function ProductItem({
         <div className="absolute top-2 left-2 text-xs font-medium text-white px-2 py-1 rounded-sm bg-secondary">
           -{discountPercent}%
         </div>
-        <div className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer">
-          <FontAwesomeIcon
-            icon={faHeart}
-            className="text-gray-300 hover:text-black"
-          />
-        </div>
+
+        {isWishList ? (
+          <div
+            onClick={handleRemoveWishList}
+            className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
+          >
+            <FontAwesomeIcon
+              icon={faTrashCan}
+              className="text-gray-300 hover:text-black"
+            />
+          </div>
+        ) : (
+          <div
+            onClick={(e) => {
+              handleAddToWishList(e);
+            }}
+            className="absolute top-2 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
+          >
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="text-gray-300 hover:text-black"
+            />
+          </div>
+        )}
 
         <button
           onClick={handleAddToCart}
@@ -97,7 +220,10 @@ export default function ProductItem({
           Thêm vào giỏ hàng
         </button>
 
-        <div className="absolute top-12 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer">
+        <div
+          onClick={goToDetail}
+          className="absolute top-12 right-2 p-0.5 rounded-sm bg-white/10 hover:shadow hover:bg-white cursor-pointer"
+        >
           <FontAwesomeIcon
             icon={faEye}
             className="text-gray-300 hover:text-black"
@@ -107,44 +233,36 @@ export default function ProductItem({
       {/* Body */}
       <div className="px-2">
         {/* Name */}
-        <p className="mb-2 text-lg font-medium hover:underline">{name}</p>
+        <p
+          onClick={goToDetail}
+          className="mb-2 text-lg font-medium hover:underline"
+        >
+          {name}
+        </p>
+
+        {/* Colors */}
+        <ul className="flex gap-2">
+          {colors.map((color) => (
+            <li
+              key={color}
+              style={{ backgroundColor: color }}
+              className="size-4 border border-amber-300 rounded-full"
+            ></li>
+          ))}
+        </ul>
+
         {/* Price */}
         <div>
           <span className="text-secondary mr-2 font-medium">
-            ${discountPrice}
+            {formatter.format(finalPrice)}
           </span>
           <span className="text-gray-300 line-through font-medium">
-            ${stockPrice}
+            {formatter.format(stockPrice)}
           </span>
         </div>
-        {/* Start */}
-        <div>
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            className="text-yellow-400"
-            size="xs"
-          />
-        </div>
+
+        {/* Rating */}
+        <Rating size="sm" rating={4} />
       </div>
     </div>
   );

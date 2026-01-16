@@ -1,11 +1,13 @@
 import { Button } from "@/components/Button";
 import secondaryHomeBanner from "@/assets/second_home_banner.png";
+import { useNavigate } from "react-router-dom";
 
-interface RecommendedBannerProps {
+interface RecommededBannerProps {
   className?: string;
 }
 
-export default function RecommendedBanner({ className }: RecommendedBannerProps) {
+export default function RecommededBanner({ className }: RecommededBannerProps) {
+  const navigate = useNavigate();
   return (
     <div className={`flex h-100 p-10 bg-black ${className}`}>
       {/* Left side */}
@@ -14,7 +16,13 @@ export default function RecommendedBanner({ className }: RecommendedBannerProps)
         <p className="text-white font-bold text-4xl">
           Nâng tầm trải nghiệm và phong cách hiện đại
         </p>
-        <Button text="Mua ngay" type="primary" color="green" />
+        <Button
+          onClick={() => navigate("/product")}
+          type="primary"
+          color="green"
+        >
+          Mua ngay
+        </Button>
       </div>
       {/* Right side */}
       <div className="relative grow-5 w-1/2 flex items-center justify-end">

@@ -1,77 +1,77 @@
 import { SeperateLine } from "@/components/SeperateLine";
-import SidebarSelectorItem, {
-  type ItemData,
-} from "../SidebarSelectorItem.tsx/SidebarSelectorItem";
+import SidebarSelectorItem from "../SidebarSelectorItem.tsx/SidebarSelectorItem";
 import { useState } from "react";
+import type { Filter } from "@/types/filter";
 
-const itemData: ItemData[] = [
-  {
-    title: "Tất cả",
-    checked: true,
-    quantity: 300,
-  },
-  {
-    title: "Kính mát nam",
-    checked: false,
-    quantity: 80,
-  },
-  {
-    title: "Kính mát nữ",
-    checked: false,
-    quantity: 70,
-  },
-  {
-    title: "Kính mát unisex",
-    checked: false,
-    quantity: 60,
-  },
-  {
-    title: "Kính mát trẻ em",
-    checked: false,
-    quantity: 40,
-  },
-  {
-    title: "Kính mát kim loại",
-    checked: false,
-    quantity: 120,
-  },
-  {
-    title: "Kính mát nhựa",
-    checked: false,
-    quantity: 90,
-  },
-];
+interface SidebarSelectorItemProps {
+  data: Filter;
+  updateFilter: (items: { key: string; value: string }[]) => void;
+}
 
-export default function SidebarSelector() {
-  const [data, setData] = useState<ItemData[]>(itemData);
+export default function SidebarSelector({
+  data,
+  updateFilter,
+}: SidebarSelectorItemProps) {
+  const [open, setOpen] = useState<boolean>(false);
 
-  function selectItem(title: string) {
-    const newData = data.map((item) => ({
-      ...item,
-      checked: item.title === title,
-    }));
-    setData(newData);
+  const items = [
+    {
+      title: "Tất cả",
+      quantity: 300,
+      query: ["", "999999999"],
+    },
+    ...data.items,
+  ];
+
+  function selectItem(query: string[]) {
+    updateFilter(
+      data.operator.map((operator, index) => ({
+        key: `${data.fieldname}_${operator}`,
+        value: query[index],
+      })),
+    );
   }
 
   return (
     <div className="">
       {/* Head */}
       <div className="flex justify-between mb-1">
-        <span className="font-medium text-lg text-secondary">Danh mục</span>
-        <button className="text-text2 cursor-pointer rounded-sm px-1 hover:bg-gray-100 active:text-secondary ">
+        <span className="font-medium text-lg text-secondary">{data.name}</span>
+        <button
+          onClick={() => {
+            selectItem(["", "999999999"]);
+          }}
+          className="text-text2 cursor-pointer rounded-sm px-1 hover:bg-gray-100 active:text-secondary "
+        >
           Reset
         </button>
       </div>
       {/* Items */}
-      <ul className="pb-6">
-        {data.map((item) => (
+      <ul
+        data-open={open}
+        className="pb-6 [&>li:nth-child(n+6)]:hidden data-[open=true]:[&>li:nth-child(n+6)]:flex"
+      >
+        {items.map((item) => (
           <SidebarSelectorItem
+            param={`${data.fieldname}_${data.operator[0]}`}
+            value={`${item.query[0]}`}
             selectItem={selectItem}
             data={item}
             key={item.title}
           />
         ))}
       </ul>
+      {items.length > 5 && (
+        <button
+          onClick={() => {
+            setOpen((prev) => !prev);
+          }}
+          className="block text-secondary mx-auto cursor-pointer hover:underline"
+        >
+          {open ? "Thu gọn" : "Mở rộng"}
+        </button>
+      )}
+
       <SeperateLine />
     </div>
   );

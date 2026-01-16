@@ -1,10 +1,12 @@
 import clsx from "clsx";
 
 interface ButtonProps {
-  text: string;
+  // text: string;
   type: "primary" | "secondary";
   color?: "secondary" | "green";
   className?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  children: React.ReactNode;
 }
 
 const colorClasses = {
@@ -23,10 +25,11 @@ const colorClasses = {
 };
 
 export default function Button({
-  text,
   type,
   color = "secondary",
   className,
+  onClick,
+  children,
 }: ButtonProps) {
   const c = colorClasses[color];
 
@@ -42,5 +45,9 @@ export default function Button({
       "hover:text-white",
     ],
   );
-  return <button className={classNameNew}>{text}</button>;
+  return (
+    <button onClick={onClick} className={classNameNew}>
+      {children}
+    </button>
+  );
 }

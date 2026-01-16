@@ -1,26 +1,56 @@
-import { createSlice } from "@reduxjs/toolkit";
-
+import type { Product } from "@/types/product";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 interface HeaderState {
-  shaking: boolean;
+  cartShaking: boolean;
+  wishlistBounce: boolean;
+  isComparing: boolean;
+  compareProduct: Product | null;
 }
 
 const initialState: HeaderState = {
-  shaking: false,
+  cartShaking: false,
+  wishlistBounce: false,
+  isComparing: false,
+  compareProduct: null,
 };
 
 export const headSlice = createSlice({
   name: "header",
   initialState: initialState,
   reducers: {
-    startShaking: (state) => {
-      state.shaking = true;
+    startShakingCart: (state) => {
+      state.cartShaking = true;
     },
-    stopShaking: (state) => {
-      state.shaking = false;
+    stopShakingCart: (state) => {
+      state.cartShaking = false;
+    },
+
+    startBounceWishlist: (state) => {
+      state.wishlistBounce = true;
+    },
+    stopBounceWishlist: (state) => {
+      state.wishlistBounce = false;
+    },
+    startComparing: (state) => {
+      state.isComparing = true;
+    },
+    stopComparing: (state) => {
+      state.isComparing = false;
+    },
+    setCompareProduct: (state, action: PayloadAction<Product | null>) => {
+      state.compareProduct = action.payload;
     },
   },
 });
 
-export const { startShaking, stopShaking } = headSlice.actions;
+export const {
+  startShakingCart,
+  stopShakingCart,
+  startBounceWishlist,
+  stopBounceWishlist,
+  startComparing,
+  stopComparing,
+  setCompareProduct,
+} = headSlice.actions;
 
 export default headSlice.reducer;

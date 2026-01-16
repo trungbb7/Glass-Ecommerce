@@ -1,6 +1,5 @@
 import { Header } from "@/components/Header";
 
-import productImg1 from "@/assets/product_img1.jpg";
 import Banner from "./Banner/Banner";
 import CategoryHeading from "./CategoryHeading/CategoryHeading";
 import ProductItem from "@/components/ProductItem/ProductItem";
@@ -8,54 +7,77 @@ import RecommendedBanner from "./RecommendedBanner/RecommendedBanner";
 import { SeperateLine } from "@/components/SeperateLine";
 import { Footer } from "@/components/Footer";
 import CategorySection from "./CategorySection/CategorySection";
+import { useEffect, useRef, useState } from "react";
+import type { Product } from "@/types/product";
 
 export default function Home() {
+  const [onSaleProducts, setOnSaleProducts] = useState<Product[]>([]);
+  const [newProducts, setNewProducts] = useState<Product[]>([]);
+  const scrollTargetRef = useRef<HTMLDivElement | null>(null);
+
+  function scrollToTarget() {
+    scrollTargetRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
+  // Fetch products
+  useEffect(() => {
+    async function fetchOnSaleProducts() {
+      const response = await fetch(
+        "http://localhost:3000/products?onSale=true&_limit=4",
+      );
+      const productsObj = (await response.json()) as Product[];
+      setOnSaleProducts(productsObj);
+    }
+
+    async function fetchNewProducts() {
+      const response = await fetch(
+        "http://localhost:3000/products?isNew=true&_limit=8",
+      );
+      const productsObj = (await response.json()) as Product[];
+      setNewProducts(productsObj);
+    }
+
+    fetchNewProducts();
+    fetchOnSaleProducts();
+  }, []);
+
   return (
     <div className="text-text1">
       <Header />
       {/* Body */}
       <div className="mt-10 px-30">
-        <Banner />
+        <Banner scrollFunction={scrollToTarget} />
 
         <SeperateLine className="my-15" />
 
         {/* Flash Sales */}
 
-        <CategoryHeading
-          title="Hôm nay"
-          description="Flash Sales"
-          endDate={new Date(2026, 2, 10, 0, 0, 0)}
-          className="mb-4 "
-        />
-        <div className="flex flex-wrap gap-4 mb-8">
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
+        <div ref={scrollTargetRef} className="h-fit">
+          <CategoryHeading
+            title="Hôm nay"
+            description="Flash Sales"
+            endDate={new Date(2026, 2, 10, 0, 0, 0)}
+            className="mb-4 "
           />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
+          <div className="flex flex-wrap gap-4 mb-8">
+            {onSaleProducts.map((product) => (
+              <ProductItem
+                id={product.id}
+                img={product.images[0]}
+                discountPercent={Math.round(
+                  (1 - product.finalPrice / product.stockPrice) * 100,
+                )}
+                finalPrice={product.finalPrice}
+                name={product.name}
+                stockPrice={product.stockPrice}
+                colors={product.variants.map((item) => item.color)}
+                key={product.id}
+              />
+            ))}
+          </div>
         </div>
 
         <SeperateLine className="my-15" />
@@ -77,63 +99,20 @@ export default function Home() {
           className="mb-4"
         />
         <div className="flex flex-wrap gap-4 mb-8">
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
-          <ProductItem
-            img={productImg1}
-            discountPercent={40}
-            name="Kính Mát MN1268"
-            discountPrice={420000}
-            stockPrice={500000}
-          />
+          {newProducts.map((product) => (
+            <ProductItem
+              id={product.id}
+              img={product.images[0]}
+              discountPercent={Math.round(
+                (1 - product.finalPrice / product.stockPrice) * 100,
+              )}
+              finalPrice={product.finalPrice}
+              name={product.name}
+              stockPrice={product.stockPrice}
+              colors={product.variants.map((item) => item.color)}
+              key={product.id}
+            />
+          ))}
         </div>
 
         <SeperateLine className="my-15" />
