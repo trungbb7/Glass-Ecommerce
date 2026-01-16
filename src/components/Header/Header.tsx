@@ -52,9 +52,9 @@ export default function Header() {
           </Link>
 
           {/* Menu */}
-          <div>
+          <div className="flex flex-nowrap items-center text-nowrap">
             <Link to="/">
-              <span className="text-base mr-6 hover:text-secondary cursor-pointer">
+              <span className="text-base mr-6 hover:text-secondary cursor-pointer text-nowrap">
                 Trang chủ
               </span>
             </Link>
