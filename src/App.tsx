@@ -18,6 +18,9 @@ import type { User } from "./types/user";
 import { loginUser, logoutUser } from "./components/Auth/authSlice";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Notification } from "./components/Notification";
+import Cart from "@/components/pages/Cart/Cart.tsx";
+import Profile from "@/components/pages/Profile/Profile.tsx";
+import Checkout from "@/components/pages/Checkout/Checkout.tsx";
 
 function App() {
   const token = useAppSelector((state) => state.auth.token);
@@ -59,6 +62,9 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/account" element={<Profile />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route
           path="/wishlist"
           element={

@@ -117,7 +117,8 @@ export default function Header() {
             />
           </div>
           {/* Cart */}
-          <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer">
+          <div className="relative mr-6 px-2 py-1.5 bg-transparent hover:bg-primary-light rounded-md cursor-pointer"
+          onClick={() => navigate("/cart")}>
             <FontAwesomeIcon icon={faCartShopping} shake={shaking} id="cart" />
             <span className="absolute -right-1 -top-0.5 px-1.5 rounded-full bg-secondary text-white text-xs font-semibold">
               2
