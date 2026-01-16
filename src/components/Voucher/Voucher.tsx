@@ -11,8 +11,18 @@ import {Button} from "@/components/ui/button.tsx";
 import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Ticket} from "lucide-react";
-import {Item, ItemContent, ItemDescription, ItemGroup, ItemTitle} from "@/components/ui/item.tsx";
-import {Checkbox} from "@radix-ui/react-checkbox";
+import {
+    Item,
+    ItemActions,
+    ItemContent,
+    ItemDescription,
+    ItemGroup,
+    ItemMedia,
+    ItemTitle
+} from "@/components/ui/item.tsx";
+import { Checkbox } from "@/components/ui/checkbox"
+import {Avatar, AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
+import {formatCurrency} from "@/utils/formattor.ts";
 
 type Props = {
     vouchers?: Array<any>;
@@ -23,6 +33,7 @@ type Voucher = {
     discountAmount: number;
     minOrderAmount: number;
     expiryDate: string;
+    quantity?: number;
 };
 
 export function VoucherDialog() {
@@ -34,6 +45,7 @@ export function VoucherDialog() {
             discountAmount: 10,
             minOrderAmount: 100000,
             expiryDate: "2024-12-31",
+            quantity: 1,
         },
         {
             code: "FREESHIP",
@@ -41,6 +53,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         },
         {
             code: "FREESHIP",
@@ -48,6 +61,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         },
         {
             code: "FREESHIP",
@@ -55,6 +69,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         },
         {
             code: "FREESHIP",
@@ -62,6 +77,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         },
         {
             code: "FREESHIP",
@@ -69,6 +85,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         },
         {
             code: "FREESHIP",
@@ -76,6 +93,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         },
         {
             code: "FREESHIP",
@@ -83,6 +101,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         },
         {
             code: "FREESHIP",
@@ -90,6 +109,7 @@ export function VoucherDialog() {
             discountAmount: 0,
             minOrderAmount: 50000,
             expiryDate: "2024-11-30",
+            quantity: 2,
         }
     ];
     const renderVouchers = () => {
@@ -111,12 +131,11 @@ export function VoucherDialog() {
                         <Ticket/>
                         Nhập mã khuyến mãi</Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]  max-h-[90vh]">
+                <DialogContent className="sm:max-w-7/10  max-h-[90vh]">
                     <DialogHeader>
                         <DialogTitle>Mã khuyến mãi</DialogTitle>
                         <DialogDescription>
-                            Make changes to your profile here. Click save when you&apos;re
-                            done.
+                            Nhập mã khuyến mãi của bạn bên dưới hoặc chọn từ các mã có sẵn:
                         </DialogDescription>
                         <div className="flex w-full max-w-sm items-center gap-2">
                             <Input type="text" placeholder="..." />
@@ -145,14 +164,65 @@ export function VoucherDialog() {
 function VoucherItem({voucher}: { voucher?: Voucher }) {
     return (
         <Item>
+            <ItemMedia>
+                <Avatar className="h-14 w-14 rounded-md bg-muted">
+                    <AvatarImage src="https://github.com/evilrabbit.png"/>
+                    <AvatarFallback>ER</AvatarFallback>
+                </Avatar>
+            </ItemMedia>
             <ItemContent>
                 <ItemTitle>{voucher?.code}</ItemTitle>
                 <ItemDescription>{voucher?.description}</ItemDescription>
             </ItemContent>
-            <ItemContent className="flex-none text-center">
-                <ItemDescription>Áp dụng</ItemDescription>
+            <ItemContent>
+                <ItemTitle> {voucher?.quantity?? 0 > 0? `x${voucher?.quantity}`: ".."}</ItemTitle>
+                <ItemDescription>x {voucher?.expiryDate}</ItemDescription>
             </ItemContent>
+            <ItemActions className="flex-none text-center">
+                {/*<Checkbox></Checkbox>*/}
+                <VoucherDetail voucher={voucher}></VoucherDetail>
+            </ItemActions>
         </Item>
+    );
+}
+function VoucherDetail({voucher}: { voucher?: Voucher }) {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="outline">Xem chi tiết</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-4/10">
+                <DialogHeader>
+                    <DialogTitle>Chi tiết mã khuyến mãi</DialogTitle>
+                    <DialogDescription>
+                        Mã khuyến mãi: {voucher?.code}
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="flex flex-col gap-4">
+                    <div>
+                        <Label>Miêu tả:</Label>
+                        <p>{voucher?.description}</p>
+                    </div>
+                    <div>
+                        <Label>Số tiền giảm giá:</Label>
+                        <p>{formatCurrency(voucher?.discountAmount ??0)}</p>
+                    </div>
+                    <div>
+                        <Label>Đơn hàng tối thiểu:</Label>
+                        <p>{formatCurrency(voucher?.minOrderAmount ?? 0)}</p>
+                    </div>
+                    <div>
+                        <Label>Hạn sử dụng:</Label>
+                        <p>{voucher?.expiryDate}</p>
+                    </div>
+                </div>
+                <DialogFooter>
+                    <DialogClose asChild>
+                        <Button variant="outline">Đóng</Button>
+                    </DialogClose>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
     );
 }
 
