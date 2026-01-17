@@ -9,8 +9,9 @@ import ProductItem from "@/components/ProductItem/ProductItem";
 import { Pagination } from "@/components/Pagination";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import type { Product } from "@/types/product";
+import type { Product, WishLishResponseItem } from "@/types/product";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { useAppSelector } from "@/hooks";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -36,6 +37,7 @@ export interface ParamItem {
 const limit = 8;
 
 export default function WishList() {
+  const userId = useAppSelector((state) => state.auth.user?.id);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams({
     _page: "1",
@@ -75,7 +77,7 @@ export default function WishList() {
     async function fetchAllProducts() {
       const queryString = new URLSearchParams(searchParams).toString();
       const response = await fetch(
-        `http://localhost:3000/products?${queryString}`,
+        `http://localhost:3000/wishlists?userId=${userId}&_expand=product&${queryString}`,
       );
 
       const totalCountStr = response.headers.get("x-total-count");
@@ -84,12 +86,13 @@ export default function WishList() {
         setNumPages(Math.ceil(parseInt(totalCountStr) / limit));
       }
 
-      const productsObject = await response.json();
+      const responseObject = (await response.json()) as WishLishResponseItem[];
+      const productsObject = responseObject.map((item) => item.product);
       setProducts(productsObject);
     }
 
     fetchAllProducts();
-  }, [searchParams, setSearchParams]);
+  }, [searchParams, setSearchParams, userId]);
 
   useEffect(() => {
     function resetState() {

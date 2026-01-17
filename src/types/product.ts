@@ -42,4 +42,18 @@ interface CartProduct extends Product {
   selectedVariant: ProductVariant;
 }
 
-export type { Product, ProductVariant, ProductReview, ProductSpecification, CartProduct };
+interface WishLishResponseItem {
+  id: string;
+  userId: string;
+  productId: string;
+  product: Product;
+}
+
+export type {
+  Product,
+  ProductVariant,
+  ProductReview,
+  ProductSpecification,
+  WishLishResponseItem,
+  CartProduct,
+};
