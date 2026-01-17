@@ -4560,5 +4560,81 @@
         "https://i.ibb.co/nsJCfHCM/k-nh-m-t-nam-n-mn1267-3-78ac284ba90743b596d72d9eff391861-master.jpg"
       ]
     }
+  ],
+  "wishlists": [
+    {
+      "id": "1",
+      "userId": "1",
+      "productId": "4"
+    },
+    {
+      "id": "1",
+      "userId": "1",
+      "productId": "8"
+    },
+    {
+      "id": "1",
+      "userId": "1",
+      "productId": "34"
+    },
+    {
+      "id": "1",
+      "userId": "1",
+      "productId": "40"
+    },
+    {
+      "email": "trungbb9@gmail.com",
+      "fullName": "Minh Trung",
+      "address": "Thu Duc TP.HCM",
+      "tel": "0335631990",
+      "password": "1234",
+      "id": "wlFFieH"
+    },
+    {
+      "userId": "1",
+      "productId": "7",
+      "id": "nvt2cNE"
+    }
+  ],
+  "carts": [
+    {
+      "id": "1",
+      "userId": "1",
+      "productId": "5",
+      "quantity": 1
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "productId": "9",
+      "quantity": 2
+    },
+    {
+      "id": "3",
+      "userId": "1",
+      "productId": "24",
+      "quantity": 1
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "4",
+          "quantity": 1,
+          "price": 750000
+        },
+        {
+          "productId": "6",
+          "quantity": 2,
+          "price": 175000
+        }
+      ],
+      "discount": 0,
+      "finalPrice": 1110000,
+      "status": "ORDERED"
+    }
   ]
 }

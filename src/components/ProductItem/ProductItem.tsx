@@ -47,6 +47,7 @@ export default function ProductItem({
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const logged = useAppSelector((state) => state.auth.logged);
+  const userId = useAppSelector((state) => state.auth.user?.id);
   const show = useAppSelector((state) => state.notification.show);
 
   const imgRef = useRef<HTMLImageElement>(null);
@@ -55,6 +56,7 @@ export default function ProductItem({
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
     if (logged) {
+      addToWishList();
       // Add-to-cart effect
       if (imgRef.current) {
         const startRect = event.currentTarget.getBoundingClientRect();
@@ -147,6 +149,25 @@ export default function ProductItem({
 
   function handleRemoveWishList() {
     console.log("Remove wishlist item");
+  }
+
+  function addToWishList() {
+    console.log("da vao day");
+    if (logged) {
+      fetch("http://localhost:3000/wishlists", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ userId, productId: id }),
+      });
+    } else {
+      pushNotification({
+        title: "Opps",
+        message: "Vui lòng đăng nhập để thực hiện chức năng này",
+        type: "error",
+      });
+    }
   }
 
   function goToDetail() {

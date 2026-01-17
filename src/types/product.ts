@@ -38,4 +38,17 @@ interface Product {
   reviews?: ProductReview[];
 }
 
-export type { Product, ProductVariant, ProductReview, ProductSpecification };
+interface WishLishResponseItem {
+  id: string;
+  userId: string;
+  productId: string;
+  product: Product;
+}
+
+export type {
+  Product,
+  ProductVariant,
+  ProductReview,
+  ProductSpecification,
+  WishLishResponseItem,
+};
