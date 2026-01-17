@@ -20,6 +20,29 @@ export default function Cart({items}: {items?: CartItemType[]}) {
     const navigate = useNavigate();
     const totalItems = items?.reduce((acc, item) => acc + item.quantity, 0) || 0;
     const totalPrice = items?.reduce((acc, item) => acc + item.price * item.quantity, 0) || 0;
+    const chosenItems: CartItemType[] = [];
+
+    const hadnleOrder = async function handleOrder() {
+        try {
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({items: chosenItems}),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to place order');
+            }
+            return await response.json();
+        } catch (e) {
+            console.error(e);
+            return null;
+        } finally {
+            navigate("/checkout");
+        }
+
+    }
 
     //sample data
     const sampleItems: CartItemType[] = [
@@ -83,7 +106,7 @@ export default function Cart({items}: {items?: CartItemType[]}) {
                                     <Button
                                         className="w-full max-w-48"
                                         size="lg"
-                                        onClick={()=> navigate("/checkout")}>Thanh toán</Button>
+                                        onClick={hadnleOrder}>Thanh toán</Button>
                                 </ItemActions>
                             </Item>
                         </div>
@@ -94,17 +117,4 @@ export default function Cart({items}: {items?: CartItemType[]}) {
     );
 }
 
-async function handleOrder(orderItems: CartItemType[]) {
-    const response = await fetch('/api/orders', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({items: orderItems}),
-    });
-    if (!response.ok) {
-        throw new Error('Failed to place order');
-    }
-    return await response.json();
 
-}

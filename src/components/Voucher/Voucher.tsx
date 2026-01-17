@@ -20,13 +20,10 @@ import {
     ItemMedia,
     ItemTitle
 } from "@/components/ui/item.tsx";
-import { Checkbox } from "@/components/ui/checkbox"
 import {Avatar, AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import {formatCurrency} from "@/utils/formattor.ts";
+import {getVoucherList} from "@/utils/VoucherUtil.ts";
 
-type Props = {
-    vouchers?: Array<any>;
-};
 type Voucher = {
     code: string;
     description: string;
@@ -38,80 +35,18 @@ type Voucher = {
 
 export function VoucherDialog() {
     //get vouchers
-    const vouchers: Voucher[] = [
-        {
-            code: "DISCOUNT10",
-            description: "Giảm giá 10%",
-            discountAmount: 10,
-            minOrderAmount: 100000,
-            expiryDate: "2024-12-31",
-            quantity: 1,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
-        },
-        {
-            code: "FREESHIP",
-            description: "Miễn phí vận chuyển",
-            discountAmount: 0,
-            minOrderAmount: 50000,
-            expiryDate: "2024-11-30",
-            quantity: 2,
+    const vouchers: Voucher[] = getVoucherList();
+    const handleApplyVoucher = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const voucherCode = formData.get("voucherCode") as string;
+        const voucher = await getVoucherInfo(voucherCode);
+        if (voucher) {
+            alert(`Áp dụng mã khuyến mãi thành công: ${voucher.code}`);
+        } else {
+            alert("Mã khuyến mãi không hợp lệ");
         }
-    ];
+    }
     const renderVouchers = () => {
         if (vouchers && vouchers.length > 0) {
             return vouchers.map((voucher, index) => (
@@ -137,12 +72,12 @@ export function VoucherDialog() {
                         <DialogDescription>
                             Nhập mã khuyến mãi của bạn bên dưới hoặc chọn từ các mã có sẵn:
                         </DialogDescription>
-                        <div className="flex w-full max-w-sm items-center gap-2">
-                            <Input type="text" placeholder="..." />
+                        <form className="flex w-full max-w-sm items-center gap-2" onSubmit={handleApplyVoucher}>
+                            <Input type="text" placeholder="..." id="voucherCode" name="voucherCode"/>
                             <Button type="submit" variant="outline">
                                 Áp dụng
                             </Button>
-                        </div>
+                        </form>
                     </DialogHeader>
                     <div className="grid gap-4 overflow-y-auto max-h-[60vh]">
                         <ItemGroup className="row-gap-4" role="list">
@@ -224,6 +159,24 @@ function VoucherDetail({voucher}: { voucher?: Voucher }) {
             </DialogContent>
         </Dialog>
     );
+}
+async function getVoucherInfo(voucherCode: string): Promise<Voucher | null> {
+    //from api: localhost:3000/voucher/{voucherCode}
+    if (!voucherCode) {
+        return null;
+    }
+    const response = await fetch(`http://localhost:3000/voucher/${voucherCode.trim()}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (response.ok) {
+        const voucher = (await response.json()).voucher as Voucher;
+        return voucher;
+    }
+    return null;
 }
 
 export default VoucherItem;

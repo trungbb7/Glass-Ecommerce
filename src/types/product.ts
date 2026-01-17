@@ -37,5 +37,9 @@ interface Product {
   images: string[];
   reviews?: ProductReview[];
 }
+interface CartProduct extends Product {
+  quantity: number;
+  selectedVariant: ProductVariant;
+}
 
-export type { Product, ProductVariant, ProductReview, ProductSpecification };
+export type { Product, ProductVariant, ProductReview, ProductSpecification, CartProduct };

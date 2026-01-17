@@ -16,6 +16,8 @@ interface OrderResult {
         price: number;
     }>;
     totalAmount: number;
+    discountAmount: number;
+    finalAmount: number;
     orderDate: string;
 }
 export default OrderStatus;

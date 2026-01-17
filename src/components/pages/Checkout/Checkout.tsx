@@ -34,7 +34,7 @@ export default function Checkout() {
 function CheckoutContent({orderResult}: {orderResult: OrderResult }) {
     const navigate = useNavigate();
     const isSuccessful = orderResult.isSuccessful;
-    const renderedItems = orderResult.items.map((item) => (
+   /* const renderedItems = orderResult.items.map((item) => (
         <Item key={item.productId} className="flex flex-row justify-between w-full">
             <ItemContent>
                 <ItemTitle>{item?.name ??""} x {item.quantity}</ItemTitle>
@@ -43,7 +43,7 @@ function CheckoutContent({orderResult}: {orderResult: OrderResult }) {
                 <ItemDescription>{formatCurrency(item.price * item.quantity)}</ItemDescription>
             </ItemContent>
         </Item>
-    ));
+    ));*/
     return (
         <div>
             {/*Checkout Form*/}
@@ -68,10 +68,26 @@ function CheckoutContent({orderResult}: {orderResult: OrderResult }) {
                         </Item>
                         <Item>
                             <ItemContent>
-                                <ItemTitle>Tổng thanh toán:</ItemTitle>
+                                <ItemTitle>Tổng giá:</ItemTitle>
                             </ItemContent>
                             <ItemContent>
                                 <ItemDescription>{formatCurrency(orderResult.totalAmount)}</ItemDescription>
+                            </ItemContent>
+                        </Item>
+                        <Item>
+                            <ItemContent>
+                                <ItemTitle>Giảm giá:</ItemTitle>
+                            </ItemContent>
+                            <ItemContent>
+                                <ItemDescription>{formatCurrency(orderResult.discountAmount)}</ItemDescription>
+                            </ItemContent>
+                        </Item>
+                        <Item>
+                            <ItemContent>
+                                <ItemTitle>Tổng thanh toán:</ItemTitle>
+                            </ItemContent>
+                            <ItemContent>
+                                <ItemDescription>{formatCurrency(orderResult.finalAmount)}</ItemDescription>
                             </ItemContent>
                         </Item>
                         <Item>
