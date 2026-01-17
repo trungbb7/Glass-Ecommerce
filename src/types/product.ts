@@ -37,6 +37,10 @@ interface Product {
   images: string[];
   reviews?: ProductReview[];
 }
+interface CartProduct extends Product {
+  quantity: number;
+  selectedVariant: ProductVariant;
+}
 
 interface WishLishResponseItem {
   id: string;
@@ -51,4 +55,5 @@ export type {
   ProductReview,
   ProductSpecification,
   WishLishResponseItem,
+  CartProduct,
 };
