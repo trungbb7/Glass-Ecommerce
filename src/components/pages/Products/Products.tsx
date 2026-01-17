@@ -35,7 +35,7 @@ export interface ParamItem {
   value: string;
 }
 
-const limit = 6;
+const limit = 15;
 
 export default function Products() {
   const location = useLocation();

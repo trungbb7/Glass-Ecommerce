@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import Banner from "./Banner/Banner";
 import CategoryHeading from "./CategoryHeading/CategoryHeading";
 import ProductItem from "@/components/ProductItem/ProductItem";
-import RecommededBanner from "./RecommendedBanner/RecommendedBanner";
+import RecommendedBanner from "./RecommendedBanner/RecommendedBanner";
 import { SeperateLine } from "@/components/SeperateLine";
 import { Footer } from "@/components/Footer";
 import CategorySection from "./CategorySection/CategorySection";
@@ -87,7 +87,7 @@ export default function Home() {
         {/* 
         <SeperateLine className="my-15" /> */}
 
-        <RecommededBanner className="mb-8" />
+        <RecommendedBanner className="mb-8" />
 
         <SeperateLine className="my-15" />
 

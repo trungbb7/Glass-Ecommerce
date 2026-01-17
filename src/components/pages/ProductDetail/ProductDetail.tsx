@@ -36,6 +36,7 @@ import ComparisonSection from "./ComparisonSection/ComparisonSection";
 import { ProductNotFound } from "./ProductNotFound/ProductNotFound";
 import { addViewHistoryProduct } from "@/utils/viewHistoryUtils";
 import { pushNotification } from "@/components/Notification/notificationSlice";
+import { addToCart } from "@/components/Cart/cartSlice";
 
 const breadcrumbData: BreadcrumbData[] = [
   { name: "Trang chủ", path: "/", icon: <FontAwesomeIcon icon={faHouse} /> },
@@ -73,6 +74,7 @@ export default function ProductDetail() {
   const [validProduct, setValidProduct] = useState<boolean>(true);
 
   const logged = useAppSelector((state) => state.auth.logged);
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
 
   function stopComparison() {
@@ -114,8 +116,23 @@ export default function ProductDetail() {
   function handleAddToCart(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
-    if (logged) {
-      // Add-to-cart effect
+    if (logged && user?.id && product) {
+      // Dispatch addToCart action
+      dispatch(addToCart({
+        userId: String(user.id),
+        productId: product.id,
+        quantity: quantity,
+        selectedColor: currentVariance,
+      }));
+
+      // Show success notification
+      dispatch(pushNotification({
+        title: "Thành công",
+        message: "Đã thêm sản phẩm vào giỏ hàng",
+        type: "success",
+      }));
+
+      // Add-to-cart animation effect
       if (imgRef.current) {
         const startRect = event.currentTarget.getBoundingClientRect();
 

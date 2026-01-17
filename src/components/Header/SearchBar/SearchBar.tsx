@@ -58,7 +58,7 @@ export default function SearchBar({ isComparing }: SearchBarProps) {
     <div
       data-comparing={isComparing}
       ref={searchBarRef}
-      className="relative flex items-center bg-primary-light p-2.5 rounded-xl border-3 border-transparent z-30 has-focus:border-gray-300 transition-colors duration-200 ease-linear  data-[comparing=true]:border-secondary-300"
+      className="relative flex items-center bg-primary-light p-2.5 rounded-xl border-3 border-transparent z-30 has-focus:border-gray-300 transition-colors duration-200 ease-linear  data-[comparing=true]:border-secondary-300 max-w-3/10"
     >
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
